@@ -10,6 +10,7 @@ A multiplayer fantasy board game with a chatroom and an auction house.
 * Roll 12 sided die.
 * Player pieces move automatically, unless there is a direction of choice.
 * Most spaces are purchaseable.
+* Chance cards will be given after landed on specific spaces.
 
 
 <h3>Maybe Features:</h3>

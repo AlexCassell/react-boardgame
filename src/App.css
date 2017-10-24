@@ -1,28 +1,74 @@
+
+a:link, a:visited {
+  color: white;
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
+.App__logo {
+  /* animation: App-logo-spin infinite 20s linear; */
   height: 80px;
+  left: 5px;
+  top: 5px;
+  position: absolute;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+.App__header {
+  background-color: #276b20;
+  height: 50px;
   padding: 20px;
   color: white;
+  /* border-bottom: solid #042F00 3px; */
 }
 
-.App-title {
+.App__header__Login {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.App__title {
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
+.gameBox{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: calc(100% - 90px);
+  border: solid #042F00 3px;
+  width: calc(100% - 6px);
+  background: #18504C;
 }
 
-@keyframes App-logo-spin {
+.gameBox__chatroom {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 100%;
+  border-right:solid #042F00 3px;
+  width: 15%;
+  overflow-y: scroll;
+  overflow-wrap: normal;
+/* change scroll bars to match */
+}
+
+.gameBox__board {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  border:solid #042F00 3px;
+  height: calc(100% - 60px);
+  width: calc(100% - 15% - 70px);
+
+}
+
+
+
+/* @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+} */

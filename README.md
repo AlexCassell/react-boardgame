@@ -13,6 +13,7 @@ A multiplayer fantasy board game with chat and an auction house
 
 
 <h3>Maybe Features:</h3>
+
 * Very basic inventory system.
 * Buy/obtain items in town/start and on the board.
 * Auction house to sell land and/or items.

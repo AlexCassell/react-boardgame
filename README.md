@@ -20,3 +20,4 @@ A multiplayer fantasy board game with a chatroom and an auction house.
 * Very basic inventory system.
 * Buy/obtain items in town/start and on the board.
 * Auction house to sell land and/or items.
+* Top players board.

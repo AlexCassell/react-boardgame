@@ -6,6 +6,8 @@ A multiplayer fantasy board game with a chatroom and an auction house.
 * Login.
 * Chatroom.
 * CSS/HTML Gameboard.
+* Harvest resources.
+* Currency.
 * Players choose game piece (overhead of a 3d model turned flat).
 * Roll 12 sided die.
 * Player pieces move automatically, unless there is a direction of choice.

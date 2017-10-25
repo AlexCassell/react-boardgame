@@ -13,7 +13,53 @@ class App extends Component {
         </header>
         <div class="gameBox">
           <div class="gameBox__chatroom"></div>
-          <div class="gameBox__board"></div>
+          <div class="gameBox__playerStats"></div>
+          <div class="gameBox__board">
+            <div class="gameBox__board__topRow">
+              <div class="gameBox__board__town">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+            </div>
+            <div class="gameBox__board__bottomRow">
+              <div class="gameBox__board__leftCorner">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+              <div class="gameBox__board__space">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -9,54 +9,59 @@ class App extends Component {
         <header className="App__header">
           <img src={logo} className="App__logo" alt="logo" />
           <h1 className="App__title">Welcome to Code Name: I do not know yet.</h1>
-          <div className="App__header__Login"><a href="somescript">Login</a>/<a href="somescript">Register</a></div>
+          <div className="App__header__login">
+            <a className="login" href="somescript">Login<div className="loginPopUp">Login</div></a>/
+            <a className="register" href="somescript">Register<div className="registerPopUp">Register</div></a>
+          </div>
+          
+          {/* <div class="" */}
         </header>
-        <div class="gameBox">
-          <div class="gameBox__chatroom"></div>
-          <div class="gameBox__playerStats"></div>
-          <div class="gameBox__board">
-            <div class="gameBox__board__topRow">
-              <div class="gameBox__board__town">
+        <div className="gameBox">
+          <div className="gameBox__chatroom"></div>
+          <div className="gameBox__playerStats"></div>
+          <div className="gameBox__board">
+            <div className="gameBox__board__topRow">
+              <div className="gameBox__board__town">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
             </div>
-            <div class="gameBox__board__bottomRow">
-              <div class="gameBox__board__leftCorner">
+            <div className="gameBox__board__bottomRow">
+              <div className="gameBox__board__leftCorner">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
-              <div class="gameBox__board__space">
+              <div className="gameBox__board__space">
               </div>
             </div>
           </div>

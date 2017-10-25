@@ -1,4 +1,7 @@
-
+/* 
+CSS by Alex Cassell
+http://alexcassell.com
+*/
 a:link, a:visited {
   color: white;
   text-decoration: none;
@@ -22,11 +25,58 @@ a:link, a:visited {
   color: white;
 }
 
-.App__header__Login {
+.App__header__login {
   position: absolute;
   right: 5px;
   top: 5px;
 }
+
+.login .register {
+  position: absolute;
+  float: left;
+}
+
+.loginPopUp {
+  visibility: hidden;
+  overflow:hidden;
+  width: 300px;
+  height: 200px; 
+  font: 12px;   
+  background-color: #62A35B;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  right: 0px;
+  position: absolute;
+  z-index: 2;
+}
+
+.login:hover .loginPopUp {
+  visibility: visible;
+}
+
+.registerPopUp {
+  visibility: hidden;
+  overflow:hidden;
+  width: 300px;
+  height: 400px; 
+  font: 12px;   
+  background-color: #62A35B;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  right: 0px;
+  position: absolute;
+  z-index: 2;
+}
+
+.register:hover .registerPopUp {
+  visibility: visible;
+}
+
+
 
 .App__title {
   font-size: 1.5em;
@@ -119,3 +169,6 @@ a:link, a:visited {
   width: 7%;
   height: 75px;
 }
+
+
+

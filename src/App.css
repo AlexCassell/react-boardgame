@@ -1,4 +1,4 @@
-/* 
+bottomRow/* 
 CSS by Alex Cassell
 http://alexcassell.com
 */
@@ -34,6 +34,7 @@ a:link, a:visited {
 .login .register {
   position: absolute;
   float: left;
+  text-decoration: none;
 }
 
 .loginPopUp {
@@ -43,6 +44,7 @@ a:link, a:visited {
   height: 200px; 
   font: 12px;   
   background-color: #62A35B;
+  border: solid #042F00 3px;
   color: white;
   text-align: center;
   padding: 5px;
@@ -59,6 +61,7 @@ a:link, a:visited {
 .registerPopUp {
   visibility: hidden;
   overflow:hidden;
+  border: solid #042F00 3px;
   width: 300px;
   height: 400px; 
   font: 12px;   
@@ -76,8 +79,6 @@ a:link, a:visited {
   visibility: visible;
 }
 
-
-
 .App__title {
   font-size: 1.5em;
 }
@@ -91,6 +92,17 @@ a:link, a:visited {
   width: calc(100% - 6px);
   background: #18504C;
 }
+
+/* .gameBox__gameBackground {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  background-image: url("./images/largefantasyboard.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 0px;
+  left: 15%;
+} */
 
 .gameBox__chatroom {
   position: absolute;
@@ -121,11 +133,90 @@ a:link, a:visited {
 .gameBox__board {
   position: absolute;
   top: 30px;
-  right: 30px;
+  right: 0px;
   /* border:solid #A16D44 3px; */
   height: calc(100% - 60px);
-  width: calc(100% - 15% - 70px);
+  width: calc(85% - 70px);
 /* disable border after board is set up*/
+}
+
+.gameBox__board__pickCharacter {
+  width: 300px;
+  height: 200px; 
+  font: 12px;
+  display: block;
+  margin: auto;
+  border-radius: 6px;
+  top: 10px;
+  background-color: #62A35B;
+  border: solid #042F00 3px;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  position: relative;
+  z-index: 2;
+}
+
+.gameBox__board__pickCharacter__holder__characters__button {
+  background-color: #62A35B;
+  border-radius: 6px;
+  border: none;
+  z-index: 2;
+}
+
+.gameBox__board__pickCharacter__holder__characters__button:focus{
+  background-color: #80262A;
+}
+
+.gameBox__board__pickCharacter__holder {
+  position: relative;
+  margin: auto;
+  float: left;
+}
+
+.gameBox__board__pickCharacter__holder__characters {
+  position: relative;
+  padding: 5px;
+  float: left;
+  width: 64px;
+  height: 64px;
+}
+
+.gameBox__board__controls {
+  position: absolute;
+  margin: auto;
+  border: solid 3px #042F00;
+  background-color: #447B77;
+  width: calc(100% - 426px);
+  height: calc(100% - 174px);
+  top: 86px;
+  left: 86px;
+}
+
+.gameBox__board__controls__playButton {
+  position:absolute;
+  width: 25%;
+  height: 25%;
+  left: calc(50% - 80px);
+  top: calc(50%);
+  margin: auto;
+  font-size: 20pt;
+  background-color: #A16D44;
+  border: solid 3px #042F00;
+ 
+}
+
+button:focus { 
+  outline: none; 
+}
+
+.gameBox__board__controls__playButton:hover {
+  color: #447B77;
+  background-color: #5C0E12;
+}
+
+.gameBox__board__controls__playButton :active {
+  background-color: #9F4348;
 }
 
 .gameBox__board__topRow {
@@ -135,13 +226,38 @@ a:link, a:visited {
   top: 0px;
 }
 
+.gamebox__board__leftRow {
+  position:absolute;
+  width: 75px;
+  height: 100%;
+  top: 0px;
+}
+
+.gamebox__board__rightRow {
+  position:absolute;
+  width: 75px;
+  height: 100%;
+  top: 0px;
+  left: 747px;
+}
+
+.gameBox__board__SideSpace {
+  position: relative;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
 .gameBox__board__town {
   position: relative;
   float:left;
   margin:auto;
   border:solid #A16D44 3px;
-  width: 7%;
-  height: 75px;
+  height: 80px;
+  width: 80px;
 }
 
 .gameBox__board__space {
@@ -151,24 +267,22 @@ a:link, a:visited {
   border-right:solid #A16D44 3px;
   border-top:solid #A16D44 3px;
   border-bottom:solid #A16D44 3px;
-  width: 7%;
-  height: 75px;
+  height: 80px;
+  width: 80px;
 }
 
 .gameBox__board__bottomRow {
   position:absolute;
   height: 75px;
   width: 100%;
-  bottom: 0px;
+  top: 405px;
 }
-.gameBox__board__leftCorner {
+
+.gameBox__board__bottomRow__leftCorner {
   position: relative;
   float:left;
   margin:auto;
   border:solid #A16D44 3px;
-  width: 7%;
-  height: 75px;
+  height: 80px;
+  width: 80px;
 }
-
-
-

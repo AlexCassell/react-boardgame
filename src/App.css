@@ -1,7 +1,29 @@
-bottomRow/* 
+/* 
 CSS by Alex Cassell
 http://alexcassell.com
 */
+
+@font-face {
+  font-family: EnchantedLand;
+  src: url(./fonts/EnchantedLand.otf);
+}
+
+@font-face {
+  font-family: Neuton;
+ src: local('?'), 
+      url('./fonts/Neuton-Regular.ttf') format('truetype'),
+  
+} 
+
+body {
+  font-family: EnchantedLand;
+}
+
+.body_altFont {
+  font-family: Neuton;
+}
+
+
 a:link, a:visited {
   color: white;
   text-decoration: none;
@@ -9,6 +31,14 @@ a:link, a:visited {
 
 .App {
   text-align: center;
+}
+
+.App__title {
+  font-size: 1.5em;
+  position: absolute;
+  top: 10px;
+  left: 45%;
+  margin: auto;
 }
 
 .App__logo {
@@ -20,6 +50,7 @@ a:link, a:visited {
 
 .App__header {
   background-color: #276b20;
+  font-size: 20pt;
   height: 50px;
   padding: 20px;
   color: white;
@@ -27,6 +58,7 @@ a:link, a:visited {
 
 .App__header__login {
   position: absolute;
+  font-size: 20pt;
   right: 5px;
   top: 5px;
 }
@@ -79,10 +111,6 @@ a:link, a:visited {
   visibility: visible;
 }
 
-.App__title {
-  font-size: 1.5em;
-}
-
 .gameBox{
   position: absolute;
   bottom: 0px;
@@ -91,6 +119,13 @@ a:link, a:visited {
   border: solid #042F00 3px;
   width: calc(100% - 6px);
   background: #18504C;
+}
+
+.gameBox__advanceGame {
+  position: absolute;
+  left: 650px;;
+  top: 120px;  
+  z-index: 1;
 }
 
 /* .gameBox__gameBackground {
@@ -112,9 +147,12 @@ a:link, a:visited {
   border-right:solid #042F00 3px;
   background: #80262A;
   width: 15%;
-  overflow-y: scroll;
-  overflow-wrap: normal;
-/* change scrollbar  color to match */
+  overflow-wrap: break-word;
+}
+
+.gameBox__chatroom__screenName {
+  color:white;
+  font-weight: bold;
 }
 
 .gameBox__playerStats {
@@ -125,39 +163,46 @@ a:link, a:visited {
   border-left:solid #042F00 3px;
   background: #834F27;
   width: 15%;
-  overflow-y: scroll;
   overflow-wrap: normal;
-/* change scrollbar  color to match */
 }
 
 .gameBox__board {
   position: absolute;
   top: 30px;
   right: 0px;
-  /* border:solid #A16D44 3px; */
   height: calc(100% - 60px);
   width: calc(85% - 70px);
-/* disable border after board is set up*/
 }
 
 .gameBox__board__pickCharacter {
   width: 300px;
   height: 200px; 
-  font: 12px;
+  font-size: 20px;
+  top: 75px;
+  left: -120px;
+  position: absolute;
   display: block;
-  margin: auto;
   border-radius: 6px;
-  top: 10px;
   background-color: #62A35B;
   border: solid #042F00 3px;
   color: white;
   text-align: center;
   padding: 5px;
-  position: relative;
   z-index: 2;
 }
 
+.gameBox__advanceGame__increment{
+  position: absolute;
+  font-family: Neuton;
+  border-radius: 6px;
+  font-size: 20pt;
+  width: 600px;
+  height: 50px;
+  left: -260px;
+}
+
 .gameBox__board__pickCharacter__holder__characters__button {
+  padding: 5px;
   background-color: #62A35B;
   border-radius: 6px;
   border: none;
@@ -255,7 +300,9 @@ button:focus {
   position: relative;
   float:left;
   margin:auto;
-  border:solid #A16D44 3px;
+  color: white;
+  font-size: 50pt;
+  border: solid 3px #A16D44 ;
   height: 80px;
   width: 80px;
 }
@@ -270,6 +317,10 @@ button:focus {
   height: 80px;
   width: 80px;
 }
+
+/* .gameBox__board__space__portrait {
+
+} */
 
 .gameBox__board__bottomRow {
   position:absolute;
@@ -286,3 +337,4 @@ button:focus {
   height: 80px;
   width: 80px;
 }
+

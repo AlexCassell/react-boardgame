@@ -1,5 +1,7 @@
+/*eslint no-unused-vars: "off"*/
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Sound from 'react-sound';
 
 import knight from './images/knight.png';
 import druid from './images/druid.png';
@@ -18,11 +20,15 @@ choseJock = false, choseSuperhero = false, choseTeacher = false, choseSeventies 
 computerKnight = false, computerDruid = false, computerMonk = false, computerRogue = false,
 computerJock = false, computerSuperhero = false, computerTeacher = false, computerSeventies = false;
 
+const clickSound = new Audio("./sounds/click.wav");
+let slotOne = "";
+
 class StartGame extends Component {
     constructor(props) {
         super(props);
+        this.state = {'slotOne': ""};//<img src={knight} alt={"Knight"}/>};
         this.state = {'playButton': ''};
-        this.state = {'playButtonText': 'Click to Start'}; 
+        this.state = {'playButtonText': 'Click here to begin your journey.'};
       }
       //Choose Character Functions
       resetChosenCharacter () {
@@ -34,6 +40,11 @@ class StartGame extends Component {
 
       characterChosenKnight () {
         console.log(choseKnight);
+        // clickSound.play();
+        slotOne === <div className="gameBox__board__space__portrait"><img src={knight} alt={'Knight'}/></div>
+        // this.setState({
+        //   slotOne: <div className="gameBox__board__space__portrait"><img src={knight} alt={'Knight'}/></div>,
+        // });
         if(multiPlayer){
 
         }
@@ -129,12 +140,12 @@ class StartGame extends Component {
         }
       }
 
-      
+      //Choose non player Characters at random --turn into a return statment and move it to own file
       singlePlayerChooseOpponents(){
         let randomNumber = Math.floor(Math.random() * 9);
         console.log(randomNumber);
         console.log(singlePlayerOponents);
-        while(singlePlayerOponents.length < 4){
+        while(singlePlayerOponents.length < 3){
           if(randomNumber === 0 && computerKnight === false && choseKnight === false){
             singlePlayerOponents.push(randomNumber);
             computerKnight = true;
@@ -170,6 +181,11 @@ class StartGame extends Component {
           this.singlePlayerChooseOpponents();
         }
       }
+
+      movePlayersOnBoard(){
+
+      }
+
   
 
     //Main Game Function --so far, might be split into seperate functions in the future
@@ -178,8 +194,8 @@ class StartGame extends Component {
         if(gamePosition === 0){//add if logged in after login is added
           gamePosition = gamePosition + 1;
           this.setState({
-            playButtonText: "Click here once you have chosen.",
-            playButton: <div className="gameBox__board__pickCharacter">Choose Character<br />
+            playButtonText: "Click here once you have chosen your hero.",
+            playButton: <div className="gameBox__board__pickCharacter"><span className="body_altFont">Choose Character<br /></span>
             <div className = "gameBox__board__pickCharacter__holder">
               <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenKnight.bind(this)}><img src={knight} alt={"Knight"}/></button>
               </div>
@@ -207,31 +223,31 @@ class StartGame extends Component {
           gamePosition = gamePosition + 1;
           this.setState({
             playButton: "Game Still Going",
-            playButtonText: "Position is decided.",
+            playButtonText: "Your oponents have been chosen.",
           });
         }
       }
 
-      moveBack() {
-        if(backClicked){
-          //not sure if anything will go here or not
-        }
-        else{
-          backClicked = true;
-          if(gamePosition > 0){
-            gamePosition = gamePosition - 1;
-            this.setState({
-              playButton: "You cannot undo this action."
-            });
-          }
-        }
-    }
+    //   moveBack() {
+    //     if(backClicked){
+    //       //not sure if anything will go here or not
+    //     }
+    //     else{
+    //       backClicked = true;
+    //       if(gamePosition > 0){
+    //         gamePosition = gamePosition - 1;
+    //         this.setState({
+    //           playButton: "You cannot undo this action."
+    //         });
+    //       }
+    //     }
+    // }
       
       render() {
         return (
-            <div className="advanceGame">
-              <button className="advanceGame__decrement" onClick={this.moveForward.bind(this)}> {this.state.playButtonText} </button>
-              {/* <button className="advanceGame__increment" onClick={this.moveBack.bind(this)}> Back </button> */}
+            <div className="gameBox__advanceGame">
+              <button className="gameBox__advanceGame__increment" onClick={this.moveForward.bind(this)}> {this.state.playButtonText} </button>
+              {/* <button className="advanceGame__decrement" onClick={this.moveBack.bind(this)}> Back </button> */}
               {this.state.playButton}
             </div>
         );
@@ -243,3 +259,4 @@ class StartGame extends Component {
     ReactDOM.render(<StartGame />, document.getElementById('root'));
 
 export default StartGame;
+export {slotOne};

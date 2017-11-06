@@ -1,14 +1,15 @@
 # react-boardgame
-A multiplayer fantasy board game with a chatroom and an auction house.
+A single player fantasy board game.
 
 <h3>Planned Features:</h3>
 
 * Login.
-* Chatroom.
+* Game log.
 * ~~CSS/HTML Gameboard.~~
 * Harvest resources.
+* Non Player AI.
 * Currency.
-* ~~Players choose game piece.~~
+* ~~Player choose game piece.~~
 * Roll 12 sided die.
 * Player pieces move automatically.
 * Most spaces are purchaseable.
@@ -20,4 +21,4 @@ A multiplayer fantasy board game with a chatroom and an auction house.
 * Very basic inventory system.
 * Buy/obtain items in town/start and on the board.
 * Auction house to sell land and/or items.
-* Top players board.
+* Multiplayer.

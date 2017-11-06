@@ -17,6 +17,7 @@ http://alexcassell.com
 
 body {
   font-family: EnchantedLand;
+  /* overflow:hidden; */
 }
 
 .body_altFont {
@@ -275,29 +276,22 @@ button:focus {
   position:absolute;
   width: 75px;
   height: 100%;
-  top: 0px;
+  top: 10px;
 }
 
 .gamebox__board__rightRow {
   position:absolute;
   width: 75px;
   height: 100%;
-  top: 0px;
+  top: 10px;
   left: 747px;
 }
 
-.gameBox__board__SideSpace {
-  position: relative;
-  top: 75px;
-  border-right:solid #A16D44 3px;
-  border-left:solid #A16D44 3px;
-  border-bottom:solid #A16D44 3px;
-  height: 80px;
-  width: 80px;
-}
+
 
 .gameBox__board__town {
   position: relative;
+  background-color: #447B77;
   float:left;
   margin:auto;
   color: white;
@@ -318,6 +312,330 @@ button:focus {
   width: 80px;
 }
 
+.gameBox__board__spaceTwo {
+  position: relative;
+  background-color: #62a35b;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceThree {
+  position: relative;
+  background-color: #62a35b;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceFour {
+  position: relative;
+  background-color: #80262a;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceFive {
+  position: relative;
+  background-color: #eec6a7;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceSix {
+  position: relative;
+  background-color: #62a35b;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceSeven {
+  position: relative;
+  background-color: #447B77;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceEight {
+  position: relative;
+  background-color: #eec6a7;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceNine {
+  position: relative;
+  background-color: #eec6a7;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceTen {
+  position: relative;
+  background-color: #80262a;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpace {
+  position: relative;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpaceEleven {
+  position: relative;
+  background-color: #62a35b;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpaceTwelve {
+  position: relative;
+  background-color: #62a35b;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpaceThirteen {
+  position: relative;
+  background-color: #eec6a7;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpaceFourteen {
+  position: relative;
+  background-color: #eec6a7;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceFifthteen {
+  position: relative;
+  background-color: #447B77;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceSixteen {
+  position: relative;
+  background-color: #62a35b;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceSeventeen {
+  position: relative;
+  background-color: #62a35b;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceEighteen {
+  position: relative;
+  background-color: #eec6a7;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceNineteen {
+  position: relative;
+  background-color: #80262a;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceTwenty {
+  position: relative;
+  background-color: #62a35b;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceTwentyOne {
+  position: relative;
+  background-color: #eec6a7;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceTwentyTwo {
+  position: relative;
+  background-color: #447B77;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__spaceTwentyThree {
+  position: relative;
+  background-color: #eec6a7;
+  float:left;
+  margin:auto;
+  border-right:solid #A16D44 3px;
+  border-top:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+/* space twenty-four */
+.gameBox__board__bottomRow__leftCorner {
+  position: relative;
+  background-color: #447B77;
+  float:left;
+  margin:auto;
+  border:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpaceTwentyFive {
+  position: relative;
+  background-color: #62a35b;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpaceTwentySix {
+  position: relative;
+  background-color: #eec6a7;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpaceTwentySeven {
+  position: relative;
+  background-color: #eec6a7;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
+.gameBox__board__SideSpaceTwentyEight {
+  position: relative;
+  background-color: #62a35b;
+  top: 75px;
+  border-right:solid #A16D44 3px;
+  border-left:solid #A16D44 3px;
+  border-bottom:solid #A16D44 3px;
+  height: 80px;
+  width: 80px;
+}
+
 /* .gameBox__board__space__portrait {
 
 } */
@@ -326,15 +644,8 @@ button:focus {
   position:absolute;
   height: 75px;
   width: 100%;
-  top: 405px;
+  top: 415px;
 }
 
-.gameBox__board__bottomRow__leftCorner {
-  position: relative;
-  float:left;
-  margin:auto;
-  border:solid #A16D44 3px;
-  height: 80px;
-  width: 80px;
-}
+
 

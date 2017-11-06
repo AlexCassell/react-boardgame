@@ -477,7 +477,7 @@
     height: 150px; 
     font-size: 12px;
     left: -50px;
-    top: -50px; 
+    top: -55px; 
     background-color: #62A35B;
     border: solid #042F00 3px;
     color: white;
@@ -489,5 +489,421 @@
   }
   
   .slot15:hover .slot15PopUp {
+    visibility: visible;
+  }
+
+  .slot16 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot16PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotSixteen__large.png");
+  }
+  
+  .slot16:hover .slot16PopUp {
+    visibility: visible;
+  }
+
+  .slot17 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot17PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotSeventeen__large.png");
+  }
+  
+  .slot17:hover .slot17PopUp {
+    visibility: visible;
+  }
+
+  .slot18 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot18PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotEighteen__large.png");
+  }
+  
+  .slot18:hover .slot18PopUp {
+    visibility: visible;
+  }
+
+  .slot19 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot19PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotNineteen__large.png");
+  }
+  
+  .slot19:hover .slot19PopUp {
+    visibility: visible;
+  }
+
+  .slot20 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot20PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwenty__large.png");
+  }
+  
+  .slot20:hover .slot20PopUp {
+    visibility: visible;
+  }
+
+  .slot21 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot21PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwentyOne__large.png");
+  }
+  
+  .slot21:hover .slot21PopUp {
+    visibility: visible;
+  }
+
+  .slot22 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot22PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwentyTwo__large.png");
+  }
+  
+  .slot22:hover .slot22PopUp {
+    visibility: visible;
+  }
+
+  .slot23 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot23PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwentyThree__large.png");
+  }
+  
+  .slot23:hover .slot23PopUp {
+    visibility: visible;
+  }
+
+  .slot24 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot24PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwentyFour__large.png");
+  }
+  
+  .slot24:hover .slot24PopUp {
+    visibility: visible;
+  }
+
+  .slot25 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot25PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwentyFive__large.png");
+  }
+  
+  .slot25:hover .slot25PopUp {
+    visibility: visible;
+  }
+
+  .slot26 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot26PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwentySix__large.png");
+  }
+  
+  .slot26:hover .slot26PopUp {
+    visibility: visible;
+  }
+
+  .slot27 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot27PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwentySeven__large.png");
+  }
+  
+  .slot27:hover .slot27PopUp {
+    visibility: visible;
+  }
+
+  .slot28 {
+    position: absolute;
+    float: left;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+  
+  .slot28PopUp {
+    visibility: hidden;
+    overflow:hidden;
+    width: 150px;
+    height: 150px; 
+    font-size: 12px;
+    left: -50px;
+    top: -55px; 
+    background-color: #62A35B;
+    border: solid #042F00 3px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+    background-image: url("../images/slotTwentyEight__large.png");
+  }
+  
+  .slot28:hover .slot28PopUp {
     visibility: visible;
   }

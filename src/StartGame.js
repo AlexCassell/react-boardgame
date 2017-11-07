@@ -21,12 +21,15 @@ computerKnight = false, computerDruid = false, computerMonk = false, computerRog
 computerJock = false, computerSuperhero = false, computerTeacher = false, computerSeventies = false;
 
 const clickSound = new Audio("./sounds/click.wav");
-let slotOne = "";
+
+ let playerHero = "", opponentOne, opponentTwo, opponentThree;
+
+ let slotOne = "", slotTwo, slotThree, slotFour, slotFive, slotSix, slotSeven;
+
 
 class StartGame extends Component {
     constructor(props) {
         super(props);
-        this.state = {'slotOne': ""};//<img src={knight} alt={"Knight"}/>};
         this.state = {'playButton': ''};
         this.state = {'playButtonText': 'Click here to begin your journey.'};
       }
@@ -49,6 +52,7 @@ class StartGame extends Component {
 
         }
         else{
+          playerHero = <img src={knight} alt={"Knight"}/>;
           singlePlayerOponents = [];
           this.resetChosenCharacter();
           choseKnight = true;     
@@ -65,6 +69,7 @@ class StartGame extends Component {
           this.resetChosenCharacter(); 
           choseDruid = true; 
           this.singlePlayerChooseOpponents();
+          playerHero = <img src={druid} alt={"Druid"}/>;
         }
       }
       characterChosenMonk () {
@@ -77,6 +82,7 @@ class StartGame extends Component {
           this.resetChosenCharacter(); 
           choseMonk = true; 
           this.singlePlayerChooseOpponents();
+          playerHero = <img src={monk} alt={"Monk"}/>;
         }
       }
       characterChosenRogue () {
@@ -89,6 +95,7 @@ class StartGame extends Component {
           this.resetChosenCharacter(); 
           choseRogue = true; 
           this.singlePlayerChooseOpponents();
+          playerHero = <img src={rogue} alt={"Rogue"}/>;
         }
       }
       characterChosenJock () {
@@ -101,6 +108,7 @@ class StartGame extends Component {
           this.resetChosenCharacter();  
           choseJock = true;
           this.singlePlayerChooseOpponents();
+          playerHero = <img src={jock} alt={"Jock"}/>;
         }
       }
       characterChosenSuperhero () {
@@ -113,6 +121,7 @@ class StartGame extends Component {
           this.resetChosenCharacter();
           choseSuperhero = true; 
           this.singlePlayerChooseOpponents();
+          playerHero = <img src={superhero} alt={"Superhero"}/>;
         }
       }
       characterChosenTeacher () {
@@ -125,6 +134,7 @@ class StartGame extends Component {
           this.resetChosenCharacter(); 
           choseTeacher = true; 
           this.singlePlayerChooseOpponents();
+          playerHero = <img src={teacher} alt={"Teacher"}/>;
         }
       }
       characterChosenSeventies () {
@@ -137,6 +147,7 @@ class StartGame extends Component {
           this.resetChosenCharacter(); 
           choseSeventies = true; 
           this.singlePlayerChooseOpponents();
+          playerHero = <img src={seventies} alt={"Seventies"}/>;
         }
       }
 
@@ -179,7 +190,96 @@ class StartGame extends Component {
             computerSeventies = true;
           }
           this.singlePlayerChooseOpponents();
+          this.opponents();
         }
+      }
+
+      opponents(){
+        //check if the knight is an opponent
+        slotOne = playerHero;
+        console.log(slotOne);
+        console.log(playerHero);
+        if(singlePlayerOponents[0] === 0){
+          opponentOne= <img src={knight} alt={"Knight"}/>;
+        }
+        else if (singlePlayerOponents[1] === 0){
+          opponentTwo= <img src={knight} alt={"Knight"}/>;
+        }
+        else if (singlePlayerOponents[2] === 0){
+          opponentThree= <img src={knight} alt={"Knight"}/>;
+        }
+        //check if the druid is an opponent
+        if(singlePlayerOponents[0] === 1){
+          opponentOne= <img src={druid} alt={"Druid"}/>;
+        }
+        else if (singlePlayerOponents[1] === 1){
+          opponentTwo= <img src={druid} alt={"Druid"}/>;
+        }
+        else if (singlePlayerOponents[2] === 1){
+          opponentThree= <img src={druid} alt={"Druid"}/>;
+        }
+        //check if the monk is an opponent
+        if(singlePlayerOponents[0] === 2){
+          opponentOne= <img src={monk} alt={"Monk"}/>;
+        }
+        else if (singlePlayerOponents[1] === 2){
+          opponentTwo= <img src={monk} alt={"Monk"}/>;
+        }
+        else if (singlePlayerOponents[2] === 2){
+          opponentThree= <img src={monk} alt={"Monk"}/>;
+        }
+        //check if the rogue is an opponent
+        if(singlePlayerOponents[0] === 3){
+          opponentOne= <img src={rogue} alt={"Rogue"}/>;
+        }
+        else if (singlePlayerOponents[1] === 3){
+          opponentTwo= <img src={rogue} alt={"Rogue"}/>;
+        }
+        else if (singlePlayerOponents[2] === 3){
+          opponentThree= <img src={rogue} alt={"Rogue"}/>;
+        }
+        //check if the jock is an opponent
+        if(singlePlayerOponents[0] === 4){
+          opponentOne= <img src={jock} alt={"Jock"}/>;
+        }
+        else if (singlePlayerOponents[1] === 4){
+          opponentTwo= <img src={jock} alt={"Jock"}/>;
+        }
+        else if (singlePlayerOponents[2] === 4){
+          opponentThree= <img src={jock} alt={"Jock"}/>;
+        }
+        //check if the superhero is an opponent
+        if(singlePlayerOponents[0] === 5){
+          opponentOne= <img src={superhero} alt={"Superhero"}/>;
+        }
+        else if (singlePlayerOponents[1] === 5){
+          opponentTwo= <img src={superhero} alt={"Superhero"}/>;
+        }
+        else if (singlePlayerOponents[2] === 5){
+          opponentThree= <img src={superhero} alt={"Superhero"}/>;
+        }
+        //check if the teacher is an opponent
+        if(singlePlayerOponents[0] === 6){
+          opponentOne= <img src={teacher} alt={"Teacher"}/>;
+        }
+        else if (singlePlayerOponents[1] === 6){
+          opponentTwo= <img src={teacher} alt={"Teacher"}/>;
+        }
+        else if (singlePlayerOponents[2] === 6){
+          opponentThree= <img src={teacher} alt={"Teacher"}/>;
+        }
+        //check if the seventies is an opponent
+        if(singlePlayerOponents[0] === 7){
+          opponentOne= <img src={seventies} alt={"Seventies"}/>;
+        }
+        else if (singlePlayerOponents[1] === 7){
+          opponentTwo= <img src={seventies} alt={"Seventies"}/>;
+        }
+        else if (singlePlayerOponents[2] === 7){
+          opponentThree= <img src={seventies} alt={"Seventies"}/>;
+        }
+
+
       }
 
       movePlayersOnBoard(){
@@ -222,8 +322,8 @@ class StartGame extends Component {
         else if (gamePosition === 1 && choseKnight === true || choseDruid === true || choseMonk === true || choseRogue === true || choseJock === true || choseSuperhero === true || choseTeacher === true || choseSeventies === true){
           gamePosition = gamePosition + 1;
           this.setState({
-            playButton: "Game Still Going",
-            playButtonText: "Your oponents have been chosen.",
+            playButtonText: "Click here when you are ready to begin.",
+            playButton: <div className="gameBox__board__opponents"><span className="gameBox__board__opponents__text"><h3>Your opponents have been chosen.</h3></span>{opponentOne}{opponentTwo}{opponentThree}</div>
           });
         }
       }
@@ -259,4 +359,5 @@ class StartGame extends Component {
     ReactDOM.render(<StartGame />, document.getElementById('root'));
 
 export default StartGame;
+export {singlePlayerOponents};
 export {slotOne};

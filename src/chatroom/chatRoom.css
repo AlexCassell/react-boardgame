@@ -3,7 +3,7 @@
     bottom: 0;
 }
 
-.commentBox__inoutField {
+.commentBox__inputField {
     width: 98%;
     color: black;
     background-color: #FCD2D5;
@@ -23,7 +23,7 @@
     height:79%;
     overflow-y: scroll;
     direction:rtl;
-    border-top:solid 2px white;
+    /* border-top:solid 2px white; */
     border-bottom:solid 2px white;
     color: white;
     text-align: left;

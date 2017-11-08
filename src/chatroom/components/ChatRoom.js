@@ -6,7 +6,7 @@ const userName = "Alex";
 const ChatRoom = props => {
   return (
     <div>
-      <div className="commentBox"><input className="commentBox__inoutField" type='text' value={props.removeOldString} onChange={props.changeHandler} />
+      <div className="commentBox"><input className="commentBox__inputField" type='text' value={props.removeOldString} onChange={props.changeHandler} />
       <button className="commentBox__submitButton" onClick={props.addToList}>Send Command</button></div>
       <div className="chatRoomWrapper"><span className="body_altFont">
         {props.chatRoomList.map((item, i) => {

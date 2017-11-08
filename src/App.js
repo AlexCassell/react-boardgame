@@ -8,6 +8,7 @@ import StartGame from './StartGame';
 // import Opponents from './Opponents';
 import {slotOne} from './StartGame.js';
 import ChatRoom from './chatroom/index.js';
+import InventoryIndex from './inventory/index.js';
 
 class App extends Component {
 
@@ -20,10 +21,19 @@ class App extends Component {
       <div className="App">
         <header className="App__header">
           <img src={logo} className="App__logo" alt="logo" />
-          <h1 className="App__title">Merchants of Calliope.</h1>
+          <h1 className="App__title">Merchants of Calliope</h1>
           <div className="App__header__login">
-            <a className="login" href="somescript">Login<div className="loginPopUp">Login</div></a><span className="body_altFont">/</span>
-            <a className="register" href="somescript">Register<div className="registerPopUp">Register</div></a>
+            <a className="login" href="somescript">Login<div className="loginPopUp">
+              Login<br />
+              <div className="login">Name: <input className="login__inputField" type='text'/></div>
+              <div className="login">Password: <input className="login__inputField" type='text'/></div>
+              </div></a><span className="body_altFont">/</span>
+            <a className="register" href="somescript">Register<div className="registerPopUp">
+              Register<br />
+              <div className="register">Name: <input className="register__inputField" type='text'/></div>
+              <div className="register">Email: <input className="register__inputField" type='text'/></div>
+              
+              </div></a>
           </div>
         </header>
         <div className="gameBox">
@@ -31,7 +41,9 @@ class App extends Component {
           <div className="gameBox__chatroom">
             <ChatRoom />
           </div>
-          <div className="gameBox__playerStats"></div>
+          <div className="gameBox__playerStats">
+          <InventoryIndex />
+          </div>
           <div className="gameBox__board">
             <div className="gameBox__board__topRow">
               <div className="gameBox__board__town">

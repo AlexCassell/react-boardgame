@@ -26,6 +26,9 @@ const clickSound = new Audio("./sounds/click.wav");
 
  let slotOne = "", slotTwo, slotThree, slotFour, slotFive, slotSix, slotSeven;
 
+ //stats
+ let coins = 1282, gold = 546, wood = 1313, food = 790;
+
 
 class StartGame extends Component {
     constructor(props) {
@@ -43,6 +46,8 @@ class StartGame extends Component {
 
       characterChosenKnight () {
         console.log(choseKnight);
+        coins = 50;
+        console.log({coins});
         // clickSound.play();
         slotOne === <div className="gameBox__board__space__portrait"><img src={knight} alt={'Knight'}/></div>
         // this.setState({
@@ -197,8 +202,7 @@ class StartGame extends Component {
       opponents(){
         //check if the knight is an opponent
         slotOne = playerHero;
-        console.log(slotOne);
-        console.log(playerHero);
+        // this.updateInventory();
         if(singlePlayerOponents[0] === 0){
           opponentOne= <img src={knight} alt={"Knight"}/>;
         }
@@ -286,7 +290,6 @@ class StartGame extends Component {
 
       }
 
-  
 
     //Main Game Function --so far, might be split into seperate functions in the future
       moveForward () {
@@ -321,6 +324,7 @@ class StartGame extends Component {
             }
         else if (gamePosition === 1 && choseKnight === true || choseDruid === true || choseMonk === true || choseRogue === true || choseJock === true || choseSuperhero === true || choseTeacher === true || choseSeventies === true){
           gamePosition = gamePosition + 1;
+          // this.updateInventory();
           this.setState({
             playButtonText: "Click here when you are ready to begin.",
             playButton: <div className="gameBox__board__opponents"><span className="gameBox__board__opponents__text"><h3>Your opponents have been chosen.</h3></span>{opponentOne}{opponentTwo}{opponentThree}</div>
@@ -349,6 +353,7 @@ class StartGame extends Component {
               <button className="gameBox__advanceGame__increment" onClick={this.moveForward.bind(this)}> {this.state.playButtonText} </button>
               {/* <button className="advanceGame__decrement" onClick={this.moveBack.bind(this)}> Back </button> */}
               {this.state.playButton}
+              /* {this.state.inventory} */
             </div>
         );
       }
@@ -361,3 +366,7 @@ class StartGame extends Component {
 export default StartGame;
 export {singlePlayerOponents};
 export {slotOne};
+export {coins};
+export {gold};
+export {wood};
+export {food};

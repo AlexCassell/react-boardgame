@@ -1,7 +1,20 @@
 /*eslint no-unused-vars: "off"*/
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import logo from './logo.png';
+import './App.css';
+
 import Sound from 'react-sound';
+
+
+
+import './css/slotPopUps.css';
+import './css/inventoryCSS.css';
+import './css/die.css';
+import ChatRoom from './chatroom/index.js';
+import InventoryIndex from './inventory/index.js';
+
 
 import knight from './images/knight.png';
 import druid from './images/druid.png';
@@ -13,6 +26,11 @@ import superhero from './images/superhero.png';
 import teacher from './images/teacher.png';
 import seventies from './images/seventies.png';
 
+import coinicon from './images/coin/large.png';
+import goldicon from './images/gold/large.png';
+import woodicon from './images/wood/large.png';
+import foodicon from './images/food/large.png';
+
 let gamePosition = 0;
 let singlePlayerOponents = [];
 let undoAvailable = false, multiPlayer = false, backClicked = false, choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false,
@@ -22,17 +40,27 @@ computerJock = false, computerSuperhero = false, computerTeacher = false, comput
 
 const clickSound = new Audio("./sounds/click.wav");
 
- let playerHero = "", opponentOne, opponentTwo, opponentThree;
+ let playerHero = "", currentPlayerAvatar = "", opponentOne = "", opponentTwo = "", opponentThree = "";
 
- let slotOne = "", slotTwo, slotThree, slotFour, slotFive, slotSix, slotSeven;
+//  let slotOne = "", slotTwo = "", slotThree = "", slotFour = "", slotFive = "", slotSix = "",
+//  slotSeven = "", slotEight = "", slotNine = "", slotTen = "", slotEleven = "", slotTwelve = "", slotThirteen = "",
+//  slotFourteen = "", slotFifthteen = "", slotSixteen = "", slotSeventeen = "", slotEighteen = "", slotNineteen = "",
+//  slotTwenty = "", slotTwentyOne = "", slotTwentyTwo = "",slotTwentyThree = "", slotTwentyFour = "", slotTwentyFive = "",
+//  slotTwentySix = "", slotTwentySeven = "", slotTwentyEight = ""; 
 
+let playerBoardSlotArray = [""];
+
+ let playerCurrentSlot = 1, playerNewSlot = 0, playerOverRoll = 0, opponentOneCurrentSlot = 1, opponentTwoCurrentSlot = 1,opponentThreeCurrentSlot = 1, opponentFourCurrentSlot = 1;
+ let dieRoll = [""];
+ let whosTurn = 1;
  //stats
  let coins = 1282, gold = 546, wood = 1313, food = 790;
 
 
 class StartGame extends Component {
-    constructor(props) {
+   constructor(props) {
         super(props);
+        this.state = {'playerPositionOnBoard': ''};
         this.state = {'playButton': ''};
         this.state = {'playButtonText': 'Click here to begin your journey.'};
       }
@@ -45,14 +73,6 @@ class StartGame extends Component {
       }
 
       characterChosenKnight () {
-        console.log(choseKnight);
-        coins = 50;
-        console.log({coins});
-        // clickSound.play();
-        slotOne === <div className="gameBox__board__space__portrait"><img src={knight} alt={'Knight'}/></div>
-        // this.setState({
-        //   slotOne: <div className="gameBox__board__space__portrait"><img src={knight} alt={'Knight'}/></div>,
-        // });
         if(multiPlayer){
 
         }
@@ -65,102 +85,103 @@ class StartGame extends Component {
         }
       }
       characterChosenDruid () {
-        console.log(choseDruid);
         if(multiPlayer){
           
         }
         else{
+          playerHero = <img src={druid} alt={"Druid"}/>;
           singlePlayerOponents = [];
           this.resetChosenCharacter(); 
           choseDruid = true; 
           this.singlePlayerChooseOpponents();
-          playerHero = <img src={druid} alt={"Druid"}/>;
         }
       }
       characterChosenMonk () {
-        console.log(choseMonk);
         if(multiPlayer){
           
         }
         else{
+          playerHero = <img src={monk} alt={"Monk"}/>;
           singlePlayerOponents = [];
           this.resetChosenCharacter(); 
           choseMonk = true; 
-          this.singlePlayerChooseOpponents();
-          playerHero = <img src={monk} alt={"Monk"}/>;
+          this.singlePlayerChooseOpponents();          
         }
       }
       characterChosenRogue () {
-        console.log(choseRogue);
         if(multiPlayer){
           
         }
         else{
+          playerHero = <img src={rogue} alt={"Rogue"}/>;
           singlePlayerOponents = [];
           this.resetChosenCharacter(); 
           choseRogue = true; 
-          this.singlePlayerChooseOpponents();
-          playerHero = <img src={rogue} alt={"Rogue"}/>;
+          this.singlePlayerChooseOpponents();          
         }
       }
       characterChosenJock () {
-        console.log(choseJock);
         if(multiPlayer){
           
         }
         else{
+          playerHero = <img src={jock} alt={"Jock"}/>;
           singlePlayerOponents = [];
           this.resetChosenCharacter();  
           choseJock = true;
-          this.singlePlayerChooseOpponents();
-          playerHero = <img src={jock} alt={"Jock"}/>;
+          this.singlePlayerChooseOpponents();          
         }
       }
       characterChosenSuperhero () {
-        console.log(choseSuperhero);
         if(multiPlayer){
           
         }
         else{
+          playerHero = <img src={superhero} alt={"Superhero"}/>;
           singlePlayerOponents = [];
           this.resetChosenCharacter();
           choseSuperhero = true; 
-          this.singlePlayerChooseOpponents();
-          playerHero = <img src={superhero} alt={"Superhero"}/>;
+          this.singlePlayerChooseOpponents();          
         }
       }
       characterChosenTeacher () {
-        console.log(choseTeacher);
         if(multiPlayer){
           
         }
         else{
+          playerHero = <img src={teacher} alt={"Teacher"}/>;
           singlePlayerOponents = [];
           this.resetChosenCharacter(); 
           choseTeacher = true; 
-          this.singlePlayerChooseOpponents();
-          playerHero = <img src={teacher} alt={"Teacher"}/>;
+          this.singlePlayerChooseOpponents();          
         }
       }
       characterChosenSeventies () {
-        console.log(choseSeventies);
+       //console.log(choseSeventies);
         if(multiPlayer){
           
         }
         else{
+          playerHero = <img src={seventies} alt={"Seventies"}/>;
           singlePlayerOponents = [];
           this.resetChosenCharacter(); 
           choseSeventies = true; 
-          this.singlePlayerChooseOpponents();
-          playerHero = <img src={seventies} alt={"Seventies"}/>;
+          this.singlePlayerChooseOpponents();         
         }
+      }
+
+      startingResources(){
+        coins = 500;
+        gold = 25;
+        wood = 50;
+        food = 100;
       }
 
       //Choose non player Characters at random --turn into a return statment and move it to own file
       singlePlayerChooseOpponents(){
         let randomNumber = Math.floor(Math.random() * 9);
-        console.log(randomNumber);
-        console.log(singlePlayerOponents);
+       //console.log(randomNumber);
+       //console.log(singlePlayerOponents);
         while(singlePlayerOponents.length < 3){
           if(randomNumber === 0 && computerKnight === false && choseKnight === false){
             singlePlayerOponents.push(randomNumber);
@@ -200,9 +221,8 @@ class StartGame extends Component {
       }
 
       opponents(){
-        //check if the knight is an opponent
-        slotOne = playerHero;
-        // this.updateInventory();
+        this.startingResources(); //Gives starting resources
+        currentPlayerAvatar = playerHero;
         if(singlePlayerOponents[0] === 0){
           opponentOne= <img src={knight} alt={"Knight"}/>;
         }
@@ -286,16 +306,117 @@ class StartGame extends Component {
 
       }
 
-      movePlayersOnBoard(){
+      rollDie() {
+        dieRoll = [""];
+        for(let i = 0; i < 4; i++){
+          dieRoll[i] =+ Math.floor(Math.random()*12+1);
+        }
+        playerNewSlot = playerCurrentSlot + dieRoll[0];
+        if(playerNewSlot > 28){
+          playerOverRoll =  playerNewSlot - 28;
+          console.log("Hit");
+          return this.movePlayerOnBoardOverRoll();
+        }
+        this.movePlayerOnBoard();
+      }
+//finish setting ai's turn --------------------------------------------------------------------------------------------------------<
+      movePlayerOnBoard(){
+        if(playerCurrentSlot < playerNewSlot) {
+          delete playerBoardSlotArray[playerCurrentSlot - 1];
+          this.setState({
+            playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = currentPlayerAvatar            
+          });
+          playerCurrentSlot ++
+          ReactDOM.render(<StartGame />, document.getElementById('root'));
+          if(playerCurrentSlot === playerNewSlot){
+            whosTurn = whosTurn + 1
+            if(whosTurn > 4){
+              whosTurn = 1;
+            }
+            if(whosTurn === 1){
+              currentPlayerAvatar = playerHero;
+            }
+            else if(whosTurn === 2){
+              currentPlayerAvatar = opponentOne;
+            }
+            else if(whosTurn === 3){
+              currentPlayerAvatar = opponentTwo;
+            }
+            else if(whosTurn === 4){
+              currentPlayerAvatar = opponentThree;              
+            }
+          }
+          setTimeout(this.movePlayerOnBoard.bind(this), 200);
+        }
+      }
+
+      movePlayerOnBoardOverRoll(){
+        if(playerCurrentSlot < 28) {
+          delete playerBoardSlotArray[playerCurrentSlot - 1];
+          this.setState({
+            playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = currentPlayerAvatar            
+          });
+          playerCurrentSlot ++
+          ReactDOM.render(<StartGame />, document.getElementById('root'));
+          if(playerCurrentSlot === playerNewSlot){
+            whosTurn = whosTurn + 1
+            if(whosTurn > 4){
+              whosTurn = 1;
+            }
+            if(whosTurn === 1){
+              currentPlayerAvatar = playerHero;
+            }
+            else if(whosTurn === 2){
+              currentPlayerAvatar = opponentOne;
+            }
+            else if(whosTurn === 3){
+              currentPlayerAvatar = opponentTwo;
+            }
+            else if(whosTurn === 4){
+              currentPlayerAvatar = opponentThree;              
+            }
+          }
+          setTimeout(this.movePlayerOnBoardOverRoll.bind(this), 200);
+        }
+        else if (playerCurrentSlot === 28){
+          delete playerBoardSlotArray[27];
+          this.setState({
+            playerPositionOnBoard: playerBoardSlotArray[0] = currentPlayerAvatar            
+          });
+          playerCurrentSlot = 0;
+          playerNewSlot = playerOverRoll;
+          ReactDOM.render(<StartGame />, document.getElementById('root'));
+          if(playerCurrentSlot === playerNewSlot){
+            whosTurn = whosTurn + 1
+            if(whosTurn > 4){
+              whosTurn = 1;
+            }
+            if(whosTurn === 1){
+              currentPlayerAvatar = playerHero;
+            }
+            else if(whosTurn === 2){
+              currentPlayerAvatar = opponentOne;
+            }
+            else if(whosTurn === 3){
+              currentPlayerAvatar = opponentTwo;
+            }
+            else if(whosTurn === 4){
+              currentPlayerAvatar = opponentThree;              
+            }
+          }
+          setTimeout(this.movePlayerOnBoard.bind(this), 200);
+        }
+
 
       }
 
 
-    //Main Game Function --so far, might be split into seperate functions in the future
+
+    //Main Game Function
       moveForward () {
         backClicked = false;
         if(gamePosition === 0){//add if logged in after login is added
-          gamePosition = gamePosition + 1;
+          gamePosition = 1;
           this.setState({
             playButtonText: "Click here once you have chosen your hero.",
             playButton: <div className="gameBox__board__pickCharacter"><span className="body_altFont">Choose Character<br /></span>
@@ -322,12 +443,30 @@ class StartGame extends Component {
               </div>
               });
             }
-        else if (gamePosition === 1 && choseKnight === true || choseDruid === true || choseMonk === true || choseRogue === true || choseJock === true || choseSuperhero === true || choseTeacher === true || choseSeventies === true){
-          gamePosition = gamePosition + 1;
-          // this.updateInventory();
+        else if (gamePosition === 1){
+          if(choseKnight === true || choseDruid === true || choseMonk === true || choseRogue === true || choseJock === true || choseSuperhero === true || choseTeacher === true || choseSeventies === true){
+            gamePosition = 2;
+            this.setState({
+              playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot - 1] = playerHero,
+              playButtonText: "Click here when you are ready to begin.",
+              playButton: <div className="gameBox__board__opponents"><span className="gameBox__board__opponents__text"><h3>Your opponents have been chosen.</h3></span>{opponentOne}{opponentTwo}{opponentThree}</div>
+            });
+          }
+
+        }
+        else if (gamePosition === 2){
+          gamePosition = 3;
           this.setState({
-            playButtonText: "Click here when you are ready to begin.",
-            playButton: <div className="gameBox__board__opponents"><span className="gameBox__board__opponents__text"><h3>Your opponents have been chosen.</h3></span>{opponentOne}{opponentTwo}{opponentThree}</div>
+            playButtonText: "Roll Die",
+            playButton: <div className="dieWrapper"><div id="pentagon"></div></div>
+          });
+        }
+        else if (gamePosition === 3){
+          // gamePosition = 4;
+          this.rollDie();
+          this.setState({
+            playButtonText: "Die Rolled",
+            playButton: <div className="dieWrapper">{dieRoll[0]}</div>
           });
         }
       }
@@ -349,12 +488,243 @@ class StartGame extends Component {
       
       render() {
         return (
+          <div className="App">
+          <header className="App__header">
+            <img src={logo} className="App__logo" alt="logo" />
+            <h1 className="App__title">Merchants of Calliope</h1>
+            <div className="App__header__login">
+              <a className="login" href="somescript">Login<div className="loginPopUp">
+                Login<br />
+                <div className="login">Name: <input className="login__inputField" type='text'/></div>
+                <div className="login">Password: <input className="login__inputField" type='text'/></div>
+                </div></a><span className="body_altFont">/</span>
+              <a className="register" href="somescript">Register<div className="registerPopUp">
+                Register<br />
+                <div className="register">Name: <input className="register__inputField" type='text'/></div>
+                <div className="register">Email: <input className="register__inputField" type='text'/></div>
+                
+                </div></a>
+            </div>
+          </header>
+          <div className="gameBox">
             <div className="gameBox__advanceGame">
               <button className="gameBox__advanceGame__increment" onClick={this.moveForward.bind(this)}> {this.state.playButtonText} </button>
               {/* <button className="advanceGame__decrement" onClick={this.moveBack.bind(this)}> Back </button> */}
               {this.state.playButton}
-              /* {this.state.inventory} */
             </div>
+            <div className="gameBox__chatroom">
+              <ChatRoom />
+            </div>
+            <div className="gameBox__playerStats">
+            <div className="gameBox__playerStats__wrapper">
+            <div className="gameBox__playerStats__wrapper__title">Inventory</div>
+        <div className="gameBox__playerStats__inventoryWrapper__coinsWrapper">
+            <div className="gameBox__playerStats__inventoryWrapper__coinsWrapper__coin">
+                <img src={coinicon} alt={"Coin"}/></div>
+                <div className="gameBox__playerStats__inventoryWrapper__coinsWrapper__text">={coins.toLocaleString()}
+                </div>
+                </div>
+                <div className="gameBox__playerStats__inventoryWrapper__goldWrapper">
+            <div className="gameBox__playerStats__inventoryWrapper__goldWrapper__goldbar">
+                <img src={goldicon} alt={"Gold"}/></div>
+                <div className="gameBox__playerStats__inventoryWrapper__goldWrapper__text">={gold.toLocaleString()}
+                </div>
+                </div>
+                <div className="gameBox__playerStats__inventoryWrapper__woodWrapper">
+            <div className="gameBox__playerStats__inventoryWrapper__woodWrapper__logs">
+                <img src={woodicon} alt={"Wood"}/></div>
+                <div className="gameBox__playerStats__inventoryWrapper__woodWrapper__text">={wood.toLocaleString()}
+                </div>
+                </div>
+                <div className="gameBox__playerStats__inventoryWrapper__foodWrapper">
+            <div className="gameBox__playerStats__inventoryWrapper__foodWrapper__meat">
+                <img src={foodicon} alt={"Food"}/></div>
+                <div className="gameBox__playerStats__inventoryWrapper__foodWrapper__text">={food.toLocaleString()}
+                </div>
+                </div>
+                </div>
+            </div>
+            <div className="gameBox__board">
+              <div className="gameBox__board__topRow">
+                <div className="gameBox__board__town">
+                  <div className="slot1">
+                    <div className="slot1PopUp"></div>
+                  </div>
+                {playerBoardSlotArray[0]}
+                </div>
+                <div className="gameBox__board__spaceTwo">
+                <div className="slot2">
+                    <div className="slot2PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[1]}
+                </div>
+                <div className="gameBox__board__spaceThree">
+                <div className="slot3">
+                    <div className="slot3PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[2]}
+                </div>
+                <div className="gameBox__board__spaceFour">
+                <div className="slot4">
+                    <div className="slot4PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[3]}
+                </div>
+                <div className="gameBox__board__spaceFive">
+                <div className="slot5">
+                    <div className="slot5PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[4]}
+                </div>
+                <div className="gameBox__board__spaceSix">
+                <div className="slot6">
+                    <div className="slot6PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[5]}
+                </div>
+                <div className="gameBox__board__spaceSeven">
+                <div className="slot7">
+                    <div className="slot7PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[6]}
+                </div>
+                <div className="gameBox__board__spaceEight">
+                <div className="slot8">
+                    <div className="slot8PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[7]}
+                </div>
+                <div className="gameBox__board__spaceNine">
+                <div className="slot9">
+                    <div className="slot9PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[8]}
+                </div>
+                <div className="gameBox__board__spaceTen">
+                <div className="slot10">
+                    <div className="slot10PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[9]}
+                </div>
+              </div>
+              <div className="gameBox__board__bottomRow">
+                <div className="gameBox__board__bottomRow__leftCorner">
+                <div className="slot24">
+                    <div className="slot24PopUp"></div>
+                    {playerBoardSlotArray[23]}
+                  </div>
+                </div>
+                <div className="gameBox__board__spaceTwentyThree">
+                  <div className="slot23">
+                    <div className="slot23PopUp"></div>
+                    {playerBoardSlotArray[22]}
+                  </div>              
+                </div>
+                <div className="gameBox__board__spaceTwentyTwo">
+                  <div className="slot22">
+                    <div className="slot22PopUp"></div>
+                    {playerBoardSlotArray[21]}
+                  </div>
+                </div>
+                <div className="gameBox__board__spaceTwentyOne">
+                <div className="slot21">
+                    <div className="slot21PopUp"></div>
+                    {playerBoardSlotArray[20]}
+                  </div>
+                </div>
+                <div className="gameBox__board__spaceTwenty">
+                <div className="slot20">
+                    <div className="slot20PopUp"></div>
+                    {playerBoardSlotArray[19]}
+                  </div>
+                </div>
+                <div className="gameBox__board__spaceNineteen">
+                <div className="slot19">
+                    <div className="slot19PopUp"></div>
+                    {playerBoardSlotArray[18]}
+                  </div>
+                </div>
+                <div className="gameBox__board__spaceEighteen">
+                <div className="slot18">
+                    <div className="slot18PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[17]}
+                </div>
+                <div className="gameBox__board__spaceSeventeen">
+                <div className="slot17">
+                    <div className="slot17PopUp"></div>
+                    {playerBoardSlotArray[16]}
+                  </div>
+                </div>
+                <div className="gameBox__board__spaceSixteen">
+                <div className="slot16">
+                    <div className="slot16PopUp"></div>
+                    {playerBoardSlotArray[15]}
+                  </div>
+                </div>
+                <div className="gameBox__board__spaceFifthteen">
+                <div className="slot15">
+                    <div className="slot15PopUp"></div>
+                    {playerBoardSlotArray[14]}
+                  </div>
+                </div>
+              </div>
+              <div className="gamebox__board__leftRow">
+                <div className="gameBox__board__SideSpaceTwentyEight">
+                <div className="slot28">
+                    <div className="slot28PopUp"></div>
+                    {playerBoardSlotArray[27]}
+                  </div>
+                </div>
+                <div className="gameBox__board__SideSpaceTwentySeven">
+                <div className="slot27">
+                    <div className="slot27PopUp"></div>
+                    {playerBoardSlotArray[26]}
+                  </div>
+                </div>
+                <div className="gameBox__board__SideSpaceTwentySix">
+                <div className="slot26">
+                    <div className="slot26PopUp"></div>
+                    {playerBoardSlotArray[25]}
+                  </div>
+                </div>
+                <div className="gameBox__board__SideSpaceTwentyFive">
+                <div className="slot25">
+                    <div className="slot25PopUp"></div>
+                    {playerBoardSlotArray[24]}
+                  </div>
+                </div>
+              </div>
+              <div className="gamebox__board__rightRow">
+                <div className="gameBox__board__SideSpaceEleven">
+                <div className="slot11">
+                    <div className="slot11PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[10]}
+                </div>
+                <div className="gameBox__board__SideSpaceTwelve">
+                <div className="slot12">
+                    <div className="slot12PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[11]}
+                </div>
+                <div className="gameBox__board__SideSpaceThirteen">
+                <div className="slot13">
+                    <div className="slot13PopUp"></div>
+                  </div>
+                  {playerBoardSlotArray[12]}
+                </div>
+                <div className="gameBox__board__SideSpaceFourteen">
+                <div className="slot14">
+                    <div className="slot14PopUp"></div>
+                    {playerBoardSlotArray[13]}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
         );
       }
 
@@ -365,7 +735,6 @@ class StartGame extends Component {
 
 export default StartGame;
 export {singlePlayerOponents};
-export {slotOne};
 export {coins};
 export {gold};
 export {wood};

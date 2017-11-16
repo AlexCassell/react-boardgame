@@ -1,0 +1,40 @@
+/* @font-face {
+    font-family: Neuton;
+    src: local('?'),
+    url('../fonts/Neuton-Regular.ttf') format('truetype'),
+    
+}  */
+
+.gameBox__playerStats__wrapper__cardCollectionWrapper {
+    position: absolute;
+    box-sizing:border-box;
+    width: 100%;
+    height: 200px;;
+    bottom: 10px;
+    text-align: center;
+}
+
+.gameBox__playerStats__wrapper__cardCollectionWrapper__title {
+    top: 0px;
+    font-size: 30px;
+}
+
+.gameBox__playerStats__wrapper__cardCollectionWrapper__arrowsWrapper {
+    position: relative;
+    bottom: 0px;
+}
+
+.gameBox__playerStats__wrapper__cardCollectionWrapper__arrows {
+    padding: 5px;
+    background-color: #834F27;
+    border: none;
+    z-index: 100;
+}
+
+.gameBox__playerStats__wrapper__cardCollectionWrapper__arrows:focus{
+    background-color: #80262A;
+}
+
+.gameBox__playerStats__wrapper__cardCollectionWrapper__arrows:hover{
+    background-color: #80262A;
+}

@@ -1,8 +1,7 @@
 @font-face {
     font-family: Neuton;
-   src: local('?'), 
-        url('../fonts/Neuton-Regular.ttf') format('truetype'),
-    
+    src: local('?'),
+    url('../fonts/Neuton-Regular.ttf') format('truetype'),
   } 
 
   .gameBox__playerStats__wrapper{

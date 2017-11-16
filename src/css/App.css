@@ -5,13 +5,13 @@ http://alexcassell.com
 
 @font-face {
   font-family: EnchantedLand;
-  src: url(./fonts/EnchantedLand.otf);
+  src: url(../fonts/EnchantedLand.otf);
 }
 
 @font-face {
   font-family: Neuton;
- src: local('?'), 
-      url('./fonts/Neuton-Regular.ttf') format('truetype'),
+  src: local('?'), 
+  url('../fonts/Neuton-Regular.ttf') format('truetype'),
   
 } 
 
@@ -129,16 +129,7 @@ a:link, a:visited {
   z-index: 1;
 }
 
-/* .gameBox__gameBackground {
-  position: absolute;
-  width: 70%;
-  height: 100%;
-  background-image: url("./images/largefantasyboard.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  top: 0px;
-  left: 15%;
-} */
+
 
 .gameBox__chatroom {
   position: absolute;
@@ -173,6 +164,10 @@ a:link, a:visited {
   right: 0px;
   height: calc(100% - 60px);
   width: calc(85% - 70px);
+}
+
+.gameBox__board__avatarPadding {
+  padding-top: 5px;
 }
 
 .gameBox__board__pickCharacter {
@@ -269,7 +264,6 @@ a:link, a:visited {
   font-size: 20pt;
   background-color: #A16D44;
   border: solid 3px #042F00;
- 
 }
 
 button:focus { 
@@ -313,6 +307,7 @@ button:focus {
   position: relative;
   background-color: #447B77;
   float:left;
+  border-top-left-radius: 6px;
   margin:auto;
   color: white;
   font-size: 50pt;
@@ -438,6 +433,7 @@ button:focus {
   border-bottom:solid #A16D44 3px;
   height: 80px;
   width: 80px;
+  border-top-right-radius: 6px;
 }
 
 .gameBox__board__SideSpace {
@@ -504,6 +500,7 @@ button:focus {
   border-bottom:solid #A16D44 3px;
   height: 80px;
   width: 80px;
+  border-bottom-right-radius: 6px;
 }
 
 .gameBox__board__spaceSixteen {
@@ -610,6 +607,7 @@ button:focus {
   border:solid #A16D44 3px;
   height: 80px;
   width: 80px;
+  border-bottom-left-radius: 6px;
 }
 
 .gameBox__board__SideSpaceTwentyFive {

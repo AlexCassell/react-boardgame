@@ -26,6 +26,10 @@ import seventies from './images/characters/seventies.png';
 //sounds
 const uiClick = new Audio("./sounds/click_04.wav");
 
+//gameOfChance
+let gameOfChancePrizeAmount = 1000, gameOfChanceRollArrayIndex = 0, gameOfChanceJackPotNumber = 1000;
+let gameOfChancePlayerRollsArray = [];
+
 
 let gamePosition = 0;
 let singlePlayerOponents = [];
@@ -302,22 +306,24 @@ else if (singlePlayerOponents[2] === 7){
 }
 
 rollDie() {
-dieRoll = [""];
-for(let i = 0; i < 4; i++){
-  dieRoll[i] =+ Math.floor(Math.random()*12+1);
-}
-playerNewSlot = playerCurrentSlot + dieRoll[0];
-if(playerNewSlot > 28){
-  playerOverRoll =  playerNewSlot - 28;
-  return this.movePlayerOnBoardOverRoll();
-}
+// dieRoll = [""];
+// for(let i = 0; i < 4; i++){
+//   dieRoll[i] =+ Math.floor(Math.random()*12+1);
+// }
+// playerNewSlot = playerCurrentSlot + dieRoll[0];
+// if(playerNewSlot > 28){
+//   playerOverRoll =  playerNewSlot - 28;
+//   return this.movePlayerOnBoardOverRoll();
+// }
+playerNewSlot = 24;
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
 movePlayerOnBoard(){
   if(playerCurrentSlot === playerNewSlot){
-    gamePosition = 4;
-    this.moveForward ();
+    this.checkCurrentGameSlotForPlayer();
+    // gamePosition = 4;
+    // this.moveForward ();
   }
 if(playerCurrentSlot < playerNewSlot) {
   delete playerBoardSlotArray[playerCurrentSlot - 1];
@@ -332,6 +338,11 @@ if(playerCurrentSlot < playerNewSlot) {
 }
 
 movePlayerOnBoardOverRoll(){
+  if(playerCurrentSlot === playerNewSlot){
+    // this.checkCurrentGameSlotForPlayer();
+    // gamePosition = 4;
+    // this.moveForward ();
+  }
   if(playerCurrentSlot < 28) {
     delete playerBoardSlotArray[playerCurrentSlot - 1];
     this.setState({
@@ -354,13 +365,177 @@ movePlayerOnBoardOverRoll(){
   setTimeout(this.movePlayerOnBoard.bind(this), 200);
 }
 }
+// Opponents turn------------------------------------------------------------<<<<<<<<<<<<<
+//get current opponent
+//keep track of who has gone
+//reference  dieRoll to get opponent's die roll
 
+checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functions into one in the future
+  if(playerCurrentSlot === 1) {
+    
+  }
+  else if(playerCurrentSlot === 2) {
+    
+      }
+  else if(playerCurrentSlot === 3) {
+    
+      }
+  else if(playerCurrentSlot === 4) {
+    
+    this.unforseenEvent();
+      }
+  else if(playerCurrentSlot === 5) {
+    
+      }
+  else if(playerCurrentSlot === 6) {
+    
+      }
+  else if(playerCurrentSlot === 7) {
+    
+    this.inSearchOf();
+      }
+  else if(playerCurrentSlot === 8) {
+    
+      }
+  else if(playerCurrentSlot === 9) {
+    
+      }
+  else if(playerCurrentSlot === 10) {
+    
+    this.applecrossSlaveMines();
+      }
+  else if(playerCurrentSlot === 11) {
+    
+      }
+  else if(playerCurrentSlot === 12) {
+    
+      }
+  else if(playerCurrentSlot === 13) {
+    
+      }
+  else if(playerCurrentSlot === 14) {
+    
+      }
+  else if(playerCurrentSlot === 15) {
+    
+    this.yarmouthPortal();
+      }
+  else if(playerCurrentSlot === 16) {
+    
+      }
+  else if(playerCurrentSlot === 17) {
+    
+      }
+  else if(playerCurrentSlot === 18) {
+    
+      }
+  else if(playerCurrentSlot === 19) {
+    
+    this.unforseenEvent();
+      }
+  else if(playerCurrentSlot === 20) {
+    
+      }
+  else if(playerCurrentSlot === 21) {
+    
+      }
+  else if(playerCurrentSlot === 22) {
+    
+    this.inSearchOf();
+      }
+  else if(playerCurrentSlot === 23) {
+    
+      }
+  else if(playerCurrentSlot === 24) {
+    
+    this.gameOfChance();
+      }
+  else if(playerCurrentSlot === 25) {
+    
+      }
+  else if(playerCurrentSlot === 26) {
+    
+      }
+  else if(playerCurrentSlot === 27) {
+    
+      }
+  else if(playerCurrentSlot === 28) {
+    
+      }
+}
 
+unforseenEvent(){
+  gamePosition = 5;
+  this.moveForward ();
+}
 
+inSearchOf(){
+  gamePosition = 6;
+  this.moveForward ();
+}
 
+applecrossSlaveMines(){
+  gamePosition = 7;
+  this.moveForward ();
+}
+
+yarmouthPortal(){
+  gamePosition = 8;
+  this.moveForward ();
+  delete playerBoardSlotArray[14];
+  playerCurrentSlot = 0;
+  playerNewSlot = 0;
+  //play sound
+  this.setState({
+    playerPositionOnBoard: playerBoardSlotArray[0] = currentPlayerAvatar            
+  });
+  
+}
+
+gameOfChance(){
+  gamePosition = 9;
+  gameOfChanceJackPotNumber = Math.floor(Math.random()*12+1)
+  this.moveForward ();
+}
+// gameOfChance
+// gameOfChanceprize gets bigger with every loser and every sell to the bank
+// no choice but to play if you land on space
+// immediately takes 500 coins even if this makes player negative
+// the number to get pops up
+// click to roll, rolls three numbers
+// 25% chance to hit jackpot and take all money
+// the game adds 1000 back to the jackpot after turn is over
+// arr to hold all three turns and jackpot number
+// 
+gameOfChanceRoll(){
+  if(gameOfChancePlayerRollsArray.length < 3){
+    gameOfChancePlayerRollsArray.push(Math.floor(Math.random()*12+1));
+    ReactDOM.render(<StartGame />, document.getElementById('root'));
+    // gameOfChanceRollArrayIndex += 1;
+    return setTimeout(this.gameOfChanceRoll.bind(this), 50);
+    }
+    console.log(gameOfChancePlayerRollsArray);
+    gameOfChanceRollArrayIndex = 0;
+    // this.gameOfChanceCheckNumbers();
+  }
+
+gameOfChanceCheckNumbers(){
+  while(gameOfChancePlayerRollsArray.length < 3){
+    if(gameOfChancePlayerRollsArray[gameOfChanceRollArrayIndex] === gameOfChanceJackPotNumber){
+      gamePosition = 91;
+      return this.moveForward();
+    }
+    gameOfChanceRollArrayIndex++;
+  }
+    gamePosition = 92;
+    return this.moveForward();
+}
 
 //Main Game Function
 moveForward () {
+  // if(gameOfChancePrizeAmount === 0){
+  //   gameOfChancePrizeAmount = 1000;
+  // }
   backClicked = false;
   if(gamePosition === 0){//add if logged in after login is added
     gamePosition = 1;
@@ -409,17 +584,105 @@ else if (gamePosition === 2){
   });
 }
 else if (gamePosition === 3){
+    // gamePosition = -1;
     this.rollDie();
     this.setState({
-    playButtonText: "Die Rolled",
+    playButtonText: "Player moving...",
     playButton: <div className="dieWrapper">{dieRoll[0]}</div>
   });
 }
 else if (gamePosition === 4){
-  // gamePosition = 4;
+  gamePosition = -1;
+  // console.log(gamePosition);
   this.setState({
     playButtonText: "Please wait while your opponents take their turn.",
     playButton: ""
+  });
+}
+else if (gamePosition === 5){
+  gamePosition = -1;
+  this.setState({
+    playButtonText: "Oh no! You have suffered an Unforseen Event.",
+    playButton: ""
+  });
+}
+else if (gamePosition === 6){
+  gamePosition = -1;
+  this.setState({
+    playButtonText: "What good fortune, you have found something!",
+    playButton: ""
+  });
+}
+else if (gamePosition === 7){
+  gamePosition = -1;
+  this.setState({
+    playButtonText: "You have been captured!",
+    playButton: ""
+  });
+}
+else if (gamePosition === 8){
+  gamePosition = 4;
+  this.setState({
+    playButtonText: "You have teleported to relative safety.",
+    playButton: ""
+  });
+}
+else if (gamePosition === 9){
+  coins -= 500;
+  gameOfChancePrizeAmount += 500;
+  gamePosition = 90;
+  this.setState({
+    playButtonText: "Time for a game of chance.",
+    playButton: <div className="gamebox__gameofChanceWrapper">
+      <div className="gamebox__gameofChanceWrapper__topText">
+        <h1>Click above when you are ready to try your luck.</h1>
+      </div>
+      {/* add an image or animation here after game is done */}
+      <div className="gamebox__gameofChanceWrapper__bottomText">
+      <h1>You need to roll {gameOfChanceJackPotNumber} to win the jackpot!</h1>
+      </div>
+    </div>
+  });
+  // console.log(gamePosition);
+}
+else if (gamePosition === 90){
+  gamePosition = 91;
+  this.gameOfChanceRoll();
+  console.log(gameOfChancePlayerRollsArray[1]);
+  this.setState({
+    playButtonText: "Please wait ",
+    playButton:  <div className="gamebox__gameofChanceWrapper">
+    <div className="gamebox__gameofChanceWrapper__topText">
+      <h1></h1>
+    </div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapper">
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[0]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[1]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[2]}</div>
+    </div>
+    {/* add an image or animation here after game is done */}
+    <div className="gamebox__gameofChanceWrapper__bottomText">
+    <h1>You need to roll {gameOfChanceJackPotNumber} to win the jackpot!</h1>
+    </div>
+  </div>
+  });
+}
+else if (gamePosition === 91){
+  gamePosition = 4;
+  // console.log(gamePosition);
+  coins =+ gameOfChancePrizeAmount;
+  gameOfChancePrizeAmount = 0;
+  this.setState({
+    playButtonText: "Click to end your turn.",
+    playButton: "Congratulations you have won" + {gameOfChancePrizeAmount}
+  });
+}
+else if (gamePosition === 92){
+  gamePosition = 4;
+  // console.log(gamePosition);
+  this.setState({
+    playButtonText: "Click to end your turn.",
+    playButton: "You did not win."
   });
 }
 }
@@ -460,7 +723,7 @@ return (
     </div>
   </header>
   <div className="gameBox">
-  <CreditsInstructionsIndex />
+  {/* <CreditsInstructionsIndex /> */}
     <div className="gameBox__advanceGame">
       <button className="gameBox__advanceGame__increment" onClick={this.moveForward.bind(this)}> {this.state.playButtonText} </button>
       {/* <button className="advanceGame__decrement" onClick={this.moveBack.bind(this)}> Back </button> */}

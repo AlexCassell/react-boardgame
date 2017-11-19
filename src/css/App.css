@@ -129,8 +129,6 @@ a:link, a:visited {
   z-index: 1;
 }
 
-
-
 .gameBox__chatroom {
   position: absolute;
   left: 0px;
@@ -665,5 +663,46 @@ button:focus {
   top: 415px;
 }
 
+h2 {
+  text-align: center;
+}
+.gamebox__gameofChanceWrapper{
+  position:absolute;
+  width: 600px;
+  left: -265px;
+  height: 325px;
+  z-index: 10;
+  top: 70px;
+  color: white;
+  font-family: Neuton;
+}
+
+.gamebox__gameofChanceWrapper__topText{
+  position:absolute;
+  top: -30px;
+}
+
+.gamebox__gameofChanceWrapper__bottomText{
+  position:absolute;
+  bottom: 50px;
+  left: 60px;
+}
+.gamebox__gameofChanceWrapper__numbersWrapper {
+  /* border: solid 3px white; */
+  position:absolute;
+  height: 250px;
+  left: 150px;
+  width: 400px;
+  z-index: 10;
+}
+
+.gamebox__gameofChanceWrapper__numbersWrapperNumber{
+  position:relative;
+  float: left;
+  margin: auto;
+  font-size: 100px;
+  height: 250px;
+  width: 100px;
+}
 
 

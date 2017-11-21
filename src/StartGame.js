@@ -511,21 +511,22 @@ gameOfChanceRoll(){
   if(gameOfChancePlayerRollsArray.length < 3){
     gameOfChancePlayerRollsArray.push(Math.floor(Math.random()*12+1));
     ReactDOM.render(<StartGame />, document.getElementById('root'));
-    // gameOfChanceRollArrayIndex += 1;
+    this.moveForward();
     return setTimeout(this.gameOfChanceRoll.bind(this), 50);
     }
-    console.log(gameOfChancePlayerRollsArray);
     gameOfChanceRollArrayIndex = 0;
-    // this.gameOfChanceCheckNumbers();
+    this.gameOfChanceCheckNumbers();
   }
 
 gameOfChanceCheckNumbers(){
-  while(gameOfChancePlayerRollsArray.length < 3){
-    if(gameOfChancePlayerRollsArray[gameOfChanceRollArrayIndex] === gameOfChanceJackPotNumber){
+  let i = 0;
+  while(gameOfChancePlayerRollsArray.length > i){
+    if(gameOfChancePlayerRollsArray[i] === gameOfChanceJackPotNumber){
       gamePosition = 91;
       return this.moveForward();
     }
-    gameOfChanceRollArrayIndex++;
+    console.log(gameOfChancePlayerRollsArray[i]);
+    i++;
   }
     gamePosition = 92;
     return this.moveForward();
@@ -646,9 +647,50 @@ else if (gamePosition === 9){
   // console.log(gamePosition);
 }
 else if (gamePosition === 90){
-  gamePosition = 91;
+  gamePosition = 901;
   this.gameOfChanceRoll();
-  console.log(gameOfChancePlayerRollsArray[1]);
+  this.setState({
+    playButtonText: "Please wait ",
+    playButton:  <div className="gamebox__gameofChanceWrapper">
+    <div className="gamebox__gameofChanceWrapper__topText">
+      <h1></h1>
+    </div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapper">
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[0]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[1]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[2]}</div>
+    </div>
+    {/* add an image or animation here after game is done */}
+    <div className="gamebox__gameofChanceWrapper__bottomText">
+    <h1>You need to roll {gameOfChanceJackPotNumber} to win the jackpot!</h1>
+    </div>
+  </div>
+  });
+}
+else if (gamePosition === 901){
+  gamePosition = 902;
+  this.gameOfChanceRoll();
+  this.setState({
+    playButtonText: "Please wait ",
+    playButton:  <div className="gamebox__gameofChanceWrapper">
+    <div className="gamebox__gameofChanceWrapper__topText">
+      <h1></h1>
+    </div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapper">
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[0]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[1]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[2]}</div>
+    </div>
+    {/* add an image or animation here after game is done */}
+    <div className="gamebox__gameofChanceWrapper__bottomText">
+    <h1>You need to roll {gameOfChanceJackPotNumber} to win the jackpot!</h1>
+    </div>
+  </div>
+  });
+}
+else if (gamePosition === 902){
+  // gamePosition = 912;
+  this.gameOfChanceRoll();
   this.setState({
     playButtonText: "Please wait ",
     playButton:  <div className="gamebox__gameofChanceWrapper">
@@ -671,18 +713,44 @@ else if (gamePosition === 91){
   gamePosition = 4;
   // console.log(gamePosition);
   coins =+ gameOfChancePrizeAmount;
-  gameOfChancePrizeAmount = 0;
   this.setState({
     playButtonText: "Click to end your turn.",
-    playButton: "Congratulations you have won" + {gameOfChancePrizeAmount}
+    playButton: <div className="gamebox__gameofChanceWrapper">
+    <div className="gamebox__gameofChanceWrapper__topText">
+      <h1>Congratulations you have won {gameOfChancePrizeAmount.toLocaleString()} coins!</h1>
+    </div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapper">
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[0]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[1]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[2]}</div>
+    </div>
+    {/* add an image or animation here after game is done */}
+    <div className="gamebox__gameofChanceWrapper__bottomText">
+    <h1>You needed to roll {gameOfChanceJackPotNumber} to win the jackpot.</h1>
+    </div>
+  </div>
   });
+  // gameOfChancePrizeAmount = 0;
 }
 else if (gamePosition === 92){
   gamePosition = 4;
   // console.log(gamePosition);
   this.setState({
     playButtonText: "Click to end your turn.",
-    playButton: "You did not win."
+    playButton: <div className="gamebox__gameofChanceWrapper">
+    <div className="gamebox__gameofChanceWrapper__topText">
+      <h1>You did not win.</h1>
+    </div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapper">
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[0]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[1]}</div>
+    <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[2]}</div>
+    </div>
+    {/* add an image or animation here after game is done */}
+    <div className="gamebox__gameofChanceWrapper__bottomText">
+    <h1>You needed to roll {gameOfChanceJackPotNumber} to win the jackpot.</h1>
+    </div>
+  </div>
   });
 }
 }

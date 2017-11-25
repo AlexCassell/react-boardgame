@@ -12,6 +12,21 @@ import ChatRoom from './chatroom/index.js';
 import InventoryIndex from './inventory/index.js';
 import CardCollectionIndex from './cardCollection/index.js';
 import CreditsInstructionsIndex from './creditsInstructions/index.js';
+import PickCharacter from './components/pickCharacter.js';
+
+import {currentPlayerAvatar} from './components/pickCharacter.js';
+import {choseKnight}from './components/pickCharacter.js';
+import {choseMonk}from './components/pickCharacter.js';
+import {choseRogue}from './components/pickCharacter.js';
+import {choseDruid}from './components/pickCharacter.js';
+import {choseJock}from './components/pickCharacter.js';
+import {choseSuperhero}from './components/pickCharacter.js';
+import {choseTeacher}from './components/pickCharacter.js';
+import {choseSeventies}from './components/pickCharacter.js';
+import {playerHero}from './components/pickCharacter.js';
+import {opponentOne}from './components/pickCharacter.js';
+import {opponentTwo}from './components/pickCharacter.js';
+import {opponentThree}from './components/pickCharacter.js';
 
 
 import knight from './images/characters/knight.png';
@@ -30,21 +45,9 @@ const uiClick = new Audio("./sounds/click_04.wav");
 let gameOfChancePrizeAmount = 1000, gameOfChanceRollArrayIndex = 0, gameOfChanceJackPotNumber = 1000;
 let gameOfChancePlayerRollsArray = [];
 
-
 let gamePosition = 0;
-let singlePlayerOponents = [];
-let undoAvailable = false, multiPlayer = false, backClicked = false, choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false,
-choseJock = false, choseSuperhero = false, choseTeacher = false, choseSeventies = false,
-computerKnight = false, computerDruid = false, computerMonk = false, computerRogue = false,
-computerJock = false, computerSuperhero = false, computerTeacher = false, computerSeventies = false;
 
-let playerHero = "", currentPlayerAvatar = "", opponentOne = "", opponentTwo = "", opponentThree = "";
-
-//  let slotOne = "", slotTwo = "", slotThree = "", slotFour = "", slotFive = "", slotSix = "",
-//  slotSeven = "", slotEight = "", slotNine = "", slotTen = "", slotEleven = "", slotTwelve = "", slotThirteen = "",
-//  slotFourteen = "", slotFifthteen = "", slotSixteen = "", slotSeventeen = "", slotEighteen = "", slotNineteen = "",
-//  slotTwenty = "", slotTwentyOne = "", slotTwentyTwo = "",slotTwentyThree = "", slotTwentyFour = "", slotTwentyFive = "",
-//  slotTwentySix = "", slotTwentySeven = "", slotTwentyEight = ""; 
+let undoAvailable = false, justStarted = true;
 
 let playerBoardSlotArray = [""];
 
@@ -52,7 +55,7 @@ let playerCurrentSlot = 1, playerNewSlot = 0, playerOverRoll = 0, opponentOneCur
 let dieRoll = [""];
 let whosTurn = 1;
 //stats
-let coins = 1282, gold = 546, wood = 1313, food = 790;
+let coins = 500, gold = 25, wood = 50, food = 100;
 
 
 class StartGame extends Component {
@@ -62,248 +65,6 @@ class StartGame extends Component {
     this.state = {'playButton': ''};
     this.state = {'playButtonText': 'Click here to begin your journey.'};
   }
-  //Choose Character Functions
-  resetChosenCharacter () { 
-    // replace the bulk of this with nested loops and current opponent array
-    choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false,
-    choseJock = false, choseSuperhero = false, choseTeacher = false, choseSeventies = false,
-    computerKnight = false, computerDruid = false, computerMonk = false, computerRogue = false,
-    computerJock = false, computerSuperhero = false, computerTeacher = false, computerSeventies = false;
-  }
-
-characterChosenKnight () {
-if(multiPlayer){
-
-}
-else{
-  playerHero = <img src={knight} alt={"Knight"}/>;
-  singlePlayerOponents = [];
-  this.resetChosenCharacter();
-  choseKnight = true;     
-  this.singlePlayerChooseOpponents();
-}
-}
-characterChosenDruid () {
-  if(multiPlayer){
-  
-  }
-  else{
-    playerHero = <img src={druid} alt={"Druid"}/>;
-    singlePlayerOponents = [];
-    this.resetChosenCharacter(); 
-    choseDruid = true; 
-    this.singlePlayerChooseOpponents();
-}
-}
-characterChosenMonk () {
-if(multiPlayer){
-  
-}
-else{
-  playerHero = <img src={monk} alt={"Monk"}/>;
-  singlePlayerOponents = [];
-  this.resetChosenCharacter(); 
-  choseMonk = true; 
-  this.singlePlayerChooseOpponents();          
-}
-}
-characterChosenRogue () {
-if(multiPlayer){
-  
-}
-else{
-  playerHero = <img src={rogue} alt={"Rogue"}/>;
-  singlePlayerOponents = [];
-  this.resetChosenCharacter(); 
-  choseRogue = true; 
-  this.singlePlayerChooseOpponents();          
-}
-}
-characterChosenJock () {
-if(multiPlayer){
-  
-}
-else{
-  playerHero = <img src={jock} alt={"Jock"}/>;
-  singlePlayerOponents = [];
-  this.resetChosenCharacter();  
-  choseJock = true;
-  this.singlePlayerChooseOpponents();          
-}
-}
-characterChosenSuperhero () {
-if(multiPlayer){
-  
-}
-else{
-  playerHero = <img src={superhero} alt={"Superhero"}/>;
-  singlePlayerOponents = [];
-  this.resetChosenCharacter();
-  choseSuperhero = true; 
-  this.singlePlayerChooseOpponents();          
-}
-}
-characterChosenTeacher () {
-if(multiPlayer){
-  
-}
-else{
-  playerHero = <img src={teacher} alt={"Teacher"}/>;
-  singlePlayerOponents = [];
-  this.resetChosenCharacter(); 
-  choseTeacher = true; 
-  this.singlePlayerChooseOpponents();          
-}
-}
-characterChosenSeventies () {
-//console.log(choseSeventies);
-if(multiPlayer){
-  
-}
-else{
-  playerHero = <img src={seventies} alt={"Seventies"}/>;
-  singlePlayerOponents = [];
-  this.resetChosenCharacter(); 
-  choseSeventies = true; 
-  this.singlePlayerChooseOpponents();         
-}
-}
-
-startingResources(){
-coins = 500;
-gold = 25;
-wood = 50;
-food = 100;
-}
-
-//Choose non player Characters at random --turn into a return statment and move it to own file
-singlePlayerChooseOpponents(){
-let randomNumber = Math.floor(Math.random() * 9);
-//console.log(randomNumber);
-//console.log(singlePlayerOponents);
-while(singlePlayerOponents.length < 3){
-  if(randomNumber === 0 && computerKnight === false && choseKnight === false){
-    singlePlayerOponents.push(randomNumber);
-    computerKnight = true;
-  }
-  if(randomNumber === 1 && computerDruid === false && choseDruid === false){
-    singlePlayerOponents.push(randomNumber);
-    computerDruid = true;
-  }
-  if(randomNumber === 2 && computerMonk === false && choseMonk === false){
-    singlePlayerOponents.push(randomNumber);
-    computerMonk = true;
-  }
-  if(randomNumber === 3 && computerRogue === false && choseRogue === false){
-    singlePlayerOponents.push(randomNumber);
-    computerRogue = true;
-  }
-  if(randomNumber === 4 && computerJock === false && choseJock === false){
-    singlePlayerOponents.push(randomNumber);
-    computerJock = true;
-  }
-  if(randomNumber === 5 && computerSuperhero === false && choseSuperhero === false){
-    singlePlayerOponents.push(randomNumber);
-    computerSuperhero = true;
-  }
-  if(randomNumber === 6 && computerTeacher === false && choseTeacher === false){
-    singlePlayerOponents.push(randomNumber);
-    computerTeacher = true;
-  }
-  if(randomNumber === 7 && computerSeventies === false && choseSeventies === false){
-    singlePlayerOponents.push(randomNumber);
-    computerSeventies = true;
-  }
-  this.singlePlayerChooseOpponents();
-  this.opponents();
-}
-}
-
-opponents(){
-this.startingResources(); //Gives starting resources
-currentPlayerAvatar = playerHero;
-if(singlePlayerOponents[0] === 0){
-  opponentOne= <img src={knight} alt={"Knight"}/>;
-}
-else if (singlePlayerOponents[1] === 0){
-  opponentTwo= <img src={knight} alt={"Knight"}/>;
-}
-else if (singlePlayerOponents[2] === 0){
-  opponentThree= <img src={knight} alt={"Knight"}/>;
-}
-//check if the druid is an opponent
-if(singlePlayerOponents[0] === 1){
-  opponentOne= <img src={druid} alt={"Druid"}/>;
-}
-else if (singlePlayerOponents[1] === 1){
-  opponentTwo= <img src={druid} alt={"Druid"}/>;
-}
-else if (singlePlayerOponents[2] === 1){
-  opponentThree= <img src={druid} alt={"Druid"}/>;
-}
-//check if the monk is an opponent
-if(singlePlayerOponents[0] === 2){
-  opponentOne= <img src={monk} alt={"Monk"}/>;
-}
-else if (singlePlayerOponents[1] === 2){
-  opponentTwo= <img src={monk} alt={"Monk"}/>;
-}
-else if (singlePlayerOponents[2] === 2){
-  opponentThree= <img src={monk} alt={"Monk"}/>;
-}
-//check if the rogue is an opponent
-if(singlePlayerOponents[0] === 3){
-  opponentOne= <img src={rogue} alt={"Rogue"}/>;
-}
-else if (singlePlayerOponents[1] === 3){
-  opponentTwo= <img src={rogue} alt={"Rogue"}/>;
-}
-else if (singlePlayerOponents[2] === 3){
-  opponentThree= <img src={rogue} alt={"Rogue"}/>;
-}
-//check if the jock is an opponent
-if(singlePlayerOponents[0] === 4){
-  opponentOne= <img src={jock} alt={"Jock"}/>;
-}
-else if (singlePlayerOponents[1] === 4){
-  opponentTwo= <img src={jock} alt={"Jock"}/>;
-}
-else if (singlePlayerOponents[2] === 4){
-  opponentThree= <img src={jock} alt={"Jock"}/>;
-}
-//check if the superhero is an opponent
-if(singlePlayerOponents[0] === 5){
-  opponentOne= <img src={superhero} alt={"Superhero"}/>;
-}
-else if (singlePlayerOponents[1] === 5){
-  opponentTwo= <img src={superhero} alt={"Superhero"}/>;
-}
-else if (singlePlayerOponents[2] === 5){
-  opponentThree= <img src={superhero} alt={"Superhero"}/>;
-}
-//check if the teacher is an opponent
-if(singlePlayerOponents[0] === 6){
-  opponentOne= <img src={teacher} alt={"Teacher"}/>;
-}
-else if (singlePlayerOponents[1] === 6){
-  opponentTwo= <img src={teacher} alt={"Teacher"}/>;
-}
-else if (singlePlayerOponents[2] === 6){
-  opponentThree= <img src={teacher} alt={"Teacher"}/>;
-}
-//check if the seventies is an opponent
-if(singlePlayerOponents[0] === 7){
-  opponentOne= <img src={seventies} alt={"Seventies"}/>;
-}
-else if (singlePlayerOponents[1] === 7){
-  opponentTwo= <img src={seventies} alt={"Seventies"}/>;
-}
-else if (singlePlayerOponents[2] === 7){
-  opponentThree= <img src={seventies} alt={"Seventies"}/>;
-}
-
-
-}
 
 rollDie() {
 // dieRoll = [""];
@@ -492,21 +253,14 @@ yarmouthPortal(){
   
 }
 
+//game of chance-- spin into own file ..after I figure how to call a function from another file
+
 gameOfChance(){
   gamePosition = 9;
   gameOfChanceJackPotNumber = Math.floor(Math.random()*12+1)
   this.moveForward ();
 }
-// gameOfChance
-// gameOfChanceprize gets bigger with every loser and every sell to the bank
-// no choice but to play if you land on space
-// immediately takes 500 coins even if this makes player negative
-// the number to get pops up
-// click to roll, rolls three numbers
-// 25% chance to hit jackpot and take all money
-// the game adds 1000 back to the jackpot after turn is over
-// arr to hold all three turns and jackpot number
-// 
+
 gameOfChanceRoll(){
   if(gameOfChancePlayerRollsArray.length < 3){
     gameOfChancePlayerRollsArray.push(Math.floor(Math.random()*12+1));
@@ -517,53 +271,32 @@ gameOfChanceRoll(){
     gameOfChanceRollArrayIndex = 0;
     this.gameOfChanceCheckNumbers();
   }
-
-gameOfChanceCheckNumbers(){
-  let i = 0;
-  while(gameOfChancePlayerRollsArray.length > i){
-    if(gameOfChancePlayerRollsArray[i] === gameOfChanceJackPotNumber){
-      gamePosition = 91;
-      return this.moveForward();
+  gameOfChanceCheckNumbers(){
+    let i = 0;
+    while(gameOfChancePlayerRollsArray.length > i){
+      if(gameOfChancePlayerRollsArray[i] === gameOfChanceJackPotNumber){
+        gamePosition = 91;
+        return this.moveForward();
+      }
+      console.log(gameOfChancePlayerRollsArray[i]);
+      i++;
     }
-    console.log(gameOfChancePlayerRollsArray[i]);
-    i++;
+      gamePosition = 92;
+      return this.moveForward();
   }
-    gamePosition = 92;
-    return this.moveForward();
-}
 
-//Main Game Function
+
+  //Main Game Function
 moveForward () {
   // if(gameOfChancePrizeAmount === 0){
   //   gameOfChancePrizeAmount = 1000;
   // }
-  backClicked = false;
+  // backClicked = false;
   if(gamePosition === 0){//add if logged in after login is added
     gamePosition = 1;
     this.setState({
       playButtonText: "Click here once you have chosen your hero.",
-      playButton: <div className="gameBox__board__pickCharacter"><span className="body_altFont">Choose Character<br /></span>
-      <div className = "gameBox__board__pickCharacter__holder">
-        <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenKnight.bind(this)}><img src={knight} alt={"Knight"}/></button>
-        </div>
-        <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenDruid.bind(this)}><img src={druid} alt={"Druid"}/></button>
-        </div>
-        <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenMonk.bind(this)}><img src={monk} alt={"Monk"}/></button>
-        </div>
-        <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenRogue.bind(this)}><img src={rogue} alt={"Rogue"}/></button>
-        </div>
-        </div>
-      <div className = "gameBox__board__pickCharacter__holder">
-        <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenJock.bind(this)}><img src={jock} alt={"Jock"}/></button>
-        </div>
-        <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenSuperhero.bind(this)}><img src={superhero} alt={"Superhero"}/></button>
-        </div>
-        <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenTeacher.bind(this)}><img src={teacher} alt={"Teacher"}/></button>
-        </div>
-        <div className="gameBox__board__pickCharacter__holder__characters"><button className="gameBox__board__pickCharacter__holder__characters__button" onClick={this.characterChosenSeventies.bind(this)}><img src={seventies} alt={"Seventies"}/></button>
-        </div>
-        </div>
-        </div>
+      playButton:<PickCharacter />
         });
   }
   else if (gamePosition === 1){
@@ -996,8 +729,16 @@ return (
 ReactDOM.render(<StartGame />, document.getElementById('root'));
 
 export default StartGame;
-export {singlePlayerOponents};
 export {coins};
 export {gold};
 export {wood};
 export {food};
+
+export {knight};
+export {druid};
+export {monk};
+export {rogue};
+export {teacher};
+export {superhero};
+export {jock};
+export {seventies};

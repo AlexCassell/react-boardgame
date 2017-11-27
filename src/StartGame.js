@@ -28,6 +28,9 @@ import {opponentOne}from './components/pickCharacter.js';
 import {opponentTwo}from './components/pickCharacter.js';
 import {opponentThree}from './components/pickCharacter.js';
 
+import {opponentsGameLogString}from './components/pickCharacter.js';
+import {chosenCharacterGameLogString}from './components/pickCharacter.js';
+
 
 import knight from './images/characters/knight.png';
 import druid from './images/characters/druid.png';
@@ -57,6 +60,9 @@ let whosTurn = 1;
 //stats
 let coins = 500, gold = 25, wood = 50, food = 100;
 
+let gameLogArray =["Welcome to Merchants of Calliope!"]
+let gameLogString = "Welcome to Merchants of Calliope!!";
+
 
 class StartGame extends Component {
   constructor(props) {
@@ -67,16 +73,16 @@ class StartGame extends Component {
   }
 
 rollDie() {
-// dieRoll = [""];
-// for(let i = 0; i < 4; i++){
-//   dieRoll[i] =+ Math.floor(Math.random()*12+1);
-// }
-// playerNewSlot = playerCurrentSlot + dieRoll[0];
-// if(playerNewSlot > 28){
-//   playerOverRoll =  playerNewSlot - 28;
-//   return this.movePlayerOnBoardOverRoll();
-// }
-playerNewSlot = 24;
+dieRoll = [""];
+for(let i = 0; i < 4; i++){
+  dieRoll[i] =+ Math.floor(Math.random()*12+1);
+}
+playerNewSlot = playerCurrentSlot + dieRoll[0];
+if(playerNewSlot > 28){
+  playerOverRoll =  playerNewSlot - 28;
+  return this.movePlayerOnBoardOverRoll();
+}
+// playerNewSlot = 24;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -86,12 +92,12 @@ movePlayerOnBoard(){
     // gamePosition = 4;
     // this.moveForward ();
   }
-if(playerCurrentSlot < playerNewSlot) {
-  delete playerBoardSlotArray[playerCurrentSlot - 1];
-  this.setState({
-    playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = currentPlayerAvatar            
+  if(playerCurrentSlot < playerNewSlot) {
+    delete playerBoardSlotArray[playerCurrentSlot - 1];
+    this.setState({
+    playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = currentPlayerAvatar
   });
-  // uiClick.play(); //not working
+  
   playerCurrentSlot ++
   ReactDOM.render(<StartGame />, document.getElementById('root'));
   setTimeout(this.movePlayerOnBoard.bind(this), 200);
@@ -286,12 +292,23 @@ gameOfChanceRoll(){
   }
 
 
+
+gameLog(){
+  gameLogString = "";
+  for(let i = 0;i < gameLogArray.length;i++){
+    gameLogString += gameLogArray[i] + '\n';
+  }
+}
+
+
   //Main Game Function
 moveForward () {
-  // if(gameOfChancePrizeAmount === 0){
-  //   gameOfChancePrizeAmount = 1000;
-  // }
-  // backClicked = false;
+  //time - refactor into own file
+  let date = new Date();
+  let hour = date.getHours();
+  let minutes = date.getMinutes();
+  let currentTime = hour + ":" + minutes + " - ";
+
   if(gamePosition === 0){//add if logged in after login is added
     gamePosition = 1;
     this.setState({
@@ -301,6 +318,8 @@ moveForward () {
   }
   else if (gamePosition === 1){
     if(choseKnight === true || choseDruid === true || choseMonk === true || choseRogue === true || choseJock === true || choseSuperhero === true || choseTeacher === true || choseSeventies === true){
+      gameLogArray.push(currentTime + "You chose to play the " + chosenCharacterGameLogString);
+      this.gameLog();
     gamePosition = 2;
     this.setState({
       playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot - 1] = playerHero,
@@ -320,6 +339,8 @@ else if (gamePosition === 2){
 else if (gamePosition === 3){
     // gamePosition = -1;
     this.rollDie();
+    gameLogArray.push(currentTime + "You rolled " + dieRoll[0]);
+    this.gameLog();
     this.setState({
     playButtonText: "Player moving...",
     playButton: <div className="dieWrapper">{dieRoll[0]}</div>
@@ -446,6 +467,7 @@ else if (gamePosition === 91){
   gamePosition = 4;
   // console.log(gamePosition);
   coins =+ gameOfChancePrizeAmount;
+  coins = coins.toLocaleString();
   this.setState({
     playButtonText: "Click to end your turn.",
     playButton: <div className="gamebox__gameofChanceWrapper">
@@ -531,7 +553,14 @@ return (
       {this.state.playButton}
     </div>
     <div className="gameBox__chatroom">
-      <ChatRoom />
+      {/* <ChatRoom /> */}
+      <h2><span className="body_altFont">Game Log</span></h2>
+      <div className="gameBox__chatroom__text">
+          {gameLogString.split("\n").map(i => {
+            return <div>{i}<hr /></div>;
+          })}
+      {/* {gameLogString} */}
+      </div>
     </div>
     <div className="gameBox__playerStats">
     <div className="gameBox__playerStats__wrapper">
@@ -722,8 +751,6 @@ return (
 
 );
 }
-
-
 }
 
 ReactDOM.render(<StartGame />, document.getElementById('root'));

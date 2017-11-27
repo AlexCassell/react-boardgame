@@ -12,6 +12,8 @@ import {superhero} from '../StartGame.js';
 import {seventies} from '../StartGame.js';
 
 
+let opponentsGameLogString = "", chosenCharacterGameLogString = "";
+
 let multiPlayer = false, backClicked = false, choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false,
 choseJock = false, choseSuperhero = false, choseTeacher = false, choseSeventies = false,
 computerKnight = false, computerDruid = false, computerMonk = false, computerRogue = false,
@@ -41,6 +43,8 @@ else{
     playerHero = <img src={knight} alt={"Knight"}/>;
     singlePlayerOponents = [];
     this.resetChosenCharacter();
+    chosenCharacterGameLogString = "";
+    chosenCharacterGameLogString = "Knight"
     choseKnight = true;     
     this.singlePlayerChooseOpponents();
 }
@@ -53,6 +57,8 @@ characterChosenDruid () {
     playerHero = <img src={druid} alt={"Druid"}/>;
     singlePlayerOponents = [];
     this.resetChosenCharacter(); 
+    chosenCharacterGameLogString = "";
+    chosenCharacterGameLogString = "Druid"
     choseDruid = true; 
     this.singlePlayerChooseOpponents();
 }
@@ -64,7 +70,9 @@ characterChosenMonk () {
     else{
         playerHero = <img src={monk} alt={"Monk"}/>;
         singlePlayerOponents = [];
-        this.resetChosenCharacter(); 
+        this.resetChosenCharacter();
+        chosenCharacterGameLogString = "";
+        chosenCharacterGameLogString = "Monk" 
         choseMonk = true; 
         this.singlePlayerChooseOpponents();
     }
@@ -77,6 +85,8 @@ characterChosenRogue () {
         playerHero = <img src={rogue} alt={"Rogue"}/>;
         singlePlayerOponents = [];
         this.resetChosenCharacter(); 
+        chosenCharacterGameLogString = "";
+        chosenCharacterGameLogString = "Rogue"
         choseRogue = true; 
         this.singlePlayerChooseOpponents();
     }
@@ -88,7 +98,9 @@ characterChosenJock () {
     else{
     playerHero = <img src={jock} alt={"Jock"}/>;
     singlePlayerOponents = [];
-    this.resetChosenCharacter();  
+    this.resetChosenCharacter();
+    chosenCharacterGameLogString = "";
+    chosenCharacterGameLogString = "Jock"
     choseJock = true;
     this.singlePlayerChooseOpponents();
 }
@@ -101,6 +113,8 @@ characterChosenSuperhero () {
         playerHero = <img src={superhero} alt={"Superhero"}/>;
         singlePlayerOponents = [];
         this.resetChosenCharacter();
+        chosenCharacterGameLogString = "";
+        chosenCharacterGameLogString = "Superhero"
         choseSuperhero = true; 
         this.singlePlayerChooseOpponents();
     }
@@ -112,7 +126,9 @@ characterChosenTeacher () {
     else{
         playerHero = <img src={teacher} alt={"Teacher"}/>;
         singlePlayerOponents = [];
-        this.resetChosenCharacter(); 
+        this.resetChosenCharacter();
+        chosenCharacterGameLogString = "";
+        chosenCharacterGameLogString = "Teacher"
         choseTeacher = true; 
         this.singlePlayerChooseOpponents();
     }
@@ -124,7 +140,9 @@ characterChosenSeventies () {
     else{
         playerHero = <img src={seventies} alt={"Seventies"}/>;
     singlePlayerOponents = [];
-    this.resetChosenCharacter(); 
+    this.resetChosenCharacter();
+    chosenCharacterGameLogString = "";
+    chosenCharacterGameLogString = "Seventies"
     choseSeventies = true; 
     this.singlePlayerChooseOpponents();
 }
@@ -175,83 +193,108 @@ opponents(){
     currentPlayerAvatar = playerHero;
     if(singlePlayerOponents[0] === 0){
         opponentOne= <img src={knight} alt={"Knight"}/>;
+        opponentsGameLogString += "Knight, ";
     }
     else if (singlePlayerOponents[1] === 0){
         opponentTwo= <img src={knight} alt={"Knight"}/>;
+        opponentsGameLogString += "Knight, ";
     }
     else if (singlePlayerOponents[2] === 0){
         opponentThree= <img src={knight} alt={"Knight"}/>;
+        opponentsGameLogString += "Knight, ";
     }
     //check if the druid is an opponent
     if(singlePlayerOponents[0] === 1){
         opponentOne= <img src={druid} alt={"Druid"}/>;
+        opponentsGameLogString += "Druid, ";
     }
     else if (singlePlayerOponents[1] === 1){
         opponentTwo= <img src={druid} alt={"Druid"}/>;
+        opponentsGameLogString += "Druid, ";
     }
     else if (singlePlayerOponents[2] === 1){
         opponentThree= <img src={druid} alt={"Druid"}/>;
+        opponentsGameLogString += "Druid, ";
     }
     //check if the monk is an opponent
     if(singlePlayerOponents[0] === 2){
         opponentOne= <img src={monk} alt={"Monk"}/>;
+        opponentsGameLogString += "Monk, ";
     }
     else if (singlePlayerOponents[1] === 2){
         opponentTwo= <img src={monk} alt={"Monk"}/>;
+        opponentsGameLogString += "Monk, ";
     }
     else if (singlePlayerOponents[2] === 2){
         opponentThree= <img src={monk} alt={"Monk"}/>;
+        opponentsGameLogString += "Monk, ";
     }
     //check if the rogue is an opponent
     if(singlePlayerOponents[0] === 3){
         opponentOne= <img src={rogue} alt={"Rogue"}/>;
+        opponentsGameLogString += "Rogue, ";
     }
     else if (singlePlayerOponents[1] === 3){
         opponentTwo= <img src={rogue} alt={"Rogue"}/>;
+        opponentsGameLogString += "Rogue, ";
     }
     else if (singlePlayerOponents[2] === 3){
         opponentThree= <img src={rogue} alt={"Rogue"}/>;
+        opponentsGameLogString += "Rogue, ";
     }
     //check if the jock is an opponent
     if(singlePlayerOponents[0] === 4){
         opponentOne= <img src={jock} alt={"Jock"}/>;
+        opponentsGameLogString += "Jock, ";
     }
     else if (singlePlayerOponents[1] === 4){
         opponentTwo= <img src={jock} alt={"Jock"}/>;
+        opponentsGameLogString += "Jock, ";
     }
     else if (singlePlayerOponents[2] === 4){
         opponentThree= <img src={jock} alt={"Jock"}/>;
+        opponentsGameLogString += "Jock, ";
     }
     //check if the superhero is an opponent
     if(singlePlayerOponents[0] === 5){
         opponentOne= <img src={superhero} alt={"Superhero"}/>;
+        opponentsGameLogString += "Superhero, ";
     }
     else if (singlePlayerOponents[1] === 5){
         opponentTwo= <img src={superhero} alt={"Superhero"}/>;
+        opponentsGameLogString += "Superhero, ";
     }
     else if (singlePlayerOponents[2] === 5){
         opponentThree= <img src={superhero} alt={"Superhero"}/>;
+        opponentsGameLogString += "Superhero, ";
     }
     //check if the teacher is an opponent
     if(singlePlayerOponents[0] === 6){
         opponentOne= <img src={teacher} alt={"Teacher"}/>;
+        opponentsGameLogString += "Teacher, ";
     }
     else if (singlePlayerOponents[1] === 6){
         opponentTwo= <img src={teacher} alt={"Teacher"}/>;
+        opponentsGameLogString += "Teacher, ";
     }
     else if (singlePlayerOponents[2] === 6){
         opponentThree= <img src={teacher} alt={"Teacher"}/>;
+        opponentsGameLogString += "Teacher, ";
     }
     //check if the seventies is an opponent
     if(singlePlayerOponents[0] === 7){
         opponentOne= <img src={seventies} alt={"Seventies"}/>;
+        opponentsGameLogString += "Seventies, ";
     }
     else if (singlePlayerOponents[1] === 7){
         opponentTwo= <img src={seventies} alt={"Seventies"}/>;
+        opponentsGameLogString += "Seventies, ";
     }
     else if (singlePlayerOponents[2] === 7){
         opponentThree= <img src={seventies} alt={"Seventies"}/>;
+        opponentsGameLogString += "Seventies, ";
     }
+    console.log(opponentsGameLogString);
 }
     render() {
         return (
@@ -302,3 +345,6 @@ export {playerHero};
 export {opponentOne};
 export {opponentTwo};
 export {opponentThree};
+
+export {opponentsGameLogString};
+export {chosenCharacterGameLogString};

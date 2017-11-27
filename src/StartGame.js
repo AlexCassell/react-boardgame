@@ -41,6 +41,8 @@ import superhero from './images/characters/superhero.png';
 import teacher from './images/characters/teacher.png';
 import seventies from './images/characters/seventies.png';
 
+import CurrentTime from './components/currentTime.js';
+
 //sounds
 const uiClick = new Audio("./sounds/click_04.wav");
 
@@ -318,7 +320,7 @@ moveForward () {
   }
   else if (gamePosition === 1){
     if(choseKnight === true || choseDruid === true || choseMonk === true || choseRogue === true || choseJock === true || choseSuperhero === true || choseTeacher === true || choseSeventies === true){
-      gameLogArray.push(currentTime + "You chose to play the " + chosenCharacterGameLogString);
+      gameLogArray.push({currentTime} + "You chose to play the " + chosenCharacterGameLogString);
       this.gameLog();
     gamePosition = 2;
     this.setState({

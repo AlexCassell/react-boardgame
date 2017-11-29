@@ -320,7 +320,7 @@ moveForward () {
   }
   else if (gamePosition === 1){
     if(choseKnight === true || choseDruid === true || choseMonk === true || choseRogue === true || choseJock === true || choseSuperhero === true || choseTeacher === true || choseSeventies === true){
-      gameLogArray.push({currentTime} + "You chose to play the " + chosenCharacterGameLogString);
+      gameLogArray.push(currentTime + "You chose to play the " + chosenCharacterGameLogString);
       this.gameLog();
     gamePosition = 2;
     this.setState({
@@ -350,7 +350,6 @@ else if (gamePosition === 3){
 }
 else if (gamePosition === 4){
   gamePosition = -1;
-  // console.log(gamePosition);
   this.setState({
     playButtonText: "Please wait while your opponents take their turn.",
     playButton: ""
@@ -358,6 +357,8 @@ else if (gamePosition === 4){
 }
 else if (gamePosition === 5){
   gamePosition = -1;
+  gameLogArray.push(currentTime + "You have suffered an Unforseen Event.");
+  this.gameLog();
   this.setState({
     playButtonText: "Oh no! You have suffered an Unforseen Event.",
     playButton: ""
@@ -365,6 +366,8 @@ else if (gamePosition === 5){
 }
 else if (gamePosition === 6){
   gamePosition = -1;
+  gameLogArray.push(currentTime + "You found something interesting.");
+  this.gameLog();
   this.setState({
     playButtonText: "What good fortune, you have found something!",
     playButton: ""
@@ -372,6 +375,8 @@ else if (gamePosition === 6){
 }
 else if (gamePosition === 7){
   gamePosition = -1;
+  gameLogArray.push(currentTime + "You have been captured!");
+  this.gameLog();
   this.setState({
     playButtonText: "You have been captured!",
     playButton: ""
@@ -379,12 +384,16 @@ else if (gamePosition === 7){
 }
 else if (gamePosition === 8){
   gamePosition = 4;
+  gameLogArray.push(currentTime + "You found a portal.");
+  this.gameLog();
   this.setState({
     playButtonText: "You have teleported to relative safety.",
     playButton: ""
   });
 }
 else if (gamePosition === 9){
+  gameLogArray.push(currentTime + "You paid 500 coins to play a game of chance.");
+  this.gameLog();
   coins -= 500;
   gameOfChancePrizeAmount += 500;
   gamePosition = 90;
@@ -470,6 +479,8 @@ else if (gamePosition === 91){
   // console.log(gamePosition);
   coins =+ gameOfChancePrizeAmount;
   coins = coins.toLocaleString();
+  gameLogArray.push(currentTime + "You won " + gameOfChancePrizeAmount.toLocaleString() + " coins!");
+  this.gameLog();
   this.setState({
     playButtonText: "Click to end your turn.",
     playButton: <div className="gamebox__gameofChanceWrapper">
@@ -491,6 +502,8 @@ else if (gamePosition === 91){
 }
 else if (gamePosition === 92){
   gamePosition = 4;
+  gameLogArray.push(currentTime + "You did not win the game of chance.");
+  this.gameLog();
   // console.log(gamePosition);
   this.setState({
     playButtonText: "Click to end your turn.",

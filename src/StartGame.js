@@ -113,9 +113,9 @@ movePlayerOnBoard(){
 
 movePlayerOnBoardOverRoll(){
   if(playerCurrentSlot === playerNewSlot){
-    // this.checkCurrentGameSlotForPlayer();
-    // gamePosition = 4;
-    // this.moveForward ();
+    this.checkCurrentGameSlotForPlayer();
+    gamePosition = 4;
+    this.moveForward ();
   }
   if(playerCurrentSlot < 28) {
     delete playerBoardSlotArray[playerCurrentSlot - 1];

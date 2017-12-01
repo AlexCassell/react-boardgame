@@ -41,7 +41,9 @@ import superhero from './images/characters/superhero.png';
 import teacher from './images/characters/teacher.png';
 import seventies from './images/characters/seventies.png';
 
-import CurrentTime from './components/currentTime.js';
+import goldicon from './images/gold/market.png';
+import woodicon from './images/wood/market.png';
+import foodicon from './images/food/market.png';
 
 //sounds
 const uiClick = new Audio("./sounds/click_04.wav");
@@ -65,6 +67,8 @@ let coins = 500, gold = 25, wood = 50, food = 100;
 let gameLogArray =["Welcome to Merchants of Calliope!"], gameLogString = "Welcome to Merchants of Calliope!!",gameLogShowOnce = false,
 date, hour, minutes, currentTime;
 
+//market
+let goldCurrentPrice = 75, lumberCurrentPrice = 25, foodCurrentPrice = 15;
 
 class StartGame extends Component {
   constructor(props) {
@@ -104,7 +108,9 @@ movePlayerOnBoard(){
   if(playerCurrentSlot === 1){
     this.getTime();
     gameLogArray.push(currentTime + "You made it back to town");
+    gamePosition = 10;
     this.gameLog();
+    this.moveForward();
   }
   ReactDOM.render(<StartGame />, document.getElementById('root'));
   setTimeout(this.movePlayerOnBoard.bind(this), 200);
@@ -400,11 +406,14 @@ else if (gamePosition === 8){
   gamePosition = 4;
   this.getTime();
   gameLogArray.push(currentTime + "You found a portal.");
+  gameLogArray.push(currentTime + "You made it back to town");
+  gamePosition = 10;
   this.gameLog();
   this.setState({
     playButtonText: "You have teleported to relative safety.",
     playButton: ""
   });
+  this.moveForward();
 }
 else if (gamePosition === 9){
   gameLogShowOnce = false;
@@ -546,6 +555,38 @@ else if (gamePosition === 92){
     <h1>You needed to roll {gameOfChanceJackPotNumber} to win the jackpot.</h1>
     </div>
   </div>
+  });
+}
+else if (gamePosition === 10){
+  gamePosition = 4;
+  this.setState({
+    playButtonText: "Click here to end your turn.",
+    playButton: 
+    <div className="gamebox__marketWrapper">
+      <div className="gamebox__marketWrapper__topText">
+        <h1>Would you like to sell any items?</h1>
+      </div>
+      <div className="gamebox__marketWrapper__imageWrapper">
+        <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper">
+          <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__image"><img src={goldicon} alt={"Gold"}/>
+          </div>
+          <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__price">{goldCurrentPrice}
+          </div>
+        </div>
+        <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper">
+          <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper__image"><img src={woodicon} alt={"wood"}/>
+          </div>
+          <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper__price">{lumberCurrentPrice}
+          </div>
+        </div>
+        <div className="gamebox__marketWrapper__imageWrapper__foodWrapper">
+          <div className="gamebox__marketWrapper__imageWrapper__foodWrapper__image"><img src={foodicon} alt={"food"}/>
+          </div>
+          <div className="gamebox__marketWrapper__imageWrapper__foodWrapper__price">{foodCurrentPrice}
+          </div>
+        </div>
+      </div>
+    </div>
   });
 }
 }

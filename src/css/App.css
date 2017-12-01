@@ -723,4 +723,66 @@ h2 {
   width: 100px;
 }
 
+/* Market */
+.gamebox__marketWrapper {
+  position: absolute;
+  left: -200px;
+  top: 30px;
+  color: white;
+  font-family: Neuton;
+  width: 500px;
+  height: 100%;
+}
+
+.gamebox__marketWrapper__topText {
+
+}
+
+.gamebox__marketWrapper__imageWrapper {
+  position: absolute;
+  width: 500px;
+  height: 100%;
+}
+
+.gamebox__marketWrapper__imageWrapper__goldBarsWrapper {
+  position: absolute;
+  width: 128px;
+  left: 0px;
+}
+
+.gamebox__marketWrapper__imageWrapper__goldBarsWrapper__image {
+
+}
+
+.gamebox__marketWrapper__imageWrapper__goldBarsWrapper__price {
+
+}
+
+.gamebox__marketWrapper__imageWrapper__lumberWrapper {
+  position: absolute;
+  width: 128px;
+  left: 35%;
+}
+
+.gamebox__marketWrapper__imageWrapper__lumberWrapper__image {
+
+}
+
+.gamebox__marketWrapper__imageWrapper__lumberWrapper__price {
+
+}
+
+.gamebox__marketWrapper__imageWrapper__foodWrapper {
+  position: absolute;
+  width: 128px;
+  right: 0px;
+  }
+  
+  .gamebox__marketWrapper__imageWrapper__foodWrapper__image {
+  
+  }
+  
+  .gamebox__marketWrapper__imageWrapper__foodWrapper__price {
+  
+  }
 

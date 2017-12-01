@@ -107,7 +107,7 @@ movePlayerOnBoard(){
   playerCurrentSlot ++
   if(playerCurrentSlot === 1){
     this.getTime();
-    gameLogArray.push(currentTime + "You made it back to town");
+    gameLogArray.push(currentTime + "You made it back to town.");
     gamePosition = 10;
     this.gameLog();
     this.moveForward();
@@ -337,7 +337,7 @@ moveForward () {
   else if (gamePosition === 1){
     if(choseKnight === true || choseDruid === true || choseMonk === true || choseRogue === true || choseJock === true || choseSuperhero === true || choseTeacher === true || choseSeventies === true){
       this.getTime();
-      gameLogArray.push(currentTime + "You chose to play the " + chosenCharacterGameLogString);
+      gameLogArray.push(currentTime + "You chose to play the " + chosenCharacterGameLogString +".");
       this.gameLog();
     gamePosition = 2;
     this.setState({
@@ -406,7 +406,7 @@ else if (gamePosition === 8){
   gamePosition = 4;
   this.getTime();
   gameLogArray.push(currentTime + "You found a portal.");
-  gameLogArray.push(currentTime + "You made it back to town");
+  gameLogArray.push(currentTime + "You made it back to town.");
   gamePosition = 10;
   this.gameLog();
   this.setState({
@@ -570,19 +570,19 @@ else if (gamePosition === 10){
         <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper">
           <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__image"><img src={goldicon} alt={"Gold"}/>
           </div>
-          <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__price">{goldCurrentPrice}
+          <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__price">{goldCurrentPrice} coins
           </div>
         </div>
         <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper">
           <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper__image"><img src={woodicon} alt={"wood"}/>
           </div>
-          <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper__price">{lumberCurrentPrice}
+          <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper__price">{lumberCurrentPrice} coins
           </div>
         </div>
         <div className="gamebox__marketWrapper__imageWrapper__foodWrapper">
           <div className="gamebox__marketWrapper__imageWrapper__foodWrapper__image"><img src={foodicon} alt={"food"}/>
           </div>
-          <div className="gamebox__marketWrapper__imageWrapper__foodWrapper__price">{foodCurrentPrice}
+          <div className="gamebox__marketWrapper__imageWrapper__foodWrapper__price">{foodCurrentPrice} coins
           </div>
         </div>
       </div>

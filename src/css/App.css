@@ -742,6 +742,7 @@ h2 {
   position: absolute;
   width: 500px;
   height: 100%;
+  font-size: 25pt;
 }
 
 .gamebox__marketWrapper__imageWrapper__goldBarsWrapper {

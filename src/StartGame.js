@@ -322,6 +322,13 @@ getTime(){
   return currentTime = hour + ":" + minutes + " - ";
 }
 
+//Market
+sellGold(){
+  gold -= 1;
+  coins += goldCurrentPrice;
+  this.moveForward();
+}
+
   //Main Game Function
 moveForward () {
   //time - refactor into own file
@@ -568,7 +575,7 @@ else if (gamePosition === 10){
       </div>
       <div className="gamebox__marketWrapper__imageWrapper">
         <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper">
-          <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__image"><img src={goldicon} alt={"Gold"}/>
+          <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__image"><button onclick={this.sellGold.bind(this)}><img src={goldicon} alt={"Gold"}/></button>
           </div>
           <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__price">{goldCurrentPrice} coins
           </div>

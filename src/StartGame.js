@@ -68,7 +68,8 @@ let gameLogArray =["Welcome to Merchants of Calliope!"], gameLogString = "Welcom
 date, hour, minutes, currentTime;
 
 //market
-let goldCurrentPrice = 75, lumberCurrentPrice = 25, foodCurrentPrice = 15;
+let goldCurrentPrice = 75, woodCurrentPrice = 25, foodCurrentPrice = 15;
+let goldSold = 0, woodSold = 0, foodSold = 0, soldTotalProfit = 0;
 
 class StartGame extends Component {
   constructor(props) {
@@ -79,16 +80,16 @@ class StartGame extends Component {
   }
 
 rollDie() {
-dieRoll = [""];
-for(let i = 0; i < 4; i++){
-  dieRoll[i] =+ Math.floor(Math.random()*12+1);
-}
-playerNewSlot = playerCurrentSlot + dieRoll[0];
-if(playerNewSlot > 28){
-  playerOverRoll =  playerNewSlot - 28;
-  return this.movePlayerOnBoardOverRoll();
-}
-// playerNewSlot = 24;//dev only
+// dieRoll = [""];
+// for(let i = 0; i < 4; i++){
+//   dieRoll[i] =+ Math.floor(Math.random()*12+1);
+// }
+// playerNewSlot = playerCurrentSlot + dieRoll[0];
+// if(playerNewSlot > 28){
+//   playerOverRoll =  playerNewSlot - 28;
+//   return this.movePlayerOnBoardOverRoll();
+// }
+playerNewSlot = 15;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -323,11 +324,124 @@ getTime(){
 }
 
 //Market
-sellGold(){
-  gold -= 1;
-  coins += goldCurrentPrice;
-  this.moveForward();
+sellGold() {
+  if(gold > 0){
+    gold -= 1;
+    goldSold += 1;
+    coins += goldCurrentPrice;
+    soldTotalProfit += goldCurrentPrice;
+    this.goldMarketDecrease();
+    ReactDOM.render(<StartGame />, document.getElementById('root'));
+  }
+  else{
+    //play buzzer
+  }
 }
+
+sellWood() {
+  if(wood > 0){
+    wood -= 1;
+    woodSold += 1;
+    coins += woodCurrentPrice;
+    soldTotalProfit += woodCurrentPrice;
+    this.woodMarketDecrease();
+    ReactDOM.render(<StartGame />, document.getElementById('root'));
+  }
+  else{
+    //play buzzer
+  }
+}
+
+sellFood() {
+  if(food > 0){
+    food -= 1;
+    foodSold += 1;
+    coins += foodCurrentPrice;
+    soldTotalProfit += foodCurrentPrice;
+    this.foodMarketDecrease();
+    ReactDOM.render(<StartGame />, document.getElementById('root'));
+  }
+  else{
+    //play buzzer
+  }
+}
+
+goldMarketIncrease(){
+  if(goldCurrentPrice < 94){
+    let fiddyFiddy = Math.round(Math.random() * (2 - 1) + 1);
+    if(fiddyFiddy === 1){
+      let priceChange = Math.round(Math.random() * (3 - 0) + 0);
+      console.log(priceChange);
+      goldCurrentPrice += priceChange;
+      console.log(goldCurrentPrice);
+    }
+  }
+}
+
+  woodMarketIncrease(){
+    if(woodCurrentPrice < 94){
+      let fiddyFiddy = Math.round(Math.random() * (3 - 1) + 1);
+      if(fiddyFiddy === 1){
+        let priceChange = Math.round(Math.random() * (2 - 1) + 1);
+        console.log(priceChange);
+        woodCurrentPrice += priceChange;
+        console.log(woodCurrentPrice);
+      }
+    }
+  }
+
+  foodMarketIncrease(){
+    if(foodCurrentPrice < 96){
+      let fiddyFiddy = Math.round(Math.random() * (4 - 1) + 1);
+      if(fiddyFiddy === 1){
+        let priceChange = Math.round(Math.random() * (1 - 0) + 0);
+        console.log(priceChange);
+        foodCurrentPrice += priceChange;
+        console.log(foodCurrentPrice);
+      }
+    }
+  }
+
+  goldMarketDecrease(){
+    if(goldCurrentPrice > 10){
+      let priceChange = Math.round(Math.random() * (5 - 0) + 0);
+      console.log(priceChange);
+      goldCurrentPrice -= priceChange;
+      console.log(goldCurrentPrice);
+    }
+    gamePosition = 10;
+    this.woodMarketIncrease();
+    this.foodMarketIncrease();
+    this.moveForward();
+  }
+
+  woodMarketDecrease(){
+    if(woodCurrentPrice > 10){
+      let priceChange = Math.round(Math.random() * (5 - 0) + 0);
+      console.log(priceChange);
+      woodCurrentPrice -= priceChange;
+      console.log(woodCurrentPrice);
+    }
+    gamePosition = 10;
+    this.goldMarketIncrease();
+    this.foodMarketIncrease();
+    this.moveForward();
+  }
+
+
+  foodMarketDecrease(){
+    if(foodCurrentPrice > 10){
+      let priceChange = Math.round(Math.random() * (5 - 0) + 0);
+      console.log(priceChange);
+      foodCurrentPrice -= priceChange;
+      console.log(foodCurrentPrice);
+    }
+    gamePosition = 10;
+    this.goldMarketIncrease();
+    this.woodMarketIncrease();
+    this.moveForward();
+  }
+
 
   //Main Game Function
 moveForward () {
@@ -374,6 +488,15 @@ else if (gamePosition === 3){
   });
 }
 else if (gamePosition === 4){
+  if(soldTotalProfit > 0){
+    this.getTime();
+    gameLogArray.push(currentTime + "You sold " + goldSold.toLocaleString() + " gold bars, You sold " + woodSold.toLocaleString() + " bundles of lumber, You sold " + foodSold.toLocaleString() + " food items; for a total profit of " + soldTotalProfit.toLocaleString() + "coins." );
+    this.gameLog();
+    soldTotalProfit = 0;
+    goldSold = 0;
+    woodSold = 0;
+    foodSold = 0;
+  }
   gamePosition = -1;
   this.setState({
     playButtonText: "Please wait while your opponents take their turn.",
@@ -575,19 +698,19 @@ else if (gamePosition === 10){
       </div>
       <div className="gamebox__marketWrapper__imageWrapper">
         <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper">
-          <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__image"><button onclick={this.sellGold.bind(this)}><img src={goldicon} alt={"Gold"}/></button>
+          <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__image"><button className="marketButtons" onClick={this.sellGold.bind(this)}><img src={goldicon} alt={"Gold"}/></button>
           </div>
           <div className="gamebox__marketWrapper__imageWrapper__goldBarsWrapper__price">{goldCurrentPrice} coins
           </div>
         </div>
-        <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper">
-          <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper__image"><img src={woodicon} alt={"wood"}/>
+        <div className="gamebox__marketWrapper__imageWrapper__woodWrapper">
+          <div className="gamebox__marketWrapper__imageWrapper__woodWrapper__image"><button className="marketButtons" onClick={this.sellWood.bind(this)}><img src={woodicon} alt={"wood"}/></button>
           </div>
-          <div className="gamebox__marketWrapper__imageWrapper__lumberWrapper__price">{lumberCurrentPrice} coins
+          <div className="gamebox__marketWrapper__imageWrapper__woodWrapper__price">{woodCurrentPrice} coins
           </div>
         </div>
         <div className="gamebox__marketWrapper__imageWrapper__foodWrapper">
-          <div className="gamebox__marketWrapper__imageWrapper__foodWrapper__image"><img src={foodicon} alt={"food"}/>
+          <div className="gamebox__marketWrapper__imageWrapper__foodWrapper__image"><button className="marketButtons" onClick={this.sellFood.bind(this)}><img src={foodicon} alt={"food"}/></button>
           </div>
           <div className="gamebox__marketWrapper__imageWrapper__foodWrapper__price">{foodCurrentPrice} coins
           </div>

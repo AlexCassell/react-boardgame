@@ -45,6 +45,9 @@ import goldicon from './images/gold/market.png';
 import woodicon from './images/wood/market.png';
 import foodicon from './images/food/market.png';
 
+import purchase from './images/misc/purchaseButton.png';
+
+
 //sounds
 const uiClick = new Audio("./sounds/click_04.wav");
 
@@ -62,7 +65,7 @@ let playerCurrentSlot = 1, playerNewSlot = 0, playerOverRoll = 0, opponentOneCur
 let dieRoll = [""];
 let whosTurn = 1;
 //stats
-let coins = 500, gold = 25, wood = 50, food = 100;
+let coins = 500, gold = 0, wood = 0, food = 50;
 
 let gameLogArray =["Welcome to Merchants of Calliope!"], gameLogString = "Welcome to Merchants of Calliope!!",gameLogShowOnce = false,
 date, hour, minutes, currentTime;
@@ -70,6 +73,11 @@ date, hour, minutes, currentTime;
 //market
 let goldCurrentPrice = 75, woodCurrentPrice = 25, foodCurrentPrice = 15;
 let goldSold = 0, woodSold = 0, foodSold = 0, soldTotalProfit = 0;
+
+//realestate
+let realEstateStatus = [];
+let realEstateTitle = "", realEstateInfo = "";
+let realEstateCost = 0, realEstateCurrentProperty = 0;
 
 class StartGame extends Component {
   constructor(props) {
@@ -89,7 +97,7 @@ rollDie() {
 //   playerOverRoll =  playerNewSlot - 28;
 //   return this.movePlayerOnBoardOverRoll();
 // }
-playerNewSlot = 15;//dev only
+playerNewSlot = 2;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -156,11 +164,23 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     
   }
   else if(playerCurrentSlot === 2) {
-    
-      }
+    if(realEstateStatus[2] != undefined){ //change array should keep track of who owns it 0 for player 1 for npc1 etc
+
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 2;
+      realEstateTitle = "Would you like to buy the Slums of Painswick?"
+      realEstateInfo = "Slums of Painswick costs 200 coins.  If another player lands on this property they would owe you 15 coins for each visit.";
+      realEstateCost = 100;
+      this.moveForward();
+
+    }
+  }
   else if(playerCurrentSlot === 3) {
     
-      }
+  }
   else if(playerCurrentSlot === 4) {
     this.unforseenEvent();
       }
@@ -242,6 +262,17 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     
       }
 }
+
+purchaseRealEstate(){
+  if(coins >= realEstateCost){
+    coins -= realEstateCost;
+    console.log(realEstateStatus[realEstateCurrentProperty]);
+    realEstateStatus[realEstateCurrentProperty] = 0;
+    console.log(realEstateStatus[realEstateCurrentProperty]);
+  }
+  
+}
+
 
 unforseenEvent(){
   gamePosition = 5;
@@ -490,7 +521,7 @@ else if (gamePosition === 3){
 else if (gamePosition === 4){
   if(soldTotalProfit > 0){
     this.getTime();
-    gameLogArray.push(currentTime + "You sold " + goldSold.toLocaleString() + " gold bars, You sold " + woodSold.toLocaleString() + " bundles of lumber, You sold " + foodSold.toLocaleString() + " food items; for a total profit of " + soldTotalProfit.toLocaleString() + "coins." );
+    gameLogArray.push(currentTime + "You sold " + goldSold.toLocaleString() + " gold bars, " + woodSold.toLocaleString() + " bundles of lumber, " + foodSold.toLocaleString() + " food items; for a total profit of " + soldTotalProfit.toLocaleString() + " coins." );
     this.gameLog();
     soldTotalProfit = 0;
     goldSold = 0;
@@ -719,6 +750,28 @@ else if (gamePosition === 10){
     </div>
   });
 }
+else if (gamePosition === 11){
+  gamePosition = 4;
+  this.setState({
+    playButtonText: "Click to end your turn.",
+    playButton: <div className="gamebox__realEstateWrapper">
+    <div className="gamebox__realEstateWrapper__topText">
+      <h1>{realEstateTitle}</h1>
+    </div>
+    <div className="gamebox__realEstateWrapper__info">
+    {realEstateInfo}
+    </div>
+    <div className="gamebox__realEstateWrapper__purchaseButton">
+      <button className="realEstate__buttonActual" onClick={this.purchaseRealEstate.bind(this)}><img src={purchase} alt={"purchase"}/></button>
+    </div>
+  </div>
+  });
+}
+
+
+
+
+
 }
 
 //   moveBack() {

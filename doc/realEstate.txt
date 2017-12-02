@@ -1,0 +1,27 @@
+2 cost 100 coins -15 coins if landed on
+3 cost 200 coins -30 coins if landed on
+4
+5
+6 cost 300 coins -60 coin if landed on
+7
+8
+9
+10
+11 cost 500 coins -80 coins if landed on
+12 cost 600 coins - 100 if landed on
+13
+14
+15
+16 cost 1000 coins - 150
+17 cost 1200 coins - 200
+18
+19
+20 cost 1500 -350
+21
+22
+23
+24
+25 cost 2500 -500
+26
+27
+28 cost 3500 - 650

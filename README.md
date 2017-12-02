@@ -7,7 +7,7 @@ A single player fantasy board game.
 * Game log.
 * ~~CSS/HTML Gameboard.~~
 * Harvest resources.
-* ~~Sell harvested resources in town~~
+* ~~Sell harvested resources in town.~~
 * Non Player AI.
 * ~~Currency.~~
 * ~~Player choose game piece.~~

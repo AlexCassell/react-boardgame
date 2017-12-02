@@ -23,4 +23,4 @@ A single player fantasy board game.
 * Buy/obtain items in town/start and on the board.
 * Auction house to sell land and/or items.
 
-Items with a strikethrough are complete.
+Items with a ~~strikethrough~~ are complete.

@@ -165,14 +165,14 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
   }
   else if(playerCurrentSlot === 2) {
     if(realEstateStatus[2] != undefined){ //change array should keep track of who owns it 0 for player 1 for npc1 etc
-
+      
     }
     else {
       console.log("Not Purchased");
       gamePosition = 11;
       realEstateCurrentProperty = 2;
       realEstateTitle = "Would you like to buy the Slums of Painswick?"
-      realEstateInfo = "Slums of Painswick costs 200 coins.  If another player lands on this property they would owe you 15 coins for each visit.";
+      realEstateInfo = "Slums of Painswick costs 100 coins.  If another player lands on this property they would owe you 15 coins for each visit.";
       realEstateCost = 100;
       this.moveForward();
 

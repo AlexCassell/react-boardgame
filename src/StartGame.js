@@ -65,7 +65,7 @@ let playerCurrentSlot = 1, playerNewSlot = 0, playerOverRoll = 0, opponentOneCur
 let dieRoll = [""];
 let whosTurn = 1;
 //stats
-let coins = 500, gold = 0, wood = 0, food = 50;
+let coins = [500, 500, 500, 500], gold = [0, 0, 0, 0], wood = [0, 0, 0, 0], food = [50, 50, 50, 50];
 
 let gameLogArray =["Welcome to Merchants of Calliope!"], gameLogString = "Welcome to Merchants of Calliope!!",gameLogShowOnce = false,
 date, hour, minutes, currentTime;
@@ -164,22 +164,35 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     
   }
   else if(playerCurrentSlot === 2) {
-    if(realEstateStatus[2] != undefined){ //change array should keep track of who owns it 0 for player 1 for npc1 etc
+    if(realEstateStatus[2] != undefined){
+      if(whosTurn !== realEstateStatus[playerCurrentSlot]){
+        gamePosition = 111;
+
+        this.moveForward();
+      }
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateTitle = "Would you like to buy the Slums of Painswick?"
+      realEstateInfo = "Slums of Painswick costs 100 coins.  If another player lands on this property they would owe you 15 coins for each visit.";
+      realEstateCost = 100;
+      this.moveForward();
+    }
+  }
+  else if(playerCurrentSlot === 3) {
+    if(realEstateStatus[3] != undefined){ 
       
     }
     else {
       console.log("Not Purchased");
       gamePosition = 11;
-      realEstateCurrentProperty = 2;
-      realEstateTitle = "Would you like to buy the Slums of Painswick?"
-      realEstateInfo = "Slums of Painswick costs 100 coins.  If another player lands on this property they would owe you 15 coins for each visit.";
+      realEstateCurrentProperty = 3;
+      realEstateTitle = "Would you like to buy the Bradbury Dump?"
+      realEstateInfo = "Slums of Painswick costs 200 coins.  If another player lands on this property they would owe you 30 coins for each visit.";
       realEstateCost = 100;
       this.moveForward();
-
     }
-  }
-  else if(playerCurrentSlot === 3) {
-    
   }
   else if(playerCurrentSlot === 4) {
     this.unforseenEvent();
@@ -267,10 +280,12 @@ purchaseRealEstate(){
   if(coins >= realEstateCost){
     coins -= realEstateCost;
     console.log(realEstateStatus[realEstateCurrentProperty]);
-    realEstateStatus[realEstateCurrentProperty] = 0;
+    realEstateStatus[realEstateCurrentProperty] = whosTurn;
     console.log(realEstateStatus[realEstateCurrentProperty]);
-  }
-  
+    //change slot graphic to show who owns slot-------------------------------------------------------------------
+    gamePosition = 4;
+    this.moveForward();
+  }  
 }
 
 
@@ -492,6 +507,7 @@ moveForward () {
       gameLogArray.push(currentTime + "You chose to play the " + chosenCharacterGameLogString +".");
       this.gameLog();
     gamePosition = 2;
+    whosTurn = 1; //1 is human player
     this.setState({
       playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot - 1] = playerHero,
       playButtonText: "Click here when you are ready to begin.",
@@ -664,8 +680,8 @@ else if (gamePosition === 902){
 else if (gamePosition === 91){
   gamePosition = 4;
   // console.log(gamePosition);
-  coins =+ gameOfChancePrizeAmount;
-  coins = coins.toLocaleString();
+  coins[0] =+ gameOfChancePrizeAmount;
+  coins[0] = coins[0].toLocaleString();
   if(gameLogShowOnce === false){
     gameLogShowOnce = true;
     this.getTime();

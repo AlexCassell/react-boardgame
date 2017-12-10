@@ -2,23 +2,23 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import {knight} from '../StartGame.js';
-import {druid} from '../StartGame.js';
-import {rogue} from '../StartGame.js';
-import {monk} from '../StartGame.js';
-import {jock} from '../StartGame.js';
-import {teacher} from '../StartGame.js';
-import {superhero} from '../StartGame.js';
-import {seventies} from '../StartGame.js';
+import {knight} from '../components/StartGame.js';
+import {druid} from '../components/StartGame.js';
+import {rogue} from '../components/StartGame.js';
+import {monk} from '../components/StartGame.js';
+import {jock} from '../components/StartGame.js';
+import {teacher} from '../components/StartGame.js';
+import {superhero} from '../components/StartGame.js';
+import {seventies} from '../components/StartGame.js';
 
 
 let opponentsGameLogString = "", chosenCharacterGameLogString = "";
 
-let multiPlayer = false, backClicked = false, choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false,
-choseJock = false, choseSuperhero = false, choseTeacher = false, choseSeventies = false,
-computerKnight = false, computerDruid = false, computerMonk = false, computerRogue = false,
-computerJock = false, computerSuperhero = false, computerTeacher = false, computerSeventies = false,
-playerHero = "";
+let multiPlayer = false, backClicked = false, choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false;
+let choseJock = false, choseSuperhero = false, choseTeacher = false, choseSeventies = false;
+let computerKnight = false, computerDruid = false, computerMonk = false, computerRogue = false;
+let computerJock = false, computerSuperhero = false, computerTeacher = false, computerSeventies = false;
+let playerHero = "";
 
 let singlePlayerOponents = [];
 
@@ -29,10 +29,10 @@ class PickCharacter extends Component {
     //Choose Character Functions
 resetChosenCharacter () { 
     // replace the bulk of this with nested loops and current opponent array
-    choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false,
-    choseJock = false, choseSuperhero = false, choseTeacher = false, choseSeventies = false,
-    computerKnight = false, computerDruid = false, computerMonk = false, computerRogue = false,
-    computerJock = false, computerSuperhero = false, computerTeacher = false, computerSeventies = false;
+    choseKnight = false; choseDruid = false; choseMonk = false; choseRogue = false;
+    choseJock = false; choseSuperhero = false; choseTeacher = false; choseSeventies = false;
+    computerKnight = false; computerDruid = false; computerMonk = false; computerRogue = false;
+    computerJock = false; computerSuperhero = false; computerTeacher = false; computerSeventies = false;
 }
 
 characterChosenKnight () {

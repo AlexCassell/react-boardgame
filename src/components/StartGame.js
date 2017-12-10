@@ -2,54 +2,54 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
-import logo from './images/logos/logo.png';
+import logo from '../images/logos/logo.png';
 
-import './css/App.css';
-import './css/slotPopUps.css';
-import './css/die.css';
+import '../css/App.css';
+import '../css/slotPopUps.css';
+import '../css/die.css';
 
-import ChatRoom from './chatroom/index.js';
-import InventoryIndex from './inventory/index.js';
-import CardCollectionIndex from './cardCollection/index.js';
-import CreditsInstructionsIndex from './creditsInstructions/index.js';
-import PickCharacter from './components/pickCharacter.js';
+import ChatRoom from '../components/chatroom/index.js';
+import InventoryIndex from '../components/inventory.js';
+import CardCollectionIndex from '../components/cardCollection/index.js';
+// import CreditsInstructionsIndex from './components/creditsInstructions/index.js';
+import PickCharacter from '../components/pickCharacter.js';
 
-import {currentPlayerAvatar} from './components/pickCharacter.js';
-import {choseKnight}from './components/pickCharacter.js';
-import {choseMonk}from './components/pickCharacter.js';
-import {choseRogue}from './components/pickCharacter.js';
-import {choseDruid}from './components/pickCharacter.js';
-import {choseJock}from './components/pickCharacter.js';
-import {choseSuperhero}from './components/pickCharacter.js';
-import {choseTeacher}from './components/pickCharacter.js';
-import {choseSeventies}from './components/pickCharacter.js';
-import {playerHero}from './components/pickCharacter.js';
-import {opponentOne}from './components/pickCharacter.js';
-import {opponentTwo}from './components/pickCharacter.js';
-import {opponentThree}from './components/pickCharacter.js';
+import {currentPlayerAvatar} from '../components/pickCharacter.js';
+import {choseKnight}from '../components/pickCharacter.js';
+import {choseMonk}from '../components/pickCharacter.js';
+import {choseRogue}from '../components/pickCharacter.js';
+import {choseDruid}from '../components/pickCharacter.js';
+import {choseJock}from '../components/pickCharacter.js';
+import {choseSuperhero}from '../components/pickCharacter.js';
+import {choseTeacher}from '../components/pickCharacter.js';
+import {choseSeventies}from '../components/pickCharacter.js';
+import {playerHero}from '../components/pickCharacter.js';
+import {opponentOne}from '../components/pickCharacter.js';
+import {opponentTwo}from '../components/pickCharacter.js';
+import {opponentThree}from '../components/pickCharacter.js';
 
-import {opponentsGameLogString}from './components/pickCharacter.js';
-import {chosenCharacterGameLogString}from './components/pickCharacter.js';
+import {opponentsGameLogString}from '../components/pickCharacter.js';
+import {chosenCharacterGameLogString}from '../components/pickCharacter.js';
 
 
-import knight from './images/characters/knight.png';
-import druid from './images/characters/druid.png';
-import monk from './images/characters/monk.png';
-import rogue from './images/characters/rogue.png';
-import jock from './images/characters/jock.png';
-import superhero from './images/characters/superhero.png';
-import teacher from './images/characters/teacher.png';
-import seventies from './images/characters/seventies.png';
+import knight from '../images/characters/knight.png';
+import druid from '../images/characters/druid.png';
+import monk from '../images/characters/monk.png';
+import rogue from '../images/characters/rogue.png';
+import jock from '../images/characters/jock.png';
+import superhero from '../images/characters/superhero.png';
+import teacher from '../images/characters/teacher.png';
+import seventies from '../images/characters/seventies.png';
 
-import goldicon from './images/gold/market.png';
-import woodicon from './images/wood/market.png';
-import foodicon from './images/food/market.png';
+import goldicon from '../images/gold/market.png';
+import woodicon from '../images/wood/market.png';
+import foodicon from '../images/food/market.png';
 
-import purchase from './images/misc/purchaseButton.png';
+import purchase from '../images/misc/purchaseButton.png';
 
 
 //sounds
-const uiClick = new Audio("./sounds/click_04.wav");
+const uiClick = new Audio("../sounds/click_04.wav");
 
 //gameOfChance
 let gameOfChancePrizeAmount = 1000, gameOfChanceRollArrayIndex = 0, gameOfChanceJackPotNumber = 1000;
@@ -65,7 +65,7 @@ let playerCurrentSlot = 1, playerNewSlot = 0, playerOverRoll = 0, opponentOneCur
 let dieRoll = [""];
 let whosTurn = 1;
 //stats
-let coins = [500, 500, 500, 500], gold = [0, 0, 0, 0], wood = [0, 0, 0, 0], food = [50, 50, 50, 50];
+let coins = 500, gold = 0, wood = 0, food = 50;
 
 let gameLogArray =["Welcome to Merchants of Calliope!"], gameLogString = "Welcome to Merchants of Calliope!!",gameLogShowOnce = false,
 date, hour, minutes, currentTime;
@@ -88,16 +88,16 @@ class StartGame extends Component {
   }
 
 rollDie() {
-// dieRoll = [""];
-// for(let i = 0; i < 4; i++){
-//   dieRoll[i] =+ Math.floor(Math.random()*12+1);
-// }
-// playerNewSlot = playerCurrentSlot + dieRoll[0];
-// if(playerNewSlot > 28){
-//   playerOverRoll =  playerNewSlot - 28;
-//   return this.movePlayerOnBoardOverRoll();
-// }
-playerNewSlot = 2;//dev only
+dieRoll = [""];
+for(let i = 0; i < 4; i++){
+  dieRoll[i] =+ Math.floor(Math.random()*12+1);
+}
+playerNewSlot = playerCurrentSlot + dieRoll[0];
+if(playerNewSlot > 28){
+  playerOverRoll =  playerNewSlot - 28;
+  return this.movePlayerOnBoardOverRoll();
+}
+// playerNewSlot = 2;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -164,7 +164,7 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     
   }
   else if(playerCurrentSlot === 2) {
-    if(realEstateStatus[2] != undefined){
+    if(realEstateStatus[2] !== undefined){
       if(whosTurn !== realEstateStatus[playerCurrentSlot]){
         gamePosition = 111;
 
@@ -181,7 +181,7 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     }
   }
   else if(playerCurrentSlot === 3) {
-    if(realEstateStatus[3] != undefined){ 
+    if(realEstateStatus[3] !== undefined){ 
       
     }
     else {
@@ -277,8 +277,8 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
 }
 
 purchaseRealEstate(){
-  if(coins >= realEstateCost){
-    coins -= realEstateCost;
+  if(coins[0] >= realEstateCost){
+    coins[0] -= realEstateCost;
     console.log(realEstateStatus[realEstateCurrentProperty]);
     realEstateStatus[realEstateCurrentProperty] = whosTurn;
     console.log(realEstateStatus[realEstateCurrentProperty]);
@@ -374,7 +374,7 @@ sellGold() {
   if(gold > 0){
     gold -= 1;
     goldSold += 1;
-    coins += goldCurrentPrice;
+    coins[0] += goldCurrentPrice;
     soldTotalProfit += goldCurrentPrice;
     this.goldMarketDecrease();
     ReactDOM.render(<StartGame />, document.getElementById('root'));
@@ -388,7 +388,7 @@ sellWood() {
   if(wood > 0){
     wood -= 1;
     woodSold += 1;
-    coins += woodCurrentPrice;
+    coins[0] += woodCurrentPrice;
     soldTotalProfit += woodCurrentPrice;
     this.woodMarketDecrease();
     ReactDOM.render(<StartGame />, document.getElementById('root'));
@@ -402,7 +402,7 @@ sellFood() {
   if(food > 0){
     food -= 1;
     foodSold += 1;
-    coins += foodCurrentPrice;
+    coins[0] += foodCurrentPrice;
     soldTotalProfit += foodCurrentPrice;
     this.foodMarketDecrease();
     ReactDOM.render(<StartGame />, document.getElementById('root'));
@@ -597,7 +597,7 @@ else if (gamePosition === 9){
   this.getTime();
   gameLogArray.push(currentTime + "You paid 500 coins to play a game of chance.");
   this.gameLog();
-  coins -= 500;
+  coins[0] -= 500;
   gameOfChancePrizeAmount += 500;
   gamePosition = 90;
   this.setState({
@@ -621,7 +621,7 @@ else if (gamePosition === 90){
     playButtonText: "Please wait ",
     playButton:  <div className="gamebox__gameofChanceWrapper">
     <div className="gamebox__gameofChanceWrapper__topText">
-      <h1></h1>
+      {/* <h1></h1> */}
     </div>
     <div className="gamebox__gameofChanceWrapper__numbersWrapper">
     <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[0]}</div>
@@ -642,7 +642,7 @@ else if (gamePosition === 901){
     playButtonText: "Please wait ",
     playButton:  <div className="gamebox__gameofChanceWrapper">
     <div className="gamebox__gameofChanceWrapper__topText">
-      <h1></h1>
+      {/* <h1></h1> */}
     </div>
     <div className="gamebox__gameofChanceWrapper__numbersWrapper">
     <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[0]}</div>
@@ -663,7 +663,7 @@ else if (gamePosition === 902){
     playButtonText: "Please wait ",
     playButton:  <div className="gamebox__gameofChanceWrapper">
     <div className="gamebox__gameofChanceWrapper__topText">
-      <h1></h1>
+      {/* <h1></h1> */}
     </div>
     <div className="gamebox__gameofChanceWrapper__numbersWrapper">
     <div className="gamebox__gameofChanceWrapper__numbersWrapperNumber">{gameOfChancePlayerRollsArray[0]}</div>

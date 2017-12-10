@@ -61,9 +61,6 @@ a:link, a:visited {
 
 .App__header {
   background-color: #276b20;
-  top: 0px;
-  position: absolute;
-  width: 100%;
   font-size: 20pt;
   height: 50px;
   padding: 20px;
@@ -73,7 +70,7 @@ a:link, a:visited {
 .App__header__login {
   position: absolute;
   font-size: 20pt;
-  right: 50px;
+  right: 5px;
   top: 5px;
 }
 

@@ -9,7 +9,6 @@ import StartGame from './components/StartGame.js';
 
 const App = () => (
     <div>
-        <Navigation />
         <Route exact path="/" component={ StartGame }/>
         {/* <Route path="/blog" component={ Blog }/>
         <Route path="/admin" component={ Admin }/> */}

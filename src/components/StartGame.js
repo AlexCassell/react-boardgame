@@ -11,7 +11,7 @@ import '../css/die.css';
 import ChatRoom from '../components/chatroom/index.js';
 import InventoryIndex from '../components/inventory.js';
 import CardCollectionIndex from '../components/cardCollection/index.js';
-// import CreditsInstructionsIndex from './components/creditsInstructions/index.js';
+import CreditsInstructionsIndex from '../components/creditsInstructions/index.js';
 import PickCharacter from '../components/pickCharacter.js';
 
 import {currentPlayerAvatar} from '../components/pickCharacter.js';
@@ -121,7 +121,7 @@ movePlayerOnBoard(){
     this.gameLog();
     this.moveForward();
   }
-  ReactDOM.render(<StartGame />, document.getElementById('root'));
+  // ReactDOM.render(<StartGame />, document.getElementById('root'));
   setTimeout(this.movePlayerOnBoard.bind(this), 200);
 }
 }
@@ -277,8 +277,8 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
 }
 
 purchaseRealEstate(){
-  if(coins[0] >= realEstateCost){
-    coins[0] -= realEstateCost;
+  if(coins >= realEstateCost){
+    coins -= realEstateCost;
     console.log(realEstateStatus[realEstateCurrentProperty]);
     realEstateStatus[realEstateCurrentProperty] = whosTurn;
     console.log(realEstateStatus[realEstateCurrentProperty]);
@@ -374,7 +374,7 @@ sellGold() {
   if(gold > 0){
     gold -= 1;
     goldSold += 1;
-    coins[0] += goldCurrentPrice;
+    coins += goldCurrentPrice;
     soldTotalProfit += goldCurrentPrice;
     this.goldMarketDecrease();
     ReactDOM.render(<StartGame />, document.getElementById('root'));
@@ -388,7 +388,7 @@ sellWood() {
   if(wood > 0){
     wood -= 1;
     woodSold += 1;
-    coins[0] += woodCurrentPrice;
+    coins += woodCurrentPrice;
     soldTotalProfit += woodCurrentPrice;
     this.woodMarketDecrease();
     ReactDOM.render(<StartGame />, document.getElementById('root'));
@@ -402,7 +402,7 @@ sellFood() {
   if(food > 0){
     food -= 1;
     foodSold += 1;
-    coins[0] += foodCurrentPrice;
+    coins += foodCurrentPrice;
     soldTotalProfit += foodCurrentPrice;
     this.foodMarketDecrease();
     ReactDOM.render(<StartGame />, document.getElementById('root'));
@@ -491,9 +491,7 @@ goldMarketIncrease(){
 
   //Main Game Function
 moveForward () {
-  //time - refactor into own file
-
-
+  console.log(gamePosition);
   if(gamePosition === 0){//add if logged in after login is added
     gamePosition = 1;
     this.setState({
@@ -597,7 +595,7 @@ else if (gamePosition === 9){
   this.getTime();
   gameLogArray.push(currentTime + "You paid 500 coins to play a game of chance.");
   this.gameLog();
-  coins[0] -= 500;
+  coins -= 500;
   gameOfChancePrizeAmount += 500;
   gamePosition = 90;
   this.setState({
@@ -680,8 +678,8 @@ else if (gamePosition === 902){
 else if (gamePosition === 91){
   gamePosition = 4;
   // console.log(gamePosition);
-  coins[0] =+ gameOfChancePrizeAmount;
-  coins[0] = coins[0].toLocaleString();
+  coins =+ gameOfChancePrizeAmount;
+  coins = coins.toLocaleString();
   if(gameLogShowOnce === false){
     gameLogShowOnce = true;
     this.getTime();
@@ -1033,7 +1031,7 @@ return (
 }
 }
 
-ReactDOM.render(<StartGame />, document.getElementById('root'));
+// ReactDOM.render(<StartGame />, document.getElementById('root'));
 
 export default StartGame;
 export {coins};

@@ -139,7 +139,7 @@ movePlayerOnBoardOverRoll(){
     });
     // uiClick.play();
     playerCurrentSlot ++
-    ReactDOM.render(<StartGame />, document.getElementById('root'));
+    // ReactDOM.render(<StartGame />, document.getElementById('root'));
     setTimeout(this.movePlayerOnBoardOverRoll.bind(this), 200);
   }
   else if (playerCurrentSlot === 28){
@@ -150,7 +150,7 @@ movePlayerOnBoardOverRoll(){
   // uiClick.play();
   playerCurrentSlot = 0;
   playerNewSlot = playerOverRoll;
-  ReactDOM.render(<StartGame />, document.getElementById('root'));
+  // ReactDOM.render(<StartGame />, document.getElementById('root'));
   setTimeout(this.movePlayerOnBoard.bind(this), 200);
 }
 }
@@ -174,6 +174,7 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       console.log("Not Purchased");
       gamePosition = 11;
+      realEstateCurrentProperty = 2;
       realEstateTitle = "Would you like to buy the Slums of Painswick?"
       realEstateInfo = "Slums of Painswick costs 100 coins.  If another player lands on this property they would owe you 15 coins for each visit.";
       realEstateCost = 100;
@@ -189,8 +190,8 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
       gamePosition = 11;
       realEstateCurrentProperty = 3;
       realEstateTitle = "Would you like to buy the Bradbury Dump?"
-      realEstateInfo = "Slums of Painswick costs 200 coins.  If another player lands on this property they would owe you 30 coins for each visit.";
-      realEstateCost = 100;
+      realEstateInfo = "Bradbury Dump costs 200 coins.  If another player lands on this property they would owe you 30 coins for each visit.";
+      realEstateCost = 200;
       this.moveForward();
     }
   }
@@ -201,7 +202,18 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     
       }
   else if(playerCurrentSlot === 6) {
-    
+    if(realEstateStatus[6] !== undefined){ 
+      
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 6;
+      realEstateTitle = "Would you like to buy the Plains of Derrymore?"
+      realEstateInfo = "Plains of Derrymore costs 300 coins.  If another player lands on this property they would owe you 60 coins for each visit.";
+      realEstateCost = 300;
+      this.moveForward();
+    }
       }
   else if(playerCurrentSlot === 7) {
     this.inSearchOf();
@@ -217,10 +229,32 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     this.applecrossSlaveMines();
       }
   else if(playerCurrentSlot === 11) {
-    
+    if(realEstateStatus[11] !== undefined){ 
+      
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 11;
+      realEstateTitle = "Would you like to buy the Whaligoe Mountains?"
+      realEstateInfo = "Whaligoe Mountains costs 500 coins.  If another player lands on this property they would owe you 80 coins for each visit.";
+      realEstateCost = 500;
+      this.moveForward();
+    }
       }
   else if(playerCurrentSlot === 12) {
-    
+    if(realEstateStatus[12] !== undefined){ 
+      
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 12;
+      realEstateTitle = "Would you like to buy the Ainsley Park?"
+      realEstateInfo = "Ainsley Park costs 600 coins.  If another player lands on this property they would owe you 100 coins for each visit.";
+      realEstateCost = 600;
+      this.moveForward();
+    }
       }
   else if(playerCurrentSlot === 13) {
     
@@ -233,10 +267,32 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     this.yarmouthPortal();
       }
   else if(playerCurrentSlot === 16) {
-    
+    if(realEstateStatus[16] !== undefined){ 
+      
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 16;
+      realEstateTitle = "Would you like to buy the Caleb's Hunting Lodge?"
+      realEstateInfo = "Caleb's Hunting Lodge costs 1000 coins.  If another player lands on this property they would owe you 150 coins for each visit.";
+      realEstateCost = 1000;
+      this.moveForward();
+    }
       }
   else if(playerCurrentSlot === 17) {
-    
+    if(realEstateStatus[17] !== undefined){ 
+      
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 17;
+      realEstateTitle = "Would you like to buy the Carter's Cottage?"
+      realEstateInfo = "Carter's Cottage costs 1200 coins.  If another player lands on this property they would owe you 200 coins for each visit.";
+      realEstateCost = 1200;
+      this.moveForward();
+    }
       }
   else if(playerCurrentSlot === 18) {
     
@@ -246,7 +302,18 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     this.unforseenEvent();
       }
   else if(playerCurrentSlot === 20) {
-    
+    if(realEstateStatus[20] !== undefined){ 
+      
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 20;
+      realEstateTitle = "Would you like to buy the Carter's Cottage?"
+      realEstateInfo = "Carter's Cottage costs 1500 coins.  If another player lands on this property they would owe you 350 coins for each visit.";
+      realEstateCost = 1500;
+      this.moveForward();
+    }
       }
   else if(playerCurrentSlot === 21) {
     
@@ -263,7 +330,18 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     this.gameOfChance();
       }
   else if(playerCurrentSlot === 25) {
-    
+    if(realEstateStatus[25] !== undefined){ 
+      
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 25;
+      realEstateTitle = "Would you like to buy the Shanvey Tavern?"
+      realEstateInfo = "Shanvey Tavern costs 2500 coins.  If another player lands on this property they would owe you 500 coins for each visit.";
+      realEstateCost = 2500;
+      this.moveForward();
+    }
       }
   else if(playerCurrentSlot === 26) {
     
@@ -272,7 +350,18 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     
       }
   else if(playerCurrentSlot === 28) {
-    
+    if(realEstateStatus[28] !== undefined){ 
+      
+    }
+    else {
+      console.log("Not Purchased");
+      gamePosition = 11;
+      realEstateCurrentProperty = 28;
+      realEstateTitle = "Would you like to buy the Shanvey Tavern?"
+      realEstateInfo = "Shanvey Tavern costs 3500 coins.  If another player lands on this property they would owe you 650 coins for each visit.";
+      realEstateCost = 3500;
+      this.moveForward();
+    }
       }
 }
 
@@ -326,7 +415,7 @@ gameOfChance(){
 gameOfChanceRoll(){
   if(gameOfChancePlayerRollsArray.length < 3){
     gameOfChancePlayerRollsArray.push(Math.floor(Math.random()*12+1));
-    ReactDOM.render(<StartGame />, document.getElementById('root'));
+    // ReactDOM.render(<StartGame />, document.getElementById('root'));
     this.moveForward();
     return setTimeout(this.gameOfChanceRoll.bind(this), 50);
     }
@@ -377,7 +466,7 @@ sellGold() {
     coins += goldCurrentPrice;
     soldTotalProfit += goldCurrentPrice;
     this.goldMarketDecrease();
-    ReactDOM.render(<StartGame />, document.getElementById('root'));
+    // ReactDOM.render(<StartGame />, document.getElementById('root'));
   }
   else{
     //play buzzer
@@ -391,7 +480,7 @@ sellWood() {
     coins += woodCurrentPrice;
     soldTotalProfit += woodCurrentPrice;
     this.woodMarketDecrease();
-    ReactDOM.render(<StartGame />, document.getElementById('root'));
+    // ReactDOM.render(<StartGame />, document.getElementById('root'));
   }
   else{
     //play buzzer
@@ -405,7 +494,7 @@ sellFood() {
     coins += foodCurrentPrice;
     soldTotalProfit += foodCurrentPrice;
     this.foodMarketDecrease();
-    ReactDOM.render(<StartGame />, document.getElementById('root'));
+    // ReactDOM.render(<StartGame />, document.getElementById('root'));
   }
   else{
     //play buzzer

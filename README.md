@@ -6,7 +6,7 @@ A single player fantasy board game.
 Items with a ~~strikethrough~~ are complete.
 
 * Login.
-* Game log.
+* Game log.-Partially completed.
 * ~~CSS/HTML Gameboard.~~
 * Harvest resources.
 * ~~Sell harvested resources in town.~~

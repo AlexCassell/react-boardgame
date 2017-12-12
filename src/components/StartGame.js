@@ -63,9 +63,10 @@ let playerBoardSlotArray = [""];
 
 let playerCurrentSlot = 1, playerNewSlot = 0, playerOverRoll = 0, opponentOneCurrentSlot = 1, opponentTwoCurrentSlot = 1,opponentThreeCurrentSlot = 1, opponentFourCurrentSlot = 1;
 let dieRoll = [""];
-let whosTurn = 1;
+let currentPlayer = 1;
 //stats
 let coins = 500, gold = 0, wood = 0, food = 50;
+let opponentsCoins = [500, 500, 500], opponentsGold = [0, 0, 0], opponentsWood = [0, 0, 0], opponentsFood = [50, 50, 50];
 
 let gameLogArray =["Welcome to Merchants of Calliope!"], gameLogString = "Welcome to Merchants of Calliope!!",gameLogShowOnce = false,
 date, hour, minutes, currentTime;
@@ -76,7 +77,7 @@ let goldSold = 0, woodSold = 0, foodSold = 0, soldTotalProfit = 0;
 
 //realestate
 let realEstateStatus = [];
-let realEstateTitle = "", realEstateInfo = "";
+let realEstateTitle = "", realEstateInfo = "", propertyName = "";
 let realEstateCost = 0, realEstateCurrentProperty = 0;
 
 class StartGame extends Component {
@@ -89,6 +90,7 @@ class StartGame extends Component {
 
 rollDie() {
 dieRoll = [""];
+gamePosition = -1;
 for(let i = 0; i < 4; i++){
   dieRoll[i] =+ Math.floor(Math.random()*12+1);
 }
@@ -120,6 +122,8 @@ movePlayerOnBoard(){
     gamePosition = 10;
     this.gameLog();
     this.moveForward();
+
+    return; //write break here so that player stops in town no matter what they rolled.. unless return works (cant test until AI is working)
   }
   // ReactDOM.render(<StartGame />, document.getElementById('root'));
   setTimeout(this.movePlayerOnBoard.bind(this), 200);
@@ -165,7 +169,7 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
   }
   else if(playerCurrentSlot === 2) {
     if(realEstateStatus[2] !== undefined){
-      if(whosTurn !== realEstateStatus[playerCurrentSlot]){
+      if(currentPlayer !== realEstateStatus[playerCurrentSlot]){
         gamePosition = 111;
 
         this.moveForward();
@@ -175,7 +179,8 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
       //console.log("Not Purchased");
       gamePosition = 11;
       realEstateCurrentProperty = 2;
-      realEstateTitle = "Would you like to buy the Slums of Painswick?"
+      propertyName = "Slums of Painswick";
+      realEstateTitle = "Would you like to buy Slums of Painswick?"
       realEstateInfo = "Slums of Painswick costs 100 coins.  If another player lands on this property they would owe you 15 coins for each visit.";
       realEstateCost = 100;
       this.moveForward();
@@ -188,8 +193,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
       else {
         //console.log("Not Purchased");
         gamePosition = 11;
+        propertyName = "Bradbury Dump";
         realEstateCurrentProperty = 3;
-        realEstateTitle = "Would you like to buy the Bradbury Dump?"
+        realEstateTitle = "Would you like to buy Bradbury Dump?"
         realEstateInfo = "Bradbury Dump costs 200 coins.  If another player lands on this property they would owe you 30 coins for each visit.";
         realEstateCost = 200;
         this.moveForward();
@@ -206,7 +212,8 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
       //console.log("Not Purchased");
       gamePosition = 11;
       realEstateCurrentProperty = 5;
-      realEstateTitle = "Would you like to buy the Ballintoy Prairie?"
+      propertyName = "Ballintoy Prairie";
+      realEstateTitle = "Would you like to buy Ballintoy Prairie?"
       realEstateInfo = "Ballintoy Prairie costs 300 coins.  This property generates 25 food items everytime you pass through town.";
       realEstateCost = 300;
       this.moveForward();
@@ -219,8 +226,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Plains of Derrymore";
       realEstateCurrentProperty = 6;
-      realEstateTitle = "Would you like to buy the Plains of Derrymore?"
+      realEstateTitle = "Would you like to buy Plains of Derrymore?"
       realEstateInfo = "Plains of Derrymore costs 300 coins.  If another player lands on this property they would owe you 60 coins for each visit.";
       realEstateCost = 300;
       this.moveForward();
@@ -236,8 +244,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Tamnamore Gold Mine";
       realEstateCurrentProperty = 8;
-      realEstateTitle = "Would you like to buy the Tamnamore Gold Mine?"
+      realEstateTitle = "Would you like to buy Tamnamore Gold Mine?"
       realEstateInfo = "Tamnamore Gold Mine costs 350 coins.  This property generates 15 gold bars everytime you pass through town.";
       realEstateCost = 350;
       this.moveForward();
@@ -250,8 +259,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Whitehead Forest";
       realEstateCurrentProperty = 9;
-      realEstateTitle = "Would you like to buy the Whitehead Forest?"
+      realEstateTitle = "Would you like to buy Whitehead Forest?"
       realEstateInfo = "Whitehead Forest costs 375 coins.  This property generates 30 wood bundles everytime you pass through town.";
       realEstateCost = 375;
       this.moveForward();
@@ -268,7 +278,8 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
       //console.log("Not Purchased");
       gamePosition = 11;
       realEstateCurrentProperty = 11;
-      realEstateTitle = "Would you like to buy the Whaligoe Mountains?"
+      propertyName = "Whaligoe Mountains";
+      realEstateTitle = "Would you like to buy Whaligoe Mountains?"
       realEstateInfo = "Whaligoe Mountains costs 500 coins.  If another player lands on this property they would owe you 80 coins for each visit.";
       realEstateCost = 500;
       this.moveForward();
@@ -281,8 +292,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Ainsley Park";
       realEstateCurrentProperty = 12;
-      realEstateTitle = "Would you like to buy the Ainsley Park?"
+      realEstateTitle = "Would you like to buy Ainsley Park?"
       realEstateInfo = "Ainsley Park costs 600 coins.  If another player lands on this property they would owe you 100 coins for each visit.";
       realEstateCost = 600;
       this.moveForward();
@@ -295,8 +307,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "The hill at Dorset";
       realEstateCurrentProperty = 13;
-      realEstateTitle = "Would you like to buy the The hill at Dorset?"
+      realEstateTitle = "Would you like to buy The hill at Dorset?"
       realEstateInfo = "The hill at Dorset costs 700 coins.  This property generates 30 gold bars everytime you pass through town.";
       realEstateCost = 700;
       this.moveForward();
@@ -309,8 +322,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Whitehead Forest";
       realEstateCurrentProperty = 14;
-      realEstateTitle = "Would you like to buy the Whitehead Forest?"
+      realEstateTitle = "Would you like to buy Whitehead Forest?"
       realEstateInfo = "Whitehead Forest costs 800 coins.  This property generates 50 food items everytime you pass through town.";
       realEstateCost = 800;
       this.moveForward();
@@ -327,8 +341,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Caleb's Hunting Lodge";
       realEstateCurrentProperty = 16;
-      realEstateTitle = "Would you like to buy the Caleb's Hunting Lodge?"
+      realEstateTitle = "Would you like to buy Caleb's Hunting Lodge?"
       realEstateInfo = "Caleb's Hunting Lodge costs 1000 coins.  If another player lands on this property they would owe you 150 coins for each visit.";
       realEstateCost = 1000;
       this.moveForward();
@@ -341,8 +356,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Carter's Cottage";
       realEstateCurrentProperty = 17;
-      realEstateTitle = "Would you like to buy the Carter's Cottage?"
+      realEstateTitle = "Would you like to buy Carter's Cottage?"
       realEstateInfo = "Carter's Cottage costs 1200 coins.  If another player lands on this property they would owe you 200 coins for each visit.";
       realEstateCost = 1200;
       this.moveForward();
@@ -355,8 +371,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "The Old Lilian Farm";
       realEstateCurrentProperty = 18;
-      realEstateTitle = "Would you like to buy the The Old Lilian Farm?"
+      realEstateTitle = "Would you like to buy The Old Lilian Farm?"
       realEstateInfo = "The Old Lilian Farm costs 1300 coins.  This property generates 100 food items everytime you pass through town.";
       realEstateCost = 1300;
       this.moveForward();
@@ -373,8 +390,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Clovelly Inn";
       realEstateCurrentProperty = 20;
-      realEstateTitle = "Would you like to buy the Carter's Cottage?"
+      realEstateTitle = "Would you like to buy Clovelly Inn?"
       realEstateInfo = "Carter's Cottage costs 1500 coins.  If another player lands on this property they would owe you 350 coins for each visit.";
       realEstateCost = 1500;
       this.moveForward();
@@ -387,6 +405,7 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "The Rosewood Hinterlands";
       realEstateCurrentProperty = 21;
       realEstateTitle = "Would you like to buy the The Rosewood Hinterlands?"
       realEstateInfo = "The Rosewood Hinterlands costs 1600 coins.  This property generates 50 wood bundles everytime you pass through town.";
@@ -405,8 +424,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Fazeley Caves";
       realEstateCurrentProperty = 23;
-      realEstateTitle = "Would you like to buy the Fazeley Caves?"
+      realEstateTitle = "Would you like to buy Fazeley Caves?"
       realEstateInfo = "Fazeley Caves costs 2100 coins.  This property generates 45 gold bars everytime you pass through town.";
       realEstateCost = 2100;
       this.moveForward();
@@ -423,8 +443,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Shanvey Tavern";
       realEstateCurrentProperty = 25;
-      realEstateTitle = "Would you like to buy the Shanvey Tavern?"
+      realEstateTitle = "Would you like to buy Shanvey Tavern?"
       realEstateInfo = "Shanvey Tavern costs 2500 coins.  If another player lands on this property they would owe you 500 coins for each visit.";
       realEstateCost = 2500;
       this.moveForward();
@@ -437,8 +458,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Woodlands of Judith";
       realEstateCurrentProperty = 26;
-      realEstateTitle = "Would you like to buy the Woodlands of Judith?"
+      realEstateTitle = "Would you like to buy Woodlands of Judith?"
       realEstateInfo = "Woodlands of Judith costs 2900 coins.  This property generates 60 gold bars everytime you pass through town.";
       realEstateCost = 2900;
       this.moveForward();
@@ -451,8 +473,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "The Aureate Pass";
       realEstateCurrentProperty = 27;
-      realEstateTitle = "Would you like to buy the The Aureate Pass?"
+      realEstateTitle = "Would you like to buy The Aureate Pass?"
       realEstateInfo = "The Aureate Pass costs 3200 coins.  This property generates 75 wood bundles items everytime you pass through town.";
       realEstateCost = 3200;
       this.moveForward();
@@ -465,8 +488,9 @@ checkCurrentGameSlotForPlayer() {//will try to refactor this and opponent functi
     else {
       //console.log("Not Purchased");
       gamePosition = 11;
+      propertyName = "Shanvey Tavern";
       realEstateCurrentProperty = 28;
-      realEstateTitle = "Would you like to buy the Shanvey Tavern?"
+      realEstateTitle = "Would you like to buy Shanvey Tavern?"
       realEstateInfo = "Shanvey Tavern costs 3500 coins.  If another player lands on this property they would owe you 650 coins for each visit.";
       realEstateCost = 3500;
       this.moveForward();
@@ -478,7 +502,15 @@ purchaseRealEstate(){
   if(coins >= realEstateCost){
     coins -= realEstateCost;
     //console.log(realEstateStatus[realEstateCurrentProperty]);
-    realEstateStatus[realEstateCurrentProperty] = whosTurn;
+    realEstateStatus[realEstateCurrentProperty] = currentPlayer;
+    if(currentPlayer === 1){
+      gameLogArray.push(currentTime + "You bought " + propertyName + " for " + realEstateCost + " coins.");
+    }
+    else{
+      gameLogArray.push(currentTime + "Opponent " + currentPlayer + " bought " + propertyName + " for " + realEstateCost + " coins.");
+    }
+    this.gameLog();
+    
     //console.log(realEstateStatus[realEstateCurrentProperty]);
     //change slot graphic to show who owns slot-------------------------------------------------------------------
     gamePosition = 4;
@@ -703,7 +735,7 @@ moveForward () {
       gameLogArray.push(currentTime + "You chose to play the " + chosenCharacterGameLogString +".");
       this.gameLog();
     gamePosition = 2;
-    whosTurn = 1; //1 is human player
+    currentPlayer = 1; //1 is human player
     this.setState({
       playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot - 1] = playerHero,
       playButtonText: "Click here when you are ready to begin.",
@@ -745,6 +777,13 @@ else if (gamePosition === 4){
     playButtonText: "Please wait while your opponents take their turn.",
     playButton: ""
   });
+  if(currentPlayer < 4){
+    currentPlayer += 1;
+  }
+  else{
+    currentPlayer = 1;
+  }
+  console.log("current player:" + currentPlayer);
 }
 else if (gamePosition === 5){
   gamePosition = -1;

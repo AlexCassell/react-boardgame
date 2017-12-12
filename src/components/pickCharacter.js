@@ -14,7 +14,7 @@ import {seventies} from '../components/StartGame.js';
 
 let opponentsGameLogString = "", chosenCharacterGameLogString = "";
 
-let multiPlayer = false, backClicked = false, choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false;
+let backClicked = false, choseKnight = false, choseDruid = false, choseMonk = false, choseRogue = false;
 let choseJock = false, choseSuperhero = false, choseTeacher = false, choseSeventies = false;
 let computerKnight = false, computerDruid = false, computerMonk = false, computerRogue = false;
 let computerJock = false, computerSuperhero = false, computerTeacher = false, computerSeventies = false;
@@ -36,10 +36,6 @@ resetChosenCharacter () {
 }
 
 characterChosenKnight () {
-if(multiPlayer){
-
-}
-else{
     playerHero = <img src={knight} alt={"Knight"}/>;
     singlePlayerOponents = [];
     this.resetChosenCharacter();
@@ -48,12 +44,7 @@ else{
     choseKnight = true;     
     this.singlePlayerChooseOpponents();
 }
-}
 characterChosenDruid () {
-    if(multiPlayer){
-    
-    }
-    else{
     playerHero = <img src={druid} alt={"Druid"}/>;
     singlePlayerOponents = [];
     this.resetChosenCharacter(); 
@@ -62,40 +53,25 @@ characterChosenDruid () {
     choseDruid = true; 
     this.singlePlayerChooseOpponents();
 }
-}
 characterChosenMonk () {
-    if(multiPlayer){
-        
-    }
-    else{
-        playerHero = <img src={monk} alt={"Monk"}/>;
-        singlePlayerOponents = [];
-        this.resetChosenCharacter();
-        chosenCharacterGameLogString = "";
-        chosenCharacterGameLogString = "Monk" 
-        choseMonk = true; 
-        this.singlePlayerChooseOpponents();
-    }
+    playerHero = <img src={monk} alt={"Monk"}/>;
+    singlePlayerOponents = [];
+    this.resetChosenCharacter();
+    chosenCharacterGameLogString = "";
+    chosenCharacterGameLogString = "Monk" 
+    choseMonk = true; 
+    this.singlePlayerChooseOpponents();
 }
 characterChosenRogue () {
-    if(multiPlayer){
-        
-    }
-    else{
-        playerHero = <img src={rogue} alt={"Rogue"}/>;
-        singlePlayerOponents = [];
-        this.resetChosenCharacter(); 
-        chosenCharacterGameLogString = "";
-        chosenCharacterGameLogString = "Rogue"
-        choseRogue = true; 
-        this.singlePlayerChooseOpponents();
-    }
+    playerHero = <img src={rogue} alt={"Rogue"}/>;
+    singlePlayerOponents = [];
+    this.resetChosenCharacter(); 
+    chosenCharacterGameLogString = "";
+    chosenCharacterGameLogString = "Rogue"
+    choseRogue = true; 
+    this.singlePlayerChooseOpponents();
 }
 characterChosenJock () {
-    if(multiPlayer){
-        
-    }
-    else{
     playerHero = <img src={jock} alt={"Jock"}/>;
     singlePlayerOponents = [];
     this.resetChosenCharacter();
@@ -104,48 +80,32 @@ characterChosenJock () {
     choseJock = true;
     this.singlePlayerChooseOpponents();
 }
-}
 characterChosenSuperhero () {
-    if(multiPlayer){
-        
-    }
-    else{
-        playerHero = <img src={superhero} alt={"Superhero"}/>;
-        singlePlayerOponents = [];
-        this.resetChosenCharacter();
-        chosenCharacterGameLogString = "";
-        chosenCharacterGameLogString = "Superhero"
-        choseSuperhero = true; 
-        this.singlePlayerChooseOpponents();
-    }
+    playerHero = <img src={superhero} alt={"Superhero"}/>;
+    singlePlayerOponents = [];
+    this.resetChosenCharacter();
+    chosenCharacterGameLogString = "";
+    chosenCharacterGameLogString = "Superhero"
+    choseSuperhero = true; 
+    this.singlePlayerChooseOpponents();
 }
 characterChosenTeacher () {
-    if(multiPlayer){
-        
-    }
-    else{
-        playerHero = <img src={teacher} alt={"Teacher"}/>;
-        singlePlayerOponents = [];
-        this.resetChosenCharacter();
-        chosenCharacterGameLogString = "";
-        chosenCharacterGameLogString = "Teacher"
-        choseTeacher = true; 
-        this.singlePlayerChooseOpponents();
-    }
+    playerHero = <img src={teacher} alt={"Teacher"}/>;
+    singlePlayerOponents = [];
+    this.resetChosenCharacter();
+    chosenCharacterGameLogString = "";
+    chosenCharacterGameLogString = "Teacher"
+    choseTeacher = true; 
+    this.singlePlayerChooseOpponents();
 }
 characterChosenSeventies () {
-    if(multiPlayer){
-        
-    }
-    else{
-        playerHero = <img src={seventies} alt={"Seventies"}/>;
+    playerHero = <img src={seventies} alt={"Seventies"}/>;
     singlePlayerOponents = [];
     this.resetChosenCharacter();
     chosenCharacterGameLogString = "";
     chosenCharacterGameLogString = "Seventies"
     choseSeventies = true; 
     this.singlePlayerChooseOpponents();
-}
 }
 
 //Choose non player Characters at random --turn into a return statment and move it to own file
@@ -294,7 +254,7 @@ opponents(){
         opponentThree= <img src={seventies} alt={"Seventies"}/>;
         opponentsGameLogString += "Seventies, ";
     }
-    console.log(opponentsGameLogString);
+    //console.log(opponentsGameLogString);
 }
     render() {
         return (

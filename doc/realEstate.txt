@@ -17,11 +17,11 @@
 18 cost 1300 + 100 food per turn
 
 20 cost 1500 -350
-21 cost 1600 + 100 wood
+21 cost 1600 + 50 wood
 
-23 cost 2100 + 65 gold
+23 cost 2100 + 45 gold
 
 25 cost 2500 -500
-26 cost 2900 + 100 gold
-27 cost 3200 + 125 wood
+26 cost 2900 + 60 gold
+27 cost 3200 + 75 wood
 28 cost 3500 - 650

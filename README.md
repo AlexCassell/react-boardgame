@@ -13,7 +13,7 @@ A single player fantasy board game.
 * ~~Player choose game piece.~~
 * Roll 12 sided die. -Partially completed.
 * ~~Player pieces move automatically.~~
-* Most spaces are purchaseable.-Partially completed.
+* ~~Most spaces are purchasable.~~
 * Chance cards will be given after landing on specific spaces.
 
 

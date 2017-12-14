@@ -1,5 +1,5 @@
 let whoArr = ["traveling salesperson", "bridge troll", "web programmer named Alex Cassell", "lost traveler"]
-let actionArr = ["chasing after", "running from", "being rude to", "trying buy something from", "criticizing"]
+let actionArr = ["chasing after", "running from", "being rude to", "trying to buy something from", "criticizing"]
 let happenedArr = ["a band of robbers steals", "you fell in a hole and lost", "you were attacked by a bear and misplaced", "you tripped over your own feet and dropped"]
 let resourcesArr = ["coins", "gold bars", "wood bundles", "food items"]
 

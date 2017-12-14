@@ -141,7 +141,7 @@ movePlayerOnBoard(){
 
     return; //write break here so that player stops in town no matter what they rolled.. unless return works (cant test until AI is working)
   }
-  // ReactDOM.render(<StartGame />, document.getElementById('root'));
+  
   setTimeout(this.movePlayerOnBoard.bind(this), 200);
 }
 }
@@ -159,7 +159,7 @@ movePlayerOnBoardOverRoll(){
     });
     // uiClick.play();
     playerCurrentSlot ++
-    // ReactDOM.render(<StartGame />, document.getElementById('root'));
+    
     setTimeout(this.movePlayerOnBoardOverRoll.bind(this), 200);
   }
   else if (playerCurrentSlot === 28){
@@ -170,7 +170,7 @@ movePlayerOnBoardOverRoll(){
   // uiClick.play();
   playerCurrentSlot = 0;
   playerNewSlot = playerOverRoll;
-  // ReactDOM.render(<StartGame />, document.getElementById('root'));
+  
   setTimeout(this.movePlayerOnBoard.bind(this), 200);
 }
 }
@@ -534,7 +534,6 @@ purchaseRealEstate(){
   }  
 }
 
-
 unforseenEvent(){
   gamePosition = 5;
   this.moveForward ();
@@ -572,7 +571,7 @@ gameOfChance(){
 gameOfChanceRoll(){
   if(gameOfChancePlayerRollsArray.length < 3){
     gameOfChancePlayerRollsArray.push(Math.floor(Math.random()*12+1));
-    // ReactDOM.render(<StartGame />, document.getElementById('root'));
+    
     this.moveForward();
     return setTimeout(this.gameOfChanceRoll.bind(this), 50);
     }
@@ -592,8 +591,6 @@ gameOfChanceRoll(){
       gamePosition = 92;
       return this.moveForward();
   }
-
-
 
 gameLog(){
   gameLogString = "";
@@ -623,7 +620,7 @@ sellGold() {
     coins += goldCurrentPrice;
     soldTotalProfit += goldCurrentPrice;
     this.goldMarketDecrease();
-    // ReactDOM.render(<StartGame />, document.getElementById('root'));
+    
   }
   else{
     //play buzzer
@@ -637,7 +634,7 @@ sellWood() {
     coins += woodCurrentPrice;
     soldTotalProfit += woodCurrentPrice;
     this.woodMarketDecrease();
-    // ReactDOM.render(<StartGame />, document.getElementById('root'));
+    
   }
   else{
     //play buzzer
@@ -651,7 +648,7 @@ sellFood() {
     coins += foodCurrentPrice;
     soldTotalProfit += foodCurrentPrice;
     this.foodMarketDecrease();
-    // ReactDOM.render(<StartGame />, document.getElementById('root'));
+    
   }
   else{
     //play buzzer

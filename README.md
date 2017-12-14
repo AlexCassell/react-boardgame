@@ -16,7 +16,7 @@ Items with a ~~strikethrough~~ are complete.
 * Roll 12 sided die. -Partially completed.
 * ~~Player pieces move automatically.~~
 * ~~Most spaces are purchasable.~~
-* Chance cards will be given after landing on specific spaces.-Partially completed.
+* ~~Chance cards will be given after landing on specific spaces.~~
 
 
 <h3>Maybe Features:</h3>

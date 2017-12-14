@@ -4,10 +4,6 @@ let foundArr = ["wooden chest", "coin sack", "dead body", "deserted cart"]
 let resourcesArr = ["coins", "gold bars", "wood bundles", "food items"]
 
 let resourceType = 0, howManyResource = 0;
-//startgame reads this
-// prints to screen
-//uses resourceType = 0, howManyResource = 0 to calculate bonus 
-//split as fucntions that can be ran like this one into own file if possible
 
 const InSearchOf = () => {
     console.log("I ran, so far away");
@@ -21,7 +17,6 @@ const InSearchOf = () => {
 }
 // 
 export default InSearchOf;
-export {InSearchOf};
 export {resourceType};
 export {howManyResource};
 

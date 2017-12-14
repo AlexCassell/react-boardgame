@@ -4,7 +4,7 @@
     url('../fonts/Neuton-Regular.ttf') format('truetype'),
 } 
 
-.inSearchOfWrapper{
+.cardWrapper{
     position:absolute;
     width: 600px;
     left: -265px;
@@ -15,13 +15,13 @@
     font-family: Neuton;
 }
 
-.inSearchOfWrapper__topText{
+.cardWrapper__topText{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.inSearchOfWrapper__info {
+.cardWrapper__info {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -7,7 +7,7 @@ import logo from '../images/logos/logo.png';
 import '../css/App.css';
 import '../css/slotPopUps.css';
 import '../css/die.css';
-import '../css/inSearchOf.css';
+import '../css/card.css';
 
 import ChatRoom from '../components/chatroom/index.js';
 import InventoryIndex from '../components/inventory.js';
@@ -15,6 +15,7 @@ import CardCollectionIndex from '../components/cardCollection/index.js';
 import CreditsInstructionsIndex from '../components/creditsInstructions/index.js';
 import PickCharacter from '../components/pickCharacter.js';
 import InSearchOf from '../components/inSearchOf.js';
+import UnforseenEvent from '../components/unforseenEvent.js';
 
 import {currentPlayerAvatar} from '../components/pickCharacter.js';
 import {choseKnight}from '../components/pickCharacter.js';
@@ -54,6 +55,9 @@ import purchase from '../images/misc/purchaseButton.png';
 import {resourceType} from '../components/inSearchOf.js';
 import {howManyResource} from '../components/inSearchOf.js';
 
+import {resourceTypeUE} from '../components/unforseenEvent.js';
+import {howManyResourceUE} from '../components/unforseenEvent.js';
+
 //sounds
 const uiClick = new Audio("../sounds/click_04.wav");
 
@@ -89,6 +93,9 @@ let realEstateCost = 0, realEstateCurrentProperty = 0;
 //inSearchOf
 let inSearchOfString = "", inSearchOfCount = 0;
 
+//unforseenEvent
+let unforseenEventString = "", unforseenEventCount = 0;
+
 class StartGame extends Component {
   constructor(props) {
     super(props);
@@ -108,7 +115,7 @@ rollDie() {
 //   playerOverRoll =  playerNewSlot - 28;
 //   return this.movePlayerOnBoardOverRoll();
 // }
-playerNewSlot = 7;//dev only
+playerNewSlot = 4;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -728,24 +735,76 @@ goldMarketIncrease(){
   }
 
   inSearchOfCalculated(){
+    let tmpString = "";
     if(resourceType === 0){
       coins += howManyResource;
-      console.log(coins);
+      tmpString = "coins."
+      // console.log(coins);
     }
     else if(resourceType === 1){
       gold += howManyResource;
-      console.log(gold);
+      // console.log(gold);
+      tmpString = "gold bars.";
     }
     else if(resourceType === 2){
       wood += howManyResource;
-      console.log(wood);
+      // console.log(wood);
+      tmpString = "wood bundles.";
     }
     else if(resourceType === 3){
       food += howManyResource;
       console.log(food);
+      tmpString = "food items.";
     }
+    gameLogArray.push(currentTime + "You found " + howManyResource + " " + tmpString);
+    this.gameLog();
     this.moveForward();
   }
+
+  unForseenEventsCalculated(){
+    let tmpString = "";
+    if(resourceTypeUE === 0){
+      if(coins > howManyResourceUE){
+        coins -= howManyResourceUE;
+      }
+      else {
+        coins = 0;
+      }  
+      tmpString = "coins."
+    }
+    else if(resourceTypeUE === 1){
+        if(gold > howManyResourceUE){
+          gold -= howManyResourceUE;
+        }
+        else {
+          gold = 0;
+        }
+        tmpString = "gold bars.";
+      }
+
+    else if(resourceTypeUE === 2){
+        if(wood > howManyResourceUE){
+          wood -= howManyResourceUE;
+        }
+        else {
+          wood = 0;
+        }
+      tmpString = "wood bundles.";
+    }
+    else if(resourceTypeUE === 3){
+        if(food > howManyResourceUE){
+          food -= howManyResourceUE;
+        }
+        else {
+          food = 0;
+        }
+      tmpString = "food items.";
+    }
+    gameLogArray.push(currentTime + "You lost " + howManyResourceUE + " " + tmpString);
+    this.gameLog();
+    this.moveForward();
+  }
+
 
   //Main Game Function
 moveForward () {
@@ -780,7 +839,7 @@ else if (gamePosition === 2){
   });
 }
 else if (gamePosition === 3){
-    // gamePosition = -1;
+    gamePosition = -1;
     this.rollDie();
     this.getTime();
     gameLogArray.push(currentTime + "You rolled " + dieRoll[0]);
@@ -814,22 +873,35 @@ else if (gamePosition === 4){
   console.log("current player:" + currentPlayer);
 }
 else if (gamePosition === 5){
-  gamePosition = -1;
-  this.getTime();
-  gameLogArray.push(currentTime + "You suffered an Unforseen Event.");
-  this.gameLog();
+  if(unforseenEventCount === 0){
+    unforseenEventString = < UnforseenEvent />;
+    unforseenEventCount = 1;
+    gamePosition = 5;
+  }
+  else {
+    unforseenEventCount = 0;
+    gamePosition = 4;
+  }
   this.setState({
-    playButtonText: "Oh no! You have suffered an Unforseen Event.",
-    middleContent: ""
+    playButtonText: "Click here to end your turn.",
+    middleContent: <div className="cardWrapper">
+    <div className="cardWrapper__topText">
+      <h1>Oh no! You have suffered an Unforseen Event.</h1>
+    </div>
+    <div className="cardWrapper__info">
+    {unforseenEventString}
+    </div>
+  </div>
   });
+  if(unforseenEventCount === 1){
+    this.unForseenEventsCalculated();
+  }
 }
 else if (gamePosition === 6){
   if(inSearchOfCount === 0){
     inSearchOfString = < InSearchOf />;
     inSearchOfCount = 1;
     gamePosition = 6;
-    gameLogArray.push(currentTime + "You found something of value.");
-    this.gameLog();
   }
   else {
     inSearchOfCount = 0;
@@ -837,11 +909,11 @@ else if (gamePosition === 6){
   }
   this.setState({
     playButtonText: "Click here to end your turn.",
-    middleContent: <div className="inSearchOfWrapper">
-    <div className="inSearchOfWrapper__topText">
+    middleContent: <div className="cardWrapper">
+    <div className="cardWrapper__topText">
       <h1>You found something of value.</h1>
     </div>
-    <div className="inSearchOfWrapper__info">
+    <div className="cardWrapper__info">
     {inSearchOfString}
     </div>
   </div>
@@ -849,9 +921,6 @@ else if (gamePosition === 6){
   if(inSearchOfCount === 1){
     this.inSearchOfCalculated();
   }
-
-  
-
 }
 else if (gamePosition === 7){
   gamePosition = -1;

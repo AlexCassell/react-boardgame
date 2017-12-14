@@ -1,0 +1,29 @@
+In Search of...
+
+who 
+local farmer
+lost traveler
+wee damsel
+wee lad
+dragon
+euridite
+dark elf
+wizard
+
+action
+helping
+fleeing
+looking for
+hunting
+traveling with
+stealing from
+
+found
+wooden chest
+coin sack
+dead body
+deserted cart
+
+
+While {what} a {who}, you find a {found} with (Random.Range(5, 100)) {resource}.
+

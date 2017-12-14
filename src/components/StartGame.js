@@ -7,12 +7,14 @@ import logo from '../images/logos/logo.png';
 import '../css/App.css';
 import '../css/slotPopUps.css';
 import '../css/die.css';
+import '../css/inSearchOf.css';
 
 import ChatRoom from '../components/chatroom/index.js';
 import InventoryIndex from '../components/inventory.js';
 import CardCollectionIndex from '../components/cardCollection/index.js';
 import CreditsInstructionsIndex from '../components/creditsInstructions/index.js';
 import PickCharacter from '../components/pickCharacter.js';
+import InSearchOf from '../components/inSearchOf.js';
 
 import {currentPlayerAvatar} from '../components/pickCharacter.js';
 import {choseKnight}from '../components/pickCharacter.js';
@@ -27,6 +29,8 @@ import {playerHero}from '../components/pickCharacter.js';
 import {opponentOne}from '../components/pickCharacter.js';
 import {opponentTwo}from '../components/pickCharacter.js';
 import {opponentThree}from '../components/pickCharacter.js';
+
+
 
 import {opponentsGameLogString}from '../components/pickCharacter.js';
 import {chosenCharacterGameLogString}from '../components/pickCharacter.js';
@@ -47,6 +51,8 @@ import foodicon from '../images/food/market.png';
 
 import purchase from '../images/misc/purchaseButton.png';
 
+import {resourceType} from '../components/inSearchOf.js';
+import {howManyResource} from '../components/inSearchOf.js';
 
 //sounds
 const uiClick = new Audio("../sounds/click_04.wav");
@@ -80,26 +86,29 @@ let realEstateStatus = [];
 let realEstateTitle = "", realEstateInfo = "", propertyName = "";
 let realEstateCost = 0, realEstateCurrentProperty = 0;
 
+//inSearchOf
+let inSearchOfString = "", inSearchOfCount = 0;
+
 class StartGame extends Component {
   constructor(props) {
     super(props);
     this.state = {'playerPositionOnBoard': ''};
-    this.state = {'playButton': ''};
+    this.state = {'middleContent': ''};
     this.state = {'playButtonText': 'Click here to begin your journey.'};
   }
 
 rollDie() {
-dieRoll = [""];
-gamePosition = -1;
-for(let i = 0; i < 4; i++){
-  dieRoll[i] =+ Math.floor(Math.random()*12+1);
-}
-playerNewSlot = playerCurrentSlot + dieRoll[0];
-if(playerNewSlot > 28){
-  playerOverRoll =  playerNewSlot - 28;
-  return this.movePlayerOnBoardOverRoll();
-}
-// playerNewSlot = 5;//dev only
+// dieRoll = [""];
+// gamePosition = -1;
+// for(let i = 0; i < 4; i++){
+//   dieRoll[i] =+ Math.floor(Math.random()*12+1);
+// }
+// playerNewSlot = playerCurrentSlot + dieRoll[0];
+// if(playerNewSlot > 28){
+//   playerOverRoll =  playerNewSlot - 28;
+//   return this.movePlayerOnBoardOverRoll();
+// }
+playerNewSlot = 7;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -718,6 +727,25 @@ goldMarketIncrease(){
     this.moveForward();
   }
 
+  inSearchOfCalculated(){
+    if(resourceType === 0){
+      coins += howManyResource;
+      console.log(coins);
+    }
+    else if(resourceType === 1){
+      gold += howManyResource;
+      console.log(gold);
+    }
+    else if(resourceType === 2){
+      wood += howManyResource;
+      console.log(wood);
+    }
+    else if(resourceType === 3){
+      food += howManyResource;
+      console.log(food);
+    }
+    this.moveForward();
+  }
 
   //Main Game Function
 moveForward () {
@@ -726,7 +754,7 @@ moveForward () {
     gamePosition = 1;
     this.setState({
       playButtonText: "Click here once you have chosen your hero.",
-      playButton:<PickCharacter />
+      middleContent:<PickCharacter />
         });
   }
   else if (gamePosition === 1){
@@ -739,7 +767,7 @@ moveForward () {
     this.setState({
       playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot - 1] = playerHero,
       playButtonText: "Click here when you are ready to begin.",
-      playButton: <div className="gameBox__board__opponents"><span className="gameBox__board__opponents__text"><h3>Your opponents have been chosen.</h3></span>{opponentOne}{opponentTwo}{opponentThree}</div>
+      middleContent: <div className="gameBox__board__opponents"><span className="gameBox__board__opponents__text"><h3>Your opponents have been chosen.</h3></span>{opponentOne}{opponentTwo}{opponentThree}</div>
     });
 }
 
@@ -748,7 +776,7 @@ else if (gamePosition === 2){
   gamePosition = 3;
   this.setState({
     playButtonText: "Roll Die",
-    playButton: <div className="dieWrapper"><div id="pentagon"></div></div>
+    middleContent: <div className="dieWrapper"><div id="pentagon"></div></div>
   });
 }
 else if (gamePosition === 3){
@@ -759,7 +787,7 @@ else if (gamePosition === 3){
     this.gameLog();
     this.setState({
     playButtonText: "Player moving...",
-    playButton: <div className="dieWrapper">{dieRoll[0]}</div>
+    middleContent: <div className="dieWrapper">{dieRoll[0]}</div>
   });
 }
 else if (gamePosition === 4){
@@ -775,7 +803,7 @@ else if (gamePosition === 4){
   gamePosition = -1;
   this.setState({
     playButtonText: "Please wait while your opponents take their turn.",
-    playButton: ""
+    middleContent: ""
   });
   if(currentPlayer < 4){
     currentPlayer += 1;
@@ -788,22 +816,42 @@ else if (gamePosition === 4){
 else if (gamePosition === 5){
   gamePosition = -1;
   this.getTime();
-  gameLogArray.push(currentTime + "You have suffered an Unforseen Event.");
+  gameLogArray.push(currentTime + "You suffered an Unforseen Event.");
   this.gameLog();
   this.setState({
     playButtonText: "Oh no! You have suffered an Unforseen Event.",
-    playButton: ""
+    middleContent: ""
   });
 }
 else if (gamePosition === 6){
-  gamePosition = -1;
-  this.getTime();
-  gameLogArray.push(currentTime + "You found something interesting.");
-  this.gameLog();
+  if(inSearchOfCount === 0){
+    inSearchOfString = < InSearchOf />;
+    inSearchOfCount = 1;
+    gamePosition = 6;
+    gameLogArray.push(currentTime + "You found something of value.");
+    this.gameLog();
+  }
+  else {
+    inSearchOfCount = 0;
+    gamePosition = 4;
+  }
   this.setState({
-    playButtonText: "What good fortune, you have found something!",
-    playButton: ""
+    playButtonText: "Click here to end your turn.",
+    middleContent: <div className="inSearchOfWrapper">
+    <div className="inSearchOfWrapper__topText">
+      <h1>You found something of value.</h1>
+    </div>
+    <div className="inSearchOfWrapper__info">
+    {inSearchOfString}
+    </div>
+  </div>
   });
+  if(inSearchOfCount === 1){
+    this.inSearchOfCalculated();
+  }
+
+  
+
 }
 else if (gamePosition === 7){
   gamePosition = -1;
@@ -811,7 +859,7 @@ else if (gamePosition === 7){
   this.gameLog();
   this.setState({
     playButtonText: "You have been captured!",
-    playButton: ""
+    middleContent: ""
   });
 }
 else if (gamePosition === 8){
@@ -823,7 +871,7 @@ else if (gamePosition === 8){
   this.gameLog();
   this.setState({
     playButtonText: "You have teleported to relative safety.",
-    playButton: ""
+    middleContent: ""
   });
   this.moveForward();
 }
@@ -837,7 +885,7 @@ else if (gamePosition === 9){
   gamePosition = 90;
   this.setState({
     playButtonText: "Time for a game of chance.",
-    playButton: <div className="gamebox__gameofChanceWrapper">
+    middleContent: <div className="gamebox__gameofChanceWrapper">
       <div className="gamebox__gameofChanceWrapper__topText">
         <h1>Click above when you are ready to try your luck.</h1>
       </div>
@@ -854,7 +902,7 @@ else if (gamePosition === 90){
   this.gameOfChanceRoll();
   this.setState({
     playButtonText: "Please wait ",
-    playButton:  <div className="gamebox__gameofChanceWrapper">
+    middleContent:  <div className="gamebox__gameofChanceWrapper">
     <div className="gamebox__gameofChanceWrapper__topText">
       {/* <h1></h1> */}
     </div>
@@ -875,7 +923,7 @@ else if (gamePosition === 901){
   this.gameOfChanceRoll();
   this.setState({
     playButtonText: "Please wait ",
-    playButton:  <div className="gamebox__gameofChanceWrapper">
+    middleContent:  <div className="gamebox__gameofChanceWrapper">
     <div className="gamebox__gameofChanceWrapper__topText">
       {/* <h1></h1> */}
     </div>
@@ -896,7 +944,7 @@ else if (gamePosition === 902){
   this.gameOfChanceRoll();
   this.setState({
     playButtonText: "Please wait ",
-    playButton:  <div className="gamebox__gameofChanceWrapper">
+    middleContent:  <div className="gamebox__gameofChanceWrapper">
     <div className="gamebox__gameofChanceWrapper__topText">
       {/* <h1></h1> */}
     </div>
@@ -925,7 +973,7 @@ else if (gamePosition === 91){
   }
   this.setState({
     playButtonText: "Click to end your turn.",
-    playButton: <div className="gamebox__gameofChanceWrapper">
+    middleContent: <div className="gamebox__gameofChanceWrapper">
     <div className="gamebox__gameofChanceWrapper__topText">
       <h1>Congratulations you have won {gameOfChancePrizeAmount.toLocaleString()} coins!</h1>
     </div>
@@ -953,7 +1001,7 @@ else if (gamePosition === 92){
   // //console.log(gamePosition);
   this.setState({
     playButtonText: "Click to end your turn.",
-    playButton: <div className="gamebox__gameofChanceWrapper">
+    middleContent: <div className="gamebox__gameofChanceWrapper">
     <div className="gamebox__gameofChanceWrapper__topText">
       <h1>You did not win.</h1>
     </div>
@@ -973,7 +1021,7 @@ else if (gamePosition === 10){
   gamePosition = 4;
   this.setState({
     playButtonText: "Click here to end your turn.",
-    playButton: 
+    middleContent: 
     <div className="gamebox__marketWrapper">
       <div className="gamebox__marketWrapper__topText">
         <h1>Would you like to sell any items?</h1>
@@ -1005,7 +1053,7 @@ else if (gamePosition === 11){
   gamePosition = 4;
   this.setState({
     playButtonText: "Click to end your turn.",
-    playButton: <div className="gamebox__realEstateWrapper">
+    middleContent: <div className="gamebox__realEstateWrapper">
     <div className="gamebox__realEstateWrapper__topText">
       <h1>{realEstateTitle}</h1>
     </div>
@@ -1034,7 +1082,7 @@ else if (gamePosition === 11){
 //       if(gamePosition > 0){
 //         gamePosition = gamePosition - 1;
 //         this.setState({
-//           playButton: "You cannot undo this action."
+//           middleContent: "You cannot undo this action."
 //         });
 //       }
 //     }
@@ -1065,7 +1113,7 @@ return (
   {/* <CreditsInstructionsIndex /> */}
     <div className="gameBox__advanceGame">
       <button className="gameBox__advanceGame__increment" onClick={this.moveForward.bind(this)}> {this.state.playButtonText} </button>
-      {this.state.playButton}
+      {this.state.middleContent}
     </div>
     <div className="gameBox__chatroom">
       <h2><span className="body_altFont">Game Log</span></h2>
@@ -1266,7 +1314,7 @@ return (
 }
 }
 
-// ReactDOM.render(<StartGame />, document.getElementById('root'));
+ReactDOM.render(<StartGame />, document.getElementById('root'));
 
 export default StartGame;
 export {coins};

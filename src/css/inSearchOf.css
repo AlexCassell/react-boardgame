@@ -1,0 +1,29 @@
+@font-face {
+    font-family: Neuton;
+    src: local('?'), 
+    url('../fonts/Neuton-Regular.ttf') format('truetype'),
+} 
+
+.inSearchOfWrapper{
+    position:absolute;
+    width: 600px;
+    left: -265px;
+    height: 325px;
+    z-index: 10;
+    top: 70px;
+    color: white;
+    font-family: Neuton;
+}
+
+.inSearchOfWrapper__topText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inSearchOfWrapper__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25pt;
+}

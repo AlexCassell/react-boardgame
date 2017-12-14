@@ -1,7 +1,7 @@
 /*eslint no-unused-vars: "off"*/
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import StartGame from '../components/StartGame.js';
 import '../css/inventoryCSS.css';
@@ -16,13 +16,7 @@ import goldicon from '../images/gold/large.png';
 import woodicon from '../images/wood/large.png';
 import foodicon from '../images/food/large.png';
 
-// let coinsLocale = coins.toLocaleString();
-// let goldLocale = gold.toLocaleString();
-// let woodLocale = wood.toLocaleString();
-// let foodLocale = food.toLocaleString();
-
 class InventoryIndex extends Component {
-    
 render() {
     return (
         <div className="gameBox__playerStats__wrapper">

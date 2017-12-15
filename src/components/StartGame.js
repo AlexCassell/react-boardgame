@@ -8,6 +8,7 @@ import '../css/App.css';
 import '../css/slotPopUps.css';
 import '../css/die.css';
 import '../css/card.css';
+import '../css/slaveMines.css';
 
 import ChatRoom from '../components/chatroom/index.js';
 import InventoryIndex from '../components/inventory.js';
@@ -115,7 +116,7 @@ rollDie() {
 //   playerOverRoll =  playerNewSlot - 28;
 //   return this.movePlayerOnBoardOverRoll();
 // }
-playerNewSlot = 4;//dev only
+playerNewSlot = 10;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -920,12 +921,27 @@ else if (gamePosition === 6){
   }
 }
 else if (gamePosition === 7){
-  gamePosition = -1;
+  gamePosition = 4;
+  let tmpGold = Math.floor((gold/100)*25);
+  let tmpWood = Math.floor((wood/100)*25);
+  let tmpFood = Math.floor((food/100)*25);
+  let tmpCoins = Math.floor((coins/100)*25);
+  gold -= tmpGold;
+  wood -= tmpWood;
+  food -= tmpFood;
+  coins -= tmpCoins;
   gameLogArray.push(currentTime + "You have been captured!");
   this.gameLog();
   this.setState({
-    playButtonText: "You have been captured!",
-    middleContent: ""
+    playButtonText: "Click here to end your turn.",
+    middleContent: <div className="slaveWrapper">
+    <div className="slaveWrapper__topText">
+      <h1>You have been captured!</h1>
+    </div>
+    <div className="slaveWrapper__info">
+    You had to pay {tmpCoins} coins and 25% of your goods: -{tmpGold} gold bars, -{tmpWood} wood bundles and -{tmpFood} food items.
+    </div>
+  </div>
   });
 }
 else if (gamePosition === 8){

@@ -106,17 +106,17 @@ class StartGame extends Component {
   }
 
 rollDie() {
-// dieRoll = [""];
-// gamePosition = -1;
-// for(let i = 0; i < 4; i++){
-//   dieRoll[i] =+ Math.floor(Math.random()*12+1);
-// }
-// playerNewSlot = playerCurrentSlot + dieRoll[0];
-// if(playerNewSlot > 28){
-//   playerOverRoll =  playerNewSlot - 28;
-//   return this.movePlayerOnBoardOverRoll();
-// }
-playerNewSlot = 10;//dev only
+dieRoll = [""];
+gamePosition = -1;
+for(let i = 0; i < 4; i++){
+  dieRoll[i] =+ Math.floor(Math.random()*12+1);
+}
+playerNewSlot = playerCurrentSlot + dieRoll[0];
+if(playerNewSlot > 28){
+  playerOverRoll =  playerNewSlot - 28;
+  return this.movePlayerOnBoardOverRoll();
+}
+// playerNewSlot = 10;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -930,7 +930,7 @@ else if (gamePosition === 7){
   wood -= tmpWood;
   food -= tmpFood;
   coins -= tmpCoins;
-  gameLogArray.push(currentTime + "You have been captured!");
+  gameLogArray.push(currentTime + "You were captured and had to pay out " + tmpCoins + " coins, " + tmpGold + " gold bars, " + tmpWood + " wood bundles and " + tmpFood + " food items.");
   this.gameLog();
   this.setState({
     playButtonText: "Click here to end your turn.",

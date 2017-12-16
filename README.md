@@ -10,7 +10,7 @@ Items with a ~~strikethrough~~ are complete.
 * ~~CSS/HTML Gameboard.~~
 * Harvest resources.
 * ~~Sell harvested resources in town.~~
-* Non Player AI.
+* Non Player AI.-Partially completed.
 * ~~Currency.~~
 * ~~Player choose game piece.~~
 * Roll 12 sided die. -Partially completed.

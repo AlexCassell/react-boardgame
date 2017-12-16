@@ -9,6 +9,7 @@ import '../css/slotPopUps.css';
 import '../css/die.css';
 import '../css/card.css';
 import '../css/slaveMines.css';
+import '../css/ai.css';
 
 import ChatRoom from '../components/chatroom/index.js';
 import InventoryIndex from '../components/inventory.js';
@@ -72,9 +73,9 @@ let undoAvailable = false, justStarted = true;
 
 let playerBoardSlotArray = [""];
 
-let playerCurrentSlot = 1, playerNewSlot = 0, playerOverRoll = 0, opponentOneCurrentSlot = 1, opponentTwoCurrentSlot = 1,opponentThreeCurrentSlot = 1, opponentFourCurrentSlot = 1;
+let playerCurrentSlot = 1, playerNewSlot = 0, playerOverRoll = 0, opponentsCurrentSlotArray = [];
 let dieRoll = [""];
-let currentPlayer = 1;
+let currentPlayer = 1;//whose turn
 //stats
 let coins = 500, gold = 0, wood = 0, food = 50;
 let opponentsCoins = [500, 500, 500], opponentsGold = [0, 0, 0], opponentsWood = [0, 0, 0], opponentsFood = [50, 50, 50];
@@ -97,10 +98,18 @@ let inSearchOfString = "", inSearchOfCount = 0;
 //unforseenEvent
 let unforseenEventString = "", unforseenEventCount = 0;
 
+//Ai Variables/////////////////////////////////////////////////////////////////////////
+///\\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\\/\/\/\/\/
+//////////////////////////////////////////////////////////////////////////////////////
+///\\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\\/\/\/\/\/
+
+let opponentsCurrentSlot = 0, opponentsNewSlot = 0, currentOpponentsAvatar = "", opponentsOverRoll = 0;
+
 class StartGame extends Component {
   constructor(props) {
     super(props);
     this.state = {'playerPositionOnBoard': ''};
+    this.state = {'OpponentsPositionOnBoard': ''};
     this.state = {'middleContent': ''};
     this.state = {'playButtonText': 'Click here to begin your journey.'};
   }
@@ -116,7 +125,7 @@ if(playerNewSlot > 28){
   playerOverRoll =  playerNewSlot - 28;
   return this.movePlayerOnBoardOverRoll();
 }
-// playerNewSlot = 10;//dev only
+// playerNewSlot = 7;//dev only
 this.movePlayerOnBoard();
 }
 //finish setting ai's turn -----------------------------test------------------------------------------------------------<
@@ -129,7 +138,7 @@ movePlayerOnBoard(){
   if(playerCurrentSlot < playerNewSlot) {
     delete playerBoardSlotArray[playerCurrentSlot - 1];
     this.setState({
-    playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = currentPlayerAvatar
+    playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = playerHero
   });
   
   playerCurrentSlot ++
@@ -137,6 +146,7 @@ movePlayerOnBoard(){
     this.getTime();
     gameLogArray.push(currentTime + "You made it back to town.");
     gamePosition = 10;
+    this.getTime();
     this.gameLog();
     this.moveForward();
 
@@ -156,7 +166,7 @@ movePlayerOnBoardOverRoll(){
   if(playerCurrentSlot < 28) {
     delete playerBoardSlotArray[playerCurrentSlot - 1];
     this.setState({
-      playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = currentPlayerAvatar            
+      playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = playerHero            
     });
     // uiClick.play();
     playerCurrentSlot ++
@@ -520,6 +530,7 @@ purchaseRealEstate(){
     coins -= realEstateCost;
     //console.log(realEstateStatus[realEstateCurrentProperty]);
     realEstateStatus[realEstateCurrentProperty] = currentPlayer;
+    this.getTime();
     if(currentPlayer === 1){
       gameLogArray.push(currentTime + "You bought " + propertyName + " for " + realEstateCost + " coins.");
     }
@@ -755,6 +766,7 @@ goldMarketIncrease(){
       tmpString = "food items.";
     }
     gameLogArray.push(currentTime + "You found " + howManyResource + " " + tmpString);
+    this.getTime();
     this.gameLog();
     this.moveForward();
   }
@@ -798,10 +810,117 @@ goldMarketIncrease(){
         }
       tmpString = "food items.";
     }
+    this.getTime();
     gameLogArray.push(currentTime + "You lost " + howManyResourceUE + " " + tmpString);
     this.gameLog();
     this.moveForward();
   }
+
+  /// Everything between here and moveForward() is for the AI
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  aiTurnStart(){
+    // this.logPlayersTurn();
+    if(opponentsCurrentSlotArray[2] === undefined ||  opponentsCurrentSlotArray[3] === undefined ||  opponentsCurrentSlotArray[4] === undefined) {
+      if(currentPlayer === 2){
+        opponentsCurrentSlotArray[2] = 1;
+        this.setState({
+          OpponentsPositionOnBoard: playerBoardSlotArray[0] = opponentOne,
+        });
+      }
+      else if(currentPlayer === 3 && opponentsCurrentSlotArray[3] === 1){
+        opponentsCurrentSlotArray[3] = 1;
+        this.setState({
+          OpponentsPositionOnBoard: playerBoardSlotArray[0] = opponentTwo,
+        });
+      }
+      else if(currentPlayer === 4 && opponentsCurrentSlotArray[4] === 1){
+        opponentsCurrentSlotArray[4] = 1;
+        this.setState({
+          OpponentsPositionOnBoard: playerBoardSlotArray[0] = opponentThree,
+        });
+      }
+    }
+
+    if(currentPlayer === 2){
+      opponentsNewSlot = dieRoll[1] + opponentsCurrentSlotArray[currentPlayer];
+    }
+    this.moveOpponentsOnBoard();
+  }
+
+  moveOpponentsOnBoard(){
+    console.log("859");
+    if(opponentsCurrentSlotArray[currentPlayer] === opponentsNewSlot){
+      console.log("861");
+      // this.checkCurrentGameSlotForPlayer();
+      gamePosition = 501;
+      this.moveForward ();
+    }
+    if(opponentsCurrentSlotArray[currentPlayer] < opponentsNewSlot) {
+      console.log("867");
+      delete playerBoardSlotArray[playerCurrentSlot - 1];
+      this.setState({
+      playerPositionOnBoard: playerBoardSlotArray[playerCurrentSlot] = playerHero
+    });
+  }
+    opponentsCurrentSlotArray[currentPlayer]++
+    if(opponentsCurrentSlotArray[currentPlayer] === 1){
+      console.log("875");
+      gamePosition = 510;
+      this.moveForward();
+      return; //write break here so that player stops in town no matter what they rolled.. unless return works (cant test until AI is working)
+    }
+    console.log("880");
+    setTimeout(this.moveOpponentsOnBoard.bind(this), 200);
+  }
+  
+  
+  moveOpponentsOnBoardOverRoll(){
+    if(opponentsCurrentSlotArray[currentPlayer] === opponentsNewSlot){
+      this.checkCurrentGameSlotForopponents();
+      gamePosition = 4;
+      this.moveForward ();
+    }
+    if(opponentsCurrentSlotArray[currentPlayer] < 28) {
+      delete playerBoardSlotArray[opponentsCurrentSlotArray[currentPlayer] - 1];
+      this.setState({
+        opponentsPositionOnBoard: playerBoardSlotArray[opponentsCurrentSlotArray[currentPlayer]] = currentOpponentsAvatar            
+      });
+      // uiClick.play();
+      opponentsCurrentSlotArray[currentPlayer] ++
+      
+      setTimeout(this.moveopponentsOnBoardOverRoll.bind(this), 200);
+    }
+    else if (opponentsCurrentSlot === 28){
+      delete playerBoardSlotArray[27];
+      this.setState({
+      opponentsPositionOnBoard: playerBoardSlotArray[0] = currentOpponentsAvatar
+    });
+    // uiClick.play();
+    opponentsCurrentSlot = 0;
+    opponentsNewSlot = opponentsOverRoll;
+    
+    setTimeout(this.moveopponentsOnBoard.bind(this), 200);
+  }
+  }
+
+  // logPlayersTurn(){
+  //   if(currentPlayer === 1){
+  //     this.getTime();
+  //     gameLogArray.push(currentTime + "Player " + currentPlayer + "has begun their turn.");
+  //     this.gameLog();
+  //   }
+  // }
+
+
+
 
 
   //Main Game Function
@@ -833,7 +952,7 @@ else if (gamePosition === 2){
   gamePosition = 3;
   this.setState({
     playButtonText: "Roll Die",
-    middleContent: <div className="dieWrapper"><div id="pentagon"></div></div>
+    middleContent: <div className="dieWrapper"></div>
   });
 }
 else if (gamePosition === 3){
@@ -843,8 +962,8 @@ else if (gamePosition === 3){
     gameLogArray.push(currentTime + "You rolled " + dieRoll[0]);
     this.gameLog();
     this.setState({
-    playButtonText: "Player moving...",
-    middleContent: <div className="dieWrapper">{dieRoll[0]}</div>
+      playButtonText: "Player moving...",
+      middleContent: <div className="dieWrapper">{dieRoll[0]}</div>
   });
 }
 else if (gamePosition === 4){
@@ -867,6 +986,11 @@ else if (gamePosition === 4){
   }
   else{
     currentPlayer = 1;
+  }
+  if(currentPlayer !== 1){
+    gamePosition = 500;
+    this.moveForward();
+    this.aiTurnStart();
   }
   console.log("current player:" + currentPlayer);
 }
@@ -930,6 +1054,7 @@ else if (gamePosition === 7){
   wood -= tmpWood;
   food -= tmpFood;
   coins -= tmpCoins;
+  this.getTime();
   gameLogArray.push(currentTime + "You were captured and had to pay out " + tmpCoins + " coins, " + tmpGold + " gold bars, " + tmpWood + " wood bundles and " + tmpFood + " food items.");
   this.gameLog();
   this.setState({
@@ -950,6 +1075,7 @@ else if (gamePosition === 8){
   gameLogArray.push(currentTime + "You found a portal.");
   gameLogArray.push(currentTime + "You made it back to town.");
   gamePosition = 10;
+  this.getTime();
   this.gameLog();
   this.setState({
     playButtonText: "You have teleported to relative safety.",
@@ -1144,6 +1270,35 @@ else if (gamePosition === 11){
     </div>
     <div className="gamebox__realEstateWrapper__purchaseButton">
       <button className="realEstate__buttonActual" onClick={this.purchaseRealEstate.bind(this)}><img src={purchase} alt={"purchase"}/></button>
+    </div>
+  </div>
+  });
+}
+//////// All Game positions below this line are for the AI's turns
+else if (gamePosition === 500){
+  gamePosition = -1;
+  this.setState({
+    playButtonText: "Please wait while your opponents take their turn.",
+    middleContent: <div className="aiWrapper">
+    <div className="aiWrapper__topText">
+      <h1>Player {currentPlayer} is taking their turn.</h1>
+    </div>
+    <div className="aiWrapper__info">
+
+    </div>
+  </div>
+  });
+}
+else if (gamePosition === 501){
+  gamePosition = -1;
+  this.setState({
+    playButtonText: "Please wait while your opponents take their turn.",
+    middleContent: <div className="aiWrapper">
+    <div className="aiWrapper__topText">
+      <h1>Player {currentPlayer} is taking their turn.</h1>
+    </div>
+    <div className="aiWrapper__info">
+
     </div>
   </div>
   });

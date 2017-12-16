@@ -1,21 +1,22 @@
-.cardWrapper{
+.aiWrapper{
     position:absolute;
     width: 600px;
     left: -265px;
     height: 325px;
     z-index: 10;
-    top: 70px;
+    top: 50px;
     color: white;
     font-family: Neuton;
 }
 
-.cardWrapper__topText{
+.aiWrapper__topText{
+    font-size: 25pt;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cardWrapper__info {
+.aiWrapper__info {
     display: flex;
     justify-content: center;
     align-items: center;
